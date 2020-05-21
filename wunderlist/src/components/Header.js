@@ -32,13 +32,16 @@ function ElevationScroll(props) {
 const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.common.grey,
   },
   toolbar: {
     ...theme.mixins.toolbar,
@@ -46,9 +49,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-  },
-  appbar: {
-    zIndex: theme.zIndex.modal + 1,
   },
   tabContainer: {
     marginLeft: "auto",
