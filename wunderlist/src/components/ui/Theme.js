@@ -9,11 +9,11 @@ const wunderWhite = "#f7f6f0";
 
 export default createMuiTheme({
   palette: createPalette({
-      common: {
-          grey: wunderGrey,
-          white: wunderWhite,
-          black: wunderBlack,
-      },
+    common: {
+      grey: wunderGrey,
+      white: wunderWhite,
+      black: wunderBlack,
+    },
     primary: {
       main: wunderDarkGrey,
     },
@@ -27,7 +27,13 @@ export default createMuiTheme({
       color: wunderWhite,
     },
     listIcon: {
-        color: wunderBlue,
-    }
+      color: wunderBlue,
+    },
+    cardIcon: {
+      color: wunderBlue,
+    },
+    reoccurring: {
+      color: "red",
+    },
   },
 });

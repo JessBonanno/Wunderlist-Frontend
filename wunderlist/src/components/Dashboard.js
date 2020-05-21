@@ -65,18 +65,18 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.listIcon,
   },
   cardContainer: {
-      marginTop: '5em',
-      marginLeft: 300,
-      maxWidth: '80%',
+    marginTop: "5em",
+    marginLeft: 300,
+    maxWidth: "80%",
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
   const theme = useTheme();
 
   return (
-    <Grid container direction="row" marginTop="10em" justify='space-evenly'>
+    <Grid container direction="row" marginTop="10em" justify="space-evenly">
       <Grid item>
         <Drawer
           className={classes.drawer}
@@ -124,27 +124,14 @@ export default function Dashboard() {
           </List>
         </Drawer>
       </Grid>
+
       <Grid item>
         <Grid item container className={classes.cardContainer}>
-          <Grid item className={classes.card}>
-            <ListCard />
-          </Grid>
-          <Grid item className={classes.card}>
-            <ListCard />
-          </Grid>
-          <Grid item className={classes.card}>
-            <ListCard />
-          </Grid>
-          <Grid item className={classes.card}>
-            <ListCard />
-          </Grid>
-          <Grid item className={classes.card}>
-            <ListCard />
-          </Grid>
-          <Grid item className={classes.card}>
-            <ListCard />
-          </Grid>
-          
+          {props.noteData.map((note) => (
+            <Grid item className={classes.card}>
+              <ListCard note={note}/>
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>

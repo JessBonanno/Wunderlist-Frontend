@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 // mui imports
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -8,13 +8,33 @@ import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
 
-const sampleNoteData = {
+const sampleNoteData = [
   // sample note data for development
-  name: "note title",
-  noteItems: ["note item 1", "note item 2", "note item 3"],
-  reoccurring: true,
-  listId: 'week',
-};
+  {
+    name: "Groceries",
+    noteItems: ["milk", "eggs", "bread"],
+    reoccurring: false,
+    listId: "day",
+  },
+  {
+    name: "Chores",
+    noteItems: ["rake the leaves", "run the dishwasher", "mop the kitchen"],
+    reoccurring: false,
+    listId: "week",
+  },
+  {
+    name: "Bills to pay",
+    noteItems: ["rent", "netflix", "electric", "Lambda ISA"],
+    reoccurring: true,
+    listId: "month",
+  },
+  {
+    name: "Don't forget",
+    noteItems: ["feed the pets", "eat dinner", "set an alarm for 5 am"],
+    reoccurring: false,
+    listId: "general",
+  },
+];
 
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
@@ -26,7 +46,7 @@ function App() {
       {/* wrapping app with ThemeProvider to pass created styles to components */}
       <ThemeProvider theme={theme}>
         <Header />
-        <Dashboard/>
+        <Dashboard noteData={noteData} />
       </ThemeProvider>
     </div>
   );

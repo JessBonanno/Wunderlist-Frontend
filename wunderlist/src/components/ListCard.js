@@ -11,6 +11,7 @@ import AssignmentTurnedInTwoToneIcon from "@material-ui/icons/AssignmentTurnedIn
 
 // local components
 import CheckList from "./Checklist";
+import Theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
@@ -29,11 +30,13 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   editButton: {
+    ...Theme.typography.cardIcon,
     marginLeft: "auto",
   },
 });
 
-export default function ListCard() {
+export default function ListCard({ note }) {
+    
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -41,21 +44,30 @@ export default function ListCard() {
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          List Title
+          {note.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          Reoccurring?
-        </Typography>
-        <CheckList />
+        {note.reoccurring && (
+          <Typography
+            style={{ color: "red" }}
+            className={classes.pos}
+            color="textSecondary"
+          >
+            Reoccurring
+          </Typography>
+        )}
+
+        <CheckList noteItems={note.noteItems}/>
       </CardContent>
       <Grid container direction="column" alignItems="flex-start">
         <Grid item>
-          <CardActions>
-            <Button size="small" className={classes.editButton}>
-              <AssignmentTurnedInTwoToneIcon atl="mark completed icon" />
-            </Button>
-            <Typography variant="button">Mark as Completed</Typography>
-          </CardActions>
+          {!note.reoccurring && (
+            <CardActions>
+              <Button size="small" className={classes.editButton}>
+                <AssignmentTurnedInTwoToneIcon atl="mark completed icon" />
+              </Button>
+              <Typography variant="button">Mark as Completed</Typography>
+            </CardActions>
+          )}
         </Grid>
 
         <Grid item>
