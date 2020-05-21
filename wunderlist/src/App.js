@@ -6,6 +6,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 // local component imports
 import Header from "./components/Header";
 import theme from "./components/ui/Theme";
+import Dashboard from "./components/Dashboard";
 
 const sampleNoteData = {
   // sample note data for development
@@ -25,6 +26,7 @@ function App() {
       {/* wrapping app with ThemeProvider to pass created styles to components */}
       <ThemeProvider theme={theme}>
         <Header />
+        <Dashboard/>
       </ThemeProvider>
     </div>
   );

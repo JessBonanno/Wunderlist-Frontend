@@ -35,14 +35,6 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     zIndex: theme.zIndex.modal + 1,
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    backgroundColor: theme.palette.common.grey,
-  },
   toolbar: {
     ...theme.mixins.toolbar,
   },
@@ -57,19 +49,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.tab,
     color: theme.palette.common.white,
   },
-  drawerList: {
-    marginTop: "20em",
-  },
-  drawerItem: {
-    ...theme.typography.tab,
-  },
-  drawerDivider: {
-    margin: "1em",
-    backgroundColor: theme.palette.common.white,
-  },
-  listIcon: {
-    ...theme.typography.listIcon,
-  }
 }));
 
 export default function Header(props) {
@@ -81,58 +60,16 @@ export default function Header(props) {
       <ElevationScroll>
         <AppBar className={classes.appbar}>
           <Toolbar disableGutters>
-            <Tabs className={classes.tabContainer} textColor={theme.palette.common.white}>
+            <Tabs
+              className={classes.tabContainer}
+              textColor={theme.palette.common.white}
+            >
               <Tab className={classes.tab} label="Home"></Tab>
               <Tab className={classes.tab} label="Login"></Tab>
             </Tabs>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{ paper: classes.drawerPaper }}
-        anchor="left"
-      >
-        <List disablePadding className={classes.drawerList}>
-          <ListItem>
-            <ListItemIcon className={classes.listIcon}>
-              <TodayTwoToneIcon fontSize="large" />
-            </ListItemIcon>
-
-            <ListItemText className={classes.drawerItem} disableTypography>
-              Today's Lists
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon className={classes.listIcon}>
-              <DateRangeTwoToneIcon fontSize="large" />
-            </ListItemIcon>
-            <ListItemText className={classes.drawerItem} disableTypography>
-              Week Lists
-            </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon className={classes.listIcon}>
-              <CalendarTodayTwoToneIcon fontSize="large" />
-            </ListItemIcon>
-
-            <ListItemText className={classes.drawerItem} disableTypography>
-              Month Lists
-            </ListItemText>
-          </ListItem>
-          <Divider variant="middle" className={classes.drawerDivider} />
-          <ListItem>
-            <ListItemIcon className={classes.listIcon}>
-              <PlaylistAddCheckTwoToneIcon fontSize="large" />
-            </ListItemIcon>
-
-            <ListItemText className={classes.drawerItem} disableTypography>
-              General
-            </ListItemText>
-          </ListItem>
-        </List>
-      </Drawer>
     </>
   );
 }
