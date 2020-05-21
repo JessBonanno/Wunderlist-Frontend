@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // MUI imports
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -6,16 +7,6 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
-import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
-import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
-import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 
 // ! this will allow the header bar to float above the scrolled page
 function ElevationScroll(props) {
@@ -29,7 +20,6 @@ function ElevationScroll(props) {
     elevation: trigger ? 4 : 0,
   });
 }
-const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -64,8 +54,12 @@ export default function Header(props) {
               className={classes.tabContainer}
               textColor={theme.palette.common.white}
             >
-              <Tab className={classes.tab} label="Home"></Tab>
-              <Tab className={classes.tab} label="Login"></Tab>
+              <Tab
+                className={classes.tab}
+                label="Dashboard View"
+                component={Link}
+                to="/dashboard"
+              ></Tab>
             </Tabs>
           </Toolbar>
         </AppBar>

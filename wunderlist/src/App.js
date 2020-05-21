@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { BrowserRouter as Router, Route } from "react-router-dom";
 // mui imports
 import { ThemeProvider } from "@material-ui/core/styles";
 
@@ -34,6 +34,31 @@ const sampleNoteData = [
     reoccurring: false,
     listId: "general",
   },
+  {
+    name: "Tidy up",
+    noteItems: ["sweep", "take out trash", "wipe the counters"],
+    reoccurring: true,
+    listId: "day",
+  },
+  {
+    name: "Shopping",
+    noteItems: ["groceries", "cleaning supplies", "gas for the car"],
+    reoccurring: true,
+    listId: "week",
+  },
+  {
+    name: "Pet stuff",
+    noteItems: ["buy food", "go to groomer"],
+    reoccurring: false,
+    listId: "month",
+  },
+  {
+    name: "After work",
+    noteItems: ["take care of grocery list", "check tidy list", "call grandad"],
+    reoccurring: false,
+    listId: "general",
+  },
+
 ];
 
 function App() {
@@ -45,8 +70,13 @@ function App() {
     <div className="App">
       {/* wrapping app with ThemeProvider to pass created styles to components */}
       <ThemeProvider theme={theme}>
-        <Header />
-        <Dashboard noteData={noteData} />
+        <Router>
+          <Header />
+          <Route
+            path="/"
+            render={(props) => <Dashboard {...props} noteData={noteData} />}
+          />
+        </Router>
       </ThemeProvider>
     </div>
   );

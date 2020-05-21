@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -8,10 +8,14 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import AssignmentTurnedInTwoToneIcon from "@material-ui/icons/AssignmentTurnedInTwoTone";
+import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
+import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
+import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
+import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 
 // local components
 import CheckList from "./Checklist";
-import Theme from "./ui/Theme";
+import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
@@ -30,15 +34,21 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   editButton: {
-    ...Theme.typography.cardIcon,
+    ...theme.typography.cardIcon,
     marginLeft: "auto",
+  },
+  cardCategory: {
+    textTransform: "uppercase",
+    color: theme.palette.secondary.main,
+    marginLeft: "auto",
+    marginRight: "1em",
+    marginBottom: ".5em",
   },
 });
 
 export default function ListCard({ note }) {
-    
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  const theme = useTheme();
 
   return (
     <Card className={classes.root}>
@@ -56,7 +66,7 @@ export default function ListCard({ note }) {
           </Typography>
         )}
 
-        <CheckList noteItems={note.noteItems}/>
+        <CheckList noteItems={note.noteItems} />
       </CardContent>
       <Grid container direction="column" alignItems="flex-start">
         <Grid item>
@@ -78,6 +88,7 @@ export default function ListCard({ note }) {
             <Typography variant="button">Edit</Typography>
           </CardActions>
         </Grid>
+        <Typography className={classes.cardCategory}>{note.listId}</Typography>
       </Grid>
     </Card>
   );

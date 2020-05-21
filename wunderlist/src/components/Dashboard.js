@@ -1,6 +1,8 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 // MUI imports
+import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -48,24 +50,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "1em",
     backgroundColor: theme.palette.common.white,
   },
-  listIcon: {
-    ...theme.typography.listIcon,
-  },
-  drawerList: {
-    marginTop: "20em",
-  },
-  drawerItem: {
-    ...theme.typography.tab,
-  },
-  drawerDivider: {
-    margin: "1em",
-    backgroundColor: theme.palette.common.white,
-  },
+
   listIcon: {
     ...theme.typography.listIcon,
   },
   cardContainer: {
-    marginTop: "5em",
     marginLeft: 300,
     maxWidth: "80%",
   },
@@ -74,9 +63,25 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory().location.pathname;
+  const [filteredNotes, setFilteredNotes] = useState([]);
+
+  // setting filtered notes to be a new array to match the selected category of day, week, month or general
+  useEffect(() => {
+    setFilteredNotes(
+      props.noteData.filter((note) => history.includes(note.listId))
+    );
+  }, [history]);
+  console.log(filteredNotes);
 
   return (
-    <Grid container direction="row" marginTop="10em" justify="space-evenly">
+    <Grid
+      container
+      direction="row"
+      style={{ marginTop: "10em" }}
+      justify="space-evenly"
+    >
+      {/* menu block */}
       <Grid item>
         <Drawer
           className={classes.drawer}
@@ -85,7 +90,7 @@ export default function Dashboard(props) {
           anchor="left"
         >
           <List disablePadding className={classes.drawerList}>
-            <ListItem>
+            <ListItem component={Link} to="/today">
               <ListItemIcon className={classes.listIcon}>
                 <TodayTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -94,7 +99,7 @@ export default function Dashboard(props) {
                 Today's Lists
               </ListItemText>
             </ListItem>
-            <ListItem>
+            <ListItem component={Link} to="/week">
               <ListItemIcon className={classes.listIcon}>
                 <DateRangeTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -102,7 +107,7 @@ export default function Dashboard(props) {
                 Week Lists
               </ListItemText>
             </ListItem>
-            <ListItem>
+            <ListItem component={Link} to="/month">
               <ListItemIcon className={classes.listIcon}>
                 <CalendarTodayTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -112,7 +117,7 @@ export default function Dashboard(props) {
               </ListItemText>
             </ListItem>
             <Divider variant="middle" className={classes.drawerDivider} />
-            <ListItem>
+            <ListItem component={Link} to="/general">
               <ListItemIcon className={classes.listIcon}>
                 <PlaylistAddCheckTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -124,15 +129,20 @@ export default function Dashboard(props) {
           </List>
         </Drawer>
       </Grid>
-
-      <Grid item>
+      {/* card block */}
         <Grid item container className={classes.cardContainer}>
-          {props.noteData.map((note) => (
-            <Grid item className={classes.card}>
-              <ListCard note={note}/>
+          {history !== '/dashboard' ?
+          filteredNotes.map((note, index) => (
+            <Grid item className={classes.card} key={index}>
+              <ListCard note={note} />
             </Grid>
-          ))}
-        </Grid>
+          )) : 
+          props.noteData.map((note, index) => (
+            <Grid item className={classes.card} key={index}>
+              <ListCard note={note} />
+            </Grid>
+          ))
+        }
       </Grid>
     </Grid>
   );
