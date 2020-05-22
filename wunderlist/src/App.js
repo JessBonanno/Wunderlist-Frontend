@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
+import NewTodoForm from "./components/NewTodoForm";
+import Login from "./components/Login";
 
 const sampleNoteData = [
   // sample note data for development
@@ -85,6 +87,11 @@ function App() {
             render={(props) => <Dashboard {...props} noteData={noteData} />}
           />
           <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route
+            path="/form"
+            render={(props) => <NewTodoForm {...props} noteData={noteData} />}
+          />
+          <Route exact path="/login" render={(props) => <Login {...props} />} />
         </Router>
       </ThemeProvider>
     </div>

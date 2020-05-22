@@ -59,7 +59,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     marginLeft: 300,
-    maxWidth: "80%",
+    maxWidth: "82%",
+    height: '100vh',
+    // backgroundColor: 'black'
   },
   addNote: {
     color: theme.palette.common.grey,
@@ -97,7 +99,7 @@ export default function Dashboard(props) {
     <Grid
       container
       direction="row"
-      style={{ marginTop: "10em" }}
+      style={{ marginTop: "2em" }}
       justify="space-evenly"
     >
       {/* menu block */}
@@ -167,7 +169,12 @@ export default function Dashboard(props) {
         <Typography variant="h5" className={classes.buttonText}>
           Add a note
         </Typography>
-        <IconButton className={classes.addNote} aria-label="add note">
+        <IconButton
+          className={classes.addNote}
+          aria-label="add note"
+          component={Link}
+          to="/form"
+        >
           <AddCircleTwoToneIcon style={{ fontSize: "4rem" }} />
         </IconButton>
       </Grid>
