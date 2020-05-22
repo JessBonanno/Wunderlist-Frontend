@@ -14,6 +14,9 @@ import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
 import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
 import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
+import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
 
 // local components
 import ListCard from "./ListCard";
@@ -58,6 +61,22 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 300,
     maxWidth: "80%",
   },
+  addNote: {
+    color: theme.palette.common.grey,
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    margin: ".5em",
+  },
+  buttonText: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    marginRight: "5em",
+    marginBottom: "1.5em",
+    color: theme.palette.common.grey,
+    fontWeight: 700,
+  },
 }));
 
 export default function Dashboard(props) {
@@ -90,7 +109,7 @@ export default function Dashboard(props) {
           anchor="left"
         >
           <List disablePadding className={classes.drawerList}>
-            <ListItem component={Link} to="/today">
+            <ListItem component={Link} to="/dashboard/today">
               <ListItemIcon className={classes.listIcon}>
                 <TodayTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -99,7 +118,7 @@ export default function Dashboard(props) {
                 Today's Lists
               </ListItemText>
             </ListItem>
-            <ListItem component={Link} to="/week">
+            <ListItem component={Link} to="/dashboard/week">
               <ListItemIcon className={classes.listIcon}>
                 <DateRangeTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -107,7 +126,7 @@ export default function Dashboard(props) {
                 Week Lists
               </ListItemText>
             </ListItem>
-            <ListItem component={Link} to="/month">
+            <ListItem component={Link} to="/dashboard/month">
               <ListItemIcon className={classes.listIcon}>
                 <CalendarTodayTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -117,7 +136,7 @@ export default function Dashboard(props) {
               </ListItemText>
             </ListItem>
             <Divider variant="middle" className={classes.drawerDivider} />
-            <ListItem component={Link} to="/general">
+            <ListItem component={Link} to="/dashboard/general">
               <ListItemIcon className={classes.listIcon}>
                 <PlaylistAddCheckTwoToneIcon fontSize="large" />
               </ListItemIcon>
@@ -130,19 +149,27 @@ export default function Dashboard(props) {
         </Drawer>
       </Grid>
       {/* card block */}
-        <Grid item container className={classes.cardContainer}>
-          {history !== '/dashboard' ?
-          filteredNotes.map((note, index) => (
-            <Grid item className={classes.card} key={index}>
-              <ListCard note={note} />
-            </Grid>
-          )) : 
-          props.noteData.map((note, index) => (
-            <Grid item className={classes.card} key={index}>
-              <ListCard note={note} />
-            </Grid>
-          ))
-        }
+      <Grid item container className={classes.cardContainer}>
+        {history !== "/dashboard"
+          ? filteredNotes.map((note, index) => (
+              <Grid item className={classes.card} key={index}>
+                <ListCard note={note} />
+              </Grid>
+            ))
+          : [].map((note, index) => (
+              <Grid item className={classes.card} key={index}>
+                <ListCard note={note} />
+              </Grid>
+            ))}
+      </Grid>
+      {/* create task  */}
+      <Grid item>
+        <Typography variant="h5" className={classes.buttonText}>
+          Add a note
+        </Typography>
+        <IconButton className={classes.addNote} aria-label="add note">
+          <AddCircleTwoToneIcon style={{ fontSize: "4rem" }} />
+        </IconButton>
       </Grid>
     </Grid>
   );

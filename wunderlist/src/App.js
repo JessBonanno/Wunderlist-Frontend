@@ -14,23 +14,27 @@ const sampleNoteData = [
     name: "Groceries",
     noteItems: ["milk", "eggs", "bread"],
     reoccurring: false,
+    completed: false,
     listId: "day",
   },
   {
     name: "Chores",
     noteItems: ["rake the leaves", "run the dishwasher", "mop the kitchen"],
     reoccurring: false,
+    completed: false,
     listId: "week",
   },
   {
     name: "Bills to pay",
     noteItems: ["rent", "netflix", "electric", "Lambda ISA"],
     reoccurring: true,
+    reoccurring: false,
     listId: "month",
   },
   {
     name: "Don't forget",
     noteItems: ["feed the pets", "eat dinner", "set an alarm for 5 am"],
+    reoccurring: false,
     reoccurring: false,
     listId: "general",
   },
@@ -38,17 +42,20 @@ const sampleNoteData = [
     name: "Tidy up",
     noteItems: ["sweep", "take out trash", "wipe the counters"],
     reoccurring: true,
+    reoccurring: false,
     listId: "day",
   },
   {
     name: "Shopping",
     noteItems: ["groceries", "cleaning supplies", "gas for the car"],
     reoccurring: true,
+    reoccurring: false,
     listId: "week",
   },
   {
     name: "Pet stuff",
     noteItems: ["buy food", "go to groomer"],
+    reoccurring: false,
     reoccurring: false,
     listId: "month",
   },
@@ -56,15 +63,14 @@ const sampleNoteData = [
     name: "After work",
     noteItems: ["take care of grocery list", "check tidy list", "call grandad"],
     reoccurring: false,
+    reoccurring: false,
     listId: "general",
   },
-
 ];
 
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
 
-  console.log(noteData);
 
   return (
     <div className="App">
@@ -73,7 +79,7 @@ function App() {
         <Router>
           <Header />
           <Route
-            path="/"
+            path="/dashboard"
             render={(props) => <Dashboard {...props} noteData={noteData} />}
           />
         </Router>
