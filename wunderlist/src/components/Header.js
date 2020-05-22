@@ -87,7 +87,6 @@ export default function Header(props) {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <Login />
     </>
   );
 }

@@ -18,8 +18,6 @@ const useStyles = makeStyles({
     borderRadius: 0,
     fontSize: "1.5rem",
     margin: "4em 1em",
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
   },
 });
 
@@ -47,7 +45,7 @@ export default function Home() {
               variant="outlined"
               color="primary"
               component={Link}
-              to="/form"
+              to="/login"
               className={classes.homeButtons}
             >
               Login
@@ -57,6 +55,9 @@ export default function Home() {
             <Button
               variant="outlined"
               color="primary"
+              component={Link}
+              to="/register"
+
               className={classes.homeButtons}
             >
               Register

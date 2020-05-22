@@ -35,6 +35,8 @@ export default createMuiTheme({
     reoccurring: {
       color: "red",
     },
-    
+    loginField: {
+      color: wunderBlue,
+    }
   },
 });
