@@ -12,7 +12,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-// local components
 
 const useStyles = makeStyles((theme) => ({
   formPageContainer: {

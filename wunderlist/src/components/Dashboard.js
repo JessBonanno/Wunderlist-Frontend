@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-
-// MUI imports
 import Grid from "@material-ui/core/Grid";
 import { makeStyles} from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -18,7 +16,7 @@ import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 
-// local components
+// local imports
 import ListCard from "./ListCard";
 
 const drawerWidth = 300;

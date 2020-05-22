@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import AssignmentTurnedInTwoToneIcon from "@material-ui/icons/AssignmentTurnedInTwoTone";
 
-// local components
+// local imports
 import CheckList from "./Checklist";
 import theme from "./ui/Theme";
 
