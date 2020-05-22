@@ -16,7 +16,7 @@ import theme from "./ui/Theme";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    margin: "2em",
+    marginTop: "5em",
   },
   bullet: {
     display: "inline-block",

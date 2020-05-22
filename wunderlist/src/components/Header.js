@@ -53,7 +53,6 @@ export default function Header(props) {
   const theme = useTheme();
   const history = useHistory().location.pathname;
 
-  console.log(history);
 
   return (
     <>

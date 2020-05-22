@@ -73,6 +73,12 @@ const sampleNoteData = [
 
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
+  const [userTheme, setUserTheme] = useState({});
+
+  const handleThemeSelection = (image) => {
+    console.log(image);
+    setUserTheme(image);
+  };
 
   return (
     <div className="App">
@@ -82,16 +88,25 @@ function App() {
           <Header />
           <Route
             path="/dashboard"
-            render={(props) => <Dashboard {...props} noteData={noteData} />}
+            render={(props) => <Dashboard {...props} noteData={noteData} userTheme={userTheme}/>}
           />
-          <Route exact path="/" render={(props) => <Home {...props} />} />
+          {/* <Route exact path="/" render={(props) => <Home {...props} />} /> */}
           <Route
             path="/form"
             render={(props) => <NewTodoForm {...props} noteData={noteData} />}
           />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route
+            exact
+            path="/themes"
+            render={(props) => (
+              <UserThemes
+                {...props}
+                handleThemeSelection={handleThemeSelection}
+              />
+            )}
+          />
         </Router>
-        <UserThemes />
       </ThemeProvider>
     </div>
   );
