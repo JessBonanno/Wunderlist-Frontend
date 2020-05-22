@@ -36,3 +36,72 @@
     transform: rotate(360deg);
   }
 }
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  border: 1px solid black;
+  height: 400px;
+  width: 400px;
+}
+
+h1 {
+  color: black;
+}
+
+
+.firstrowForm{
+  height: 30%;
+  width: 100%;
+  color: black;
+}
+
+.newList{
+  
+  height: 30%;
+  width: 100%;
+  color: red;}
+
+.existingList{
+  height: 30%;
+  width: 100%;
+  color: red;}
+
+.secondrowForm{
+  height: 30%;
+  width: 100%;
+  color: red;
+}
+
+.typeTODO{
+  height: 30%;
+  width: 100%;
+  color: red;}
+
+.recurringMenu{
+  height: 30%;
+  width: 100%;
+  color: red;}
+
+.thirdrowForm{
+  height: 30%;
+  width: 100%;
+  color: red;
+}
+
+.addButton{
+  height: 30%;
+  width: 100%;
+  color: red;}
+
+.timeFrameList{
+  height: 30%;
+  width: 100%;
+  color: red;
+}
+
+.addBTN {
+  margin: auto;
+  width: 250px;
+}
