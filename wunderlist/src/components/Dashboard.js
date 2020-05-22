@@ -91,7 +91,7 @@ export default function Dashboard(props) {
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   useEffect(() => {
     setFilteredNotes(
-      props.noteData.filter((note) => history.includes(note.listId))
+      props.noteData.filter((note) => history.includes(note.category))
     );
   }, [history, props.noteData]);
 
@@ -190,7 +190,7 @@ export default function Dashboard(props) {
             ))
           : [].map((note, index) => (
               <Grid item className={classes.card} key={index}>
-                <ListCard note={note} />
+                <ListCard note={note} setNoteData={props.setNoteData} noteData={props.noteData}/>
               </Grid>
             ))}
       </Grid>

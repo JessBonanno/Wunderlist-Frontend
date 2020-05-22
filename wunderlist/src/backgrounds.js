@@ -128,4 +128,7 @@ export default [
     small: bubbly,
     large: bubblyLarge,
   },
+  {
+    name: 'No Theme'
+  }
 ];

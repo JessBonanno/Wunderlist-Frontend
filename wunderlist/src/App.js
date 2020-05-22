@@ -18,56 +18,56 @@ const sampleNoteData = [
     noteItems: ["milk", "eggs", "bread"],
     reoccurring: false,
     completed: false,
-    listId: "day",
+    category: "day",
   },
   {
     name: "Chores",
     noteItems: ["rake the leaves", "run the dishwasher", "mop the kitchen"],
     reoccurring: false,
     completed: false,
-    listId: "week",
+    category: "week",
   },
   {
     name: "Bills to pay",
     noteItems: ["rent", "netflix", "electric", "Lambda ISA"],
     reoccurring: true,
     completed: false,
-    listId: "month",
+    category: "month",
   },
   {
     name: "Don't forget",
     noteItems: ["feed the pets", "eat dinner", "set an alarm for 5 am"],
     reoccurring: false,
     completed: false,
-    listId: "general",
+    category: "general",
   },
   {
     name: "Tidy up",
     noteItems: ["sweep", "take out trash", "wipe the counters"],
     reoccurring: true,
     completed: false,
-    listId: "day",
+    category: "day",
   },
   {
     name: "Shopping",
     noteItems: ["groceries", "cleaning supplies", "gas for the car"],
     reoccurring: true,
     completed: false,
-    listId: "week",
+    category: "week",
   },
   {
     name: "Pet stuff",
     noteItems: ["buy food", "go to groomer"],
     reoccurring: false,
     completed: false,
-    listId: "month",
+    category: "month",
   },
   {
     name: "After work",
     noteItems: ["take care of grocery list", "check tidy list", "call grandad"],
     reoccurring: false,
     completed: false,
-    listId: "general",
+    category: "general",
   },
 ];
 
@@ -88,9 +88,11 @@ function App() {
           <Header />
           <Route
             path="/dashboard"
-            render={(props) => <Dashboard {...props} noteData={noteData} userTheme={userTheme}/>}
+            render={(props) => (
+              <Dashboard {...props} noteData={noteData} setNoteData={setNoteData} userTheme={userTheme} />
+            )}
           />
-          {/* <Route exact path="/" render={(props) => <Home {...props} />} /> */}
+          <Route exact path="/" render={(props) => <Home {...props} />} />
           <Route
             path="/form"
             render={(props) => <NewTodoForm {...props} noteData={noteData} />}
