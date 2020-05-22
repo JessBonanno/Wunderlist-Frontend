@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 import theme from "./ui/Theme";
 
@@ -45,6 +46,8 @@ export default function Home() {
             <Button
               variant="outlined"
               color="primary"
+              component={Link}
+              to="/form"
               className={classes.homeButtons}
             >
               Login
