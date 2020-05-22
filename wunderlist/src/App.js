@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // mui imports
 import { ThemeProvider } from "@material-ui/core/styles";
-
 // local component imports
 import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
-
+import NewTodoForm from'./components/NewTodoForm';
 const sampleNoteData = [
   // sample note data for development
   {
@@ -68,12 +67,9 @@ const sampleNoteData = [
     listId: "general",
   },
 ];
-
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
-
   console.log(noteData);
-
   return (
     <div className="App">
       {/* wrapping app with ThemeProvider to pass created styles to components */}
@@ -85,10 +81,10 @@ function App() {
             render={(props) => <Dashboard {...props} noteData={noteData} />}
           />
           <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route path="/form" render={(props) => <NewTodoForm {...props} noteData={noteData}/>} />
         </Router>
       </ThemeProvider>
     </div>
   );
 }
-
 export default App;
