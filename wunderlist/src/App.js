@@ -7,6 +7,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 
 const sampleNoteData = [
   // sample note data for development
@@ -71,6 +72,7 @@ const sampleNoteData = [
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
 
+  console.log(noteData);
 
   return (
     <div className="App">
@@ -82,6 +84,7 @@ function App() {
             path="/dashboard"
             render={(props) => <Dashboard {...props} noteData={noteData} />}
           />
+          <Route exact path="/" render={(props) => <Home {...props} />} />
         </Router>
       </ThemeProvider>
     </div>
