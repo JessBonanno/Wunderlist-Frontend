@@ -2,11 +2,23 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Theme from "./ui/Theme";
+import Button from "@material-ui/core/Button";
+
+import theme from "./ui/Theme";
+
+// local components
 
 const useStyles = makeStyles({
   homeHeader: {
-    marginTop: "5em",
+    marginTop: "10em",
+  },
+  homeButtons: {
+    width: 200,
+    borderRadius: 0,
+    fontSize: "1.5rem",
+    margin: "4em 1em",
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
   },
 });
 
@@ -16,9 +28,37 @@ export default function Home() {
 
   return (
     <>
-      <Grid container direction="column" className={classes.homeHeader}>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        className={classes.homeHeader}
+      >
         <Grid item>
-          <Typography variant="h1">Welcome To Wunderlist</Typography>
+          <Typography variant="h1" style={{ textAlign: "center" }}>
+            Welcome To Wunderlist
+          </Typography>
+        </Grid>
+        <Grid item container justify="center">
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.homeButtons}
+            >
+              Login
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.homeButtons}
+            >
+              Register
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </>
