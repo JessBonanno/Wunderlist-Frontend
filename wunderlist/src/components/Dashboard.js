@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-
-// MUI imports
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -15,11 +13,12 @@ import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
 import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
 
-// local components
+// local imports
 import ListCard from "./ListCard";
+import Backgrounds from "../backgrounds";
+import backgrounds from "../backgrounds";
 
 const drawerWidth = 300;
 
@@ -59,9 +58,10 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     marginLeft: 300,
-    maxWidth: "82%",
-    height: '100vh',
-    // backgroundColor: 'black'
+    width: "90%",
+    height: "100vh",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   },
   addNote: {
     color: theme.palette.common.grey,
@@ -82,18 +82,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
+  console.log(props.userTheme);
+  
   const classes = useStyles();
-  const theme = useTheme();
   const history = useHistory().location.pathname;
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   useEffect(() => {
     setFilteredNotes(
-      props.noteData.filter((note) => history.includes(note.listId))
+      props.noteData.filter((note) => history.includes(note.category))
     );
-  }, [history]);
-  console.log(filteredNotes);
+  }, [history, props.noteData]);
 
   return (
     <Grid
@@ -137,7 +137,6 @@ export default function Dashboard(props) {
                 Month Lists
               </ListItemText>
             </ListItem>
-            <Divider variant="middle" className={classes.drawerDivider} />
             <ListItem component={Link} to="/dashboard/general">
               <ListItemIcon className={classes.listIcon}>
                 <PlaylistAddCheckTwoToneIcon fontSize="large" />
@@ -147,11 +146,42 @@ export default function Dashboard(props) {
                 General
               </ListItemText>
             </ListItem>
+            <Divider variant="middle" className={classes.drawerDivider} />
+            <ListItem component={Link} to="/form">
+              <ListItemIcon className={classes.listIcon}>
+                <AddCircleTwoToneIcon
+                  className={classes.listIcon}
+                  style={{ fontSize: "2.5rem" }}
+                />
+              </ListItemIcon>
+
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Add New List
+              </ListItemText>
+            </ListItem>
+            <ListItem component={Link} to="/themes">
+              <ListItemIcon className={classes.listIcon}>
+                <PhotoSizeSelectActualTwoToneIcon
+                  className={classes.listIcon}
+                  style={{ fontSize: "2.5rem" }}
+                />
+              </ListItemIcon>
+
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Themes
+              </ListItemText>
+            </ListItem>
           </List>
         </Drawer>
       </Grid>
       {/* card block */}
-      <Grid item container className={classes.cardContainer}>
+      <Grid
+        item
+        container
+        className={classes.cardContainer}
+        justify="space-evenly"
+        style={{ backgroundImage: `url(${props.userTheme.large})` }}
+      >
         {history !== "/dashboard"
           ? filteredNotes.map((note, index) => (
               <Grid item className={classes.card} key={index}>
@@ -160,12 +190,12 @@ export default function Dashboard(props) {
             ))
           : [].map((note, index) => (
               <Grid item className={classes.card} key={index}>
-                <ListCard note={note} />
+                <ListCard note={note} setNoteData={props.setNoteData} noteData={props.noteData}/>
               </Grid>
             ))}
       </Grid>
-      {/* create task  */}
-      <Grid item>
+      {/* create task refactored into drawer menu */}
+      {/* <Grid item>
         <Typography variant="h5" className={classes.buttonText}>
           Add a note
         </Typography>
@@ -177,7 +207,7 @@ export default function Dashboard(props) {
         >
           <AddCircleTwoToneIcon style={{ fontSize: "4rem" }} />
         </IconButton>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

@@ -37,6 +37,10 @@ export default createMuiTheme({
     },
     loginField: {
       color: wunderBlue,
-    }
+    },
+    subtitle1: {
+      color: 'red',
+      fontSize: "1.2rem",
+    },
   },
 });

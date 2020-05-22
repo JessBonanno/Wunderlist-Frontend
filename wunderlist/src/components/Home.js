@@ -1,13 +1,11 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
-import theme from "./ui/Theme";
 
-// local components
 
 const useStyles = makeStyles({
   homeHeader: {
@@ -23,7 +21,6 @@ const useStyles = makeStyles({
 
 export default function Home() {
   const classes = useStyles();
-  const theme = useTheme();
 
   return (
     <>
