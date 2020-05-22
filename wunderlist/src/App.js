@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import NewTodoForm from "./components/NewTodoForm";
 import Login from "./components/Login";
+import UserThemes from "./components/UserThemes";
 
 const sampleNoteData = [
   // sample note data for development
@@ -31,50 +32,48 @@ const sampleNoteData = [
     name: "Bills to pay",
     noteItems: ["rent", "netflix", "electric", "Lambda ISA"],
     reoccurring: true,
-    reoccurring: false,
+    completed: false,
     listId: "month",
   },
   {
     name: "Don't forget",
     noteItems: ["feed the pets", "eat dinner", "set an alarm for 5 am"],
     reoccurring: false,
-    reoccurring: false,
+    completed: false,
     listId: "general",
   },
   {
     name: "Tidy up",
     noteItems: ["sweep", "take out trash", "wipe the counters"],
     reoccurring: true,
-    reoccurring: false,
+    completed: false,
     listId: "day",
   },
   {
     name: "Shopping",
     noteItems: ["groceries", "cleaning supplies", "gas for the car"],
     reoccurring: true,
-    reoccurring: false,
+    completed: false,
     listId: "week",
   },
   {
     name: "Pet stuff",
     noteItems: ["buy food", "go to groomer"],
     reoccurring: false,
-    reoccurring: false,
+    completed: false,
     listId: "month",
   },
   {
     name: "After work",
     noteItems: ["take care of grocery list", "check tidy list", "call grandad"],
     reoccurring: false,
-    reoccurring: false,
+    completed: false,
     listId: "general",
   },
 ];
 
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
-
-  console.log(noteData);
 
   return (
     <div className="App">
@@ -93,6 +92,7 @@ function App() {
           />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
         </Router>
+        <UserThemes />
       </ThemeProvider>
     </div>
   );

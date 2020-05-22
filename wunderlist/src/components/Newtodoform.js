@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import React from "react";
+import { makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -14,7 +13,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
 // local components
-import theme from "./ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   formPageContainer: {
@@ -35,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
-  const [currentList, updatedList] = useState();
   const [age, setAge] = React.useState("");
   const [state, setState] = React.useState({
     checkedB: false,

@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 // MUI imports
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -83,7 +83,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard(props) {
   const classes = useStyles();
-  const theme = useTheme();
   const history = useHistory().location.pathname;
   const [filteredNotes, setFilteredNotes] = useState([]);
 
@@ -92,8 +91,7 @@ export default function Dashboard(props) {
     setFilteredNotes(
       props.noteData.filter((note) => history.includes(note.listId))
     );
-  }, [history]);
-  console.log(filteredNotes);
+  }, [history, props.noteData]);
 
   return (
     <Grid

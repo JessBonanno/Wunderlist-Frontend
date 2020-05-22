@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Theme from "./ui/Theme";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
@@ -22,7 +21,6 @@ const useStyles = makeStyles({
 
 export default function Login() {
   const classes = useStyles();
-  const theme = useTheme();
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",

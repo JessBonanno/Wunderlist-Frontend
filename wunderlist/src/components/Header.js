@@ -9,7 +9,6 @@ import Divider from "@material-ui/core/Divider";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Login from "./Login";
 
 // ! this will allow the header bar to float above the scrolled page
 function ElevationScroll(props) {
