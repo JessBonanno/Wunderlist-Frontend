@@ -23,7 +23,7 @@ export default createMuiTheme({
   }),
   typography: {
     tab: {
-      fontSize: "2rem",
+      fontSize: "1.6rem",
       color: wunderWhite,
     },
     listIcon: {
