@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 
+
 // local imports
+
 import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
-import NewTodoForm from "./components/Newtodoform";
+ Tom-Bauer
+import NewTodoForm from'./components/NewTodoForm';
+import NewUser from './components/NewUser.js'
+
+
 import Login from "./components/Login";
 import UserThemes from "./components/UserThemes";
+master
 
 const sampleNoteData = [
   // sample note data for development
@@ -70,9 +77,10 @@ const sampleNoteData = [
     category: "general",
   },
 ];
-
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
+ Tom-Bauer
+
   const [userTheme, setUserTheme] = useState({});
 
   const handleThemeSelection = (image) => {
@@ -80,6 +88,7 @@ function App() {
     setUserTheme(image);
   };
 
+ master
   return (
     <div className="App">
       {/* wrapping app with ThemeProvider to pass created styles to components */}
@@ -93,6 +102,10 @@ function App() {
             )}
           />
           <Route exact path="/" render={(props) => <Home {...props} />} />
+Tom-Bauer
+          <Route exact path="/register" render={(props) => <NewUser {...props} />} />
+         
+
           <Route
             path="/form"
             render={(props) => <NewTodoForm {...props} noteData={noteData} />}
@@ -108,10 +121,10 @@ function App() {
               />
             )}
           />
+ master
         </Router>
       </ThemeProvider>
     </div>
   );
 }
-
 export default App;
