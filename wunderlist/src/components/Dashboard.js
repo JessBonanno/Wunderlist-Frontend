@@ -17,8 +17,6 @@ import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelect
 
 // local imports
 import ListCard from "./ListCard";
-import Backgrounds from "../backgrounds";
-import backgrounds from "../backgrounds";
 
 const drawerWidth = 300;
 
@@ -82,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-  console.log(props.userTheme);
   
   const classes = useStyles();
   const history = useHistory().location.pathname;
