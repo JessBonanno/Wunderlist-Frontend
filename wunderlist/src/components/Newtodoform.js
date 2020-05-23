@@ -36,12 +36,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
-  const [currentList, updatedList] = useState();
   const [todo, setTodo] = useState({
-    newitem: "",
-    newlist: "",
-    existinglist: "",
-    timeinterval: "",
+
   });
 
 
@@ -50,44 +46,48 @@ export default function NewTodoForm(props) {
     newlist: "",
     existinglist: "",
     timeinterval: "",
+    recurring: false,
   });
-
 
 
 
   
-  const [age, setAge] = React.useState('');
-  const [state, setState] = React.useState({
-    checkedB: false,
-  });
-
-
-
-
-  const handleSelectChange = (event) => {
-    setAge(event.target.value);
+  const handleChange = (e) => {
+    e.persist();
+    let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm({ ...form, [e.target.name] : value });
   };
 
 
+  const formSubmit = (e) => {
+    e.preventDefault(); 
+    console.log(form) ;
+    setTodo(form);
+    setForm({
+    newitem: "",
+    newlist: "",
+    existinglist: "",
+    timeinterval: "",
+    recurring: false,
+    })};
 
 
 
-  const handleCheckboxChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+const timeintervalarray = [
+  "Day",
+  "Week",
+  "Month",
+  "General",
+]
 
 
 
-  // const formSubmit = (e) => {
-  //   e.preventDefault(); 
-  //   console.log(form) ;
-  //   setTodo(form);
-  //   setForm({
-  //   newitem: "",
-  //   newlist: "",
-  //   existinglist: "",
-  //   timeinterval: "",
-  //   });
+  console.log(todo);
+
+
+
+
+
 
 
 
@@ -104,70 +104,79 @@ export default function NewTodoForm(props) {
       <Grid item container justify='space-evenly' className={classes.formContainer}>
         <Grid item>
           <Paper elevation={10}>
-            <TextField value={form.newitem} name="newitem" id="outlined-basic" label="Add Item" variant="outlined" />
+            <TextField value={form.newitem} type="text" name="newitem" id="outlined-basic" label="Add Item" variant="outlined" onChange={handleChange}/>
           </Paper>
         </Grid>
-        <Button variant='outlined'>save</Button>
+        <Button variant='outlined' onClick={handleChange}>save</Button>
 
         <Grid item>
           <Paper elevation={10}>
-            <TextField value={form.newlist} name="newlist" id="outlined-basic" label="New List" variant="outlined" />
+            <TextField value={form.newlist} type="text" name="newlist" id="outlined-basic" label="New List" variant="outlined" onChange={handleChange}/>
           </Paper>
         </Grid>
         <Button variant='outlined'>save</Button>
 
-          <Grid item><FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Choose Existing List</InputLabel>
-        <Select
-        
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={form.existinglist}
-          onChange={handleSelectChange}
-          name="existinglist">         
-          {props.noteData.map((note) => {
-            return (
-              <MenuItem value={form.existinglist}>{note.name}</MenuItem>
-            )
+          <Grid item>
+           <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Choose Existing List</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="existinglist"
+                value={form.existinglist}
+                onChange={handleChange}
+                name="existinglist">
+                <MenuItem value="">None</MenuItem>
+                {props.noteData.map((note) => {
+                  return (
+                    
+                      <MenuItem value={note.name}>{note.name}</MenuItem>
+                    
+                  )})}
+              </Select>
+            </FormControl>
+         </Grid>
+         <Grid item>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Choose Time Interval</InputLabel>
+              <Select
+                label Id="demo-simple-select-label"
+                id="timeinterval"
+                value={form.timeinterval}
+                onChange={handleChange}
+                name="timeinterval">
+                  {timeintervalarray.map((time) => {
+                    return (
+                    <MenuItem value={time}>{time}</MenuItem>
+                      )
+                  }
+
+                  )}
+
           })}
         </Select>
+            </FormControl>
+          </Grid>
 
 
-      </FormControl>
-        </Grid>
-        <Grid item><FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Choose Existing List</InputLabel>
-        <Select
-          label Id="demo-simple-select-label"
-          id="demo-simple-select"
-          value={form.timeinterval}
-          onChange={handleSelectChange}
-          name="timeInterval">
-            <MenuItem value={form.timeinterval}>Day</MenuItem>
-            <MenuItem value={form.timeinterval}>Week</MenuItem>
-            <MenuItem value={form.timeinterval}>Month</MenuItem>
-            <MenuItem value={form.timeinterval}>General</MenuItem>
-          })}
-        </Select>
-      </FormControl>
 
 
-        </Grid>
         <Grid item>
         <FormControlLabel
         control={
           <Checkbox
-            checked={state.checkedB}
-            onChange={handleCheckboxChange}
-            name="checkedB"
+            type="checkbox"
+            id="recurring"
+            checked={form.recurring}
+            onChange={handleChange}
+            name="recurring"
             color="primary"
           />
         }
-        label="Recurring"
       />
         </Grid>
       </Grid>
     </Grid>
+    <Button onClick={formSubmit} variant='outlined'>save</Button>
     </form>
   );
 }
