@@ -9,7 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -40,10 +39,21 @@ export default function NewTodoForm(props) {
   const [currentList, updatedList] = useState();
   const [todo, setTodo] = useState({
     newitem: "",
-    newList: "",
-    existingList: "",
-    timeInterval: "",
+    newlist: "",
+    existinglist: "",
+    timeinterval: "",
   });
+
+
+  const [form, setForm] = useState({
+    newitem: "",
+    newlist: "",
+    existinglist: "",
+    timeinterval: "",
+  });
+
+
+
 
   
   const [age, setAge] = React.useState('');
@@ -68,11 +78,24 @@ export default function NewTodoForm(props) {
 
 
 
+  // const formSubmit = (e) => {
+  //   e.preventDefault(); 
+  //   console.log(form) ;
+  //   setTodo(form);
+  //   setForm({
+  //   newitem: "",
+  //   newlist: "",
+  //   existinglist: "",
+  //   timeinterval: "",
+  //   });
+
+
 
  
 
   return (
     // form container
+    <form >
     <Grid container className={classes.formPageContainer} direction='column' alignItems='center'>
       <Grid item>
         <Typography variant='h2'>Add new list</Typography>
@@ -81,14 +104,14 @@ export default function NewTodoForm(props) {
       <Grid item container justify='space-evenly' className={classes.formContainer}>
         <Grid item>
           <Paper elevation={10}>
-            <TextField value={todo.newitem} name="newitem" id="outlined-basic" label="Add Item" variant="outlined" />
+            <TextField value={form.newitem} name="newitem" id="outlined-basic" label="Add Item" variant="outlined" />
           </Paper>
         </Grid>
         <Button variant='outlined'>save</Button>
 
         <Grid item>
           <Paper elevation={10}>
-            <TextField value={todo.newList} name="newList" id="outlined-basic" label="New List" variant="outlined" />
+            <TextField value={form.newlist} name="newlist" id="outlined-basic" label="New List" variant="outlined" />
           </Paper>
         </Grid>
         <Button variant='outlined'>save</Button>
@@ -99,15 +122,17 @@ export default function NewTodoForm(props) {
         
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={todo.existingList}
+          value={form.existinglist}
           onChange={handleSelectChange}
-          name="existingList">         
+          name="existinglist">         
           {props.noteData.map((note) => {
             return (
-              <MenuItem value={todo.existingList}>{note.name}</MenuItem>
+              <MenuItem value={form.existinglist}>{note.name}</MenuItem>
             )
           })}
         </Select>
+
+
       </FormControl>
         </Grid>
         <Grid item><FormControl className={classes.formControl}>
@@ -115,16 +140,18 @@ export default function NewTodoForm(props) {
         <Select
           label Id="demo-simple-select-label"
           id="demo-simple-select"
-          value={todo.timeInterval}
+          value={form.timeinterval}
           onChange={handleSelectChange}
           name="timeInterval">
-            <MenuItem value={todo.timeInterval}>Day</MenuItem>
-            <MenuItem value={todo.timeInterval}>Week</MenuItem>
-            <MenuItem value={todo.timeInterval}>Month</MenuItem>
-            <MenuItem value={todo.timeInterval}>General</MenuItem>
+            <MenuItem value={form.timeinterval}>Day</MenuItem>
+            <MenuItem value={form.timeinterval}>Week</MenuItem>
+            <MenuItem value={form.timeinterval}>Month</MenuItem>
+            <MenuItem value={form.timeinterval}>General</MenuItem>
           })}
         </Select>
       </FormControl>
+
+
         </Grid>
         <Grid item>
         <FormControlLabel
@@ -141,5 +168,6 @@ export default function NewTodoForm(props) {
         </Grid>
       </Grid>
     </Grid>
+    </form>
   );
 }

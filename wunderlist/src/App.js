@@ -83,7 +83,6 @@ function App() {
             render={(props) => <Dashboard {...props} noteData={noteData} />}
           />
           <Route exact path="/" render={(props) => <Home {...props} />} />
-          <Route exact path="/register" render={(props) => <NewUser {...props} />} />
           <Route path="/form" render={(props) => <NewTodoForm {...props} noteData={noteData}/>} />
         </Router>
       </ThemeProvider>
