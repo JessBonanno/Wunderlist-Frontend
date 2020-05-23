@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-// MUI imports
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tabs from "@material-ui/core/Tabs";
@@ -9,9 +8,8 @@ import Divider from "@material-ui/core/Divider";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Login from "./Login";
 
-// ! this will allow the header bar to float above the scrolled page
+//  this will allow the header bar to float above the scrolled page
 function ElevationScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger({
@@ -55,7 +53,6 @@ export default function Header(props) {
   const theme = useTheme();
   const history = useHistory().location.pathname;
 
-  console.log(history);
 
   return (
     <>
@@ -87,7 +84,6 @@ export default function Header(props) {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <Login />
     </>
   );
 }

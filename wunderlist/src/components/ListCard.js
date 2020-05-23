@@ -1,5 +1,6 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -8,19 +9,16 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import AssignmentTurnedInTwoToneIcon from "@material-ui/icons/AssignmentTurnedInTwoTone";
-import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
-import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
-import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
-import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 
-// local components
+// local imports
 import CheckList from "./Checklist";
 import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    margin: "2em",
+    marginTop: "5em",
+    padding: "1em",
   },
   bullet: {
     display: "inline-block",
@@ -28,7 +26,7 @@ const useStyles = makeStyles({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 14,
+    fontSize: 1,
   },
   pos: {
     marginBottom: 12,
@@ -46,17 +44,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ListCard({ note }) {
+export default function ListCard(props) {
   const classes = useStyles();
-  const theme = useTheme();
+  
+// need to make this functional
+  const handleCompleted = (name) => {
+
+  };
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant="h5" component="h2">
-          {note.name}
+        <Typography variant="h4" component="h2">
+          {props.note.name}
         </Typography>
-        {note.reoccurring && (
+        {props.note.reoccurring && (
           <Typography
             style={{ color: "red" }}
             className={classes.pos}
@@ -66,29 +68,42 @@ export default function ListCard({ note }) {
           </Typography>
         )}
 
-        <CheckList noteItems={note.noteItems} />
+        <CheckList noteItems={props.note.noteItems} />
       </CardContent>
       <Grid container direction="column" alignItems="flex-start">
         <Grid item>
-          {!note.reoccurring && (
+          {!props.note.reoccurring && (
             <CardActions>
-              <Button size="small" className={classes.editButton}>
+              <Button
+                size="small"
+                className={classes.editButton}
+                onClick={() => handleCompleted(props.note.name)}
+              >
                 <AssignmentTurnedInTwoToneIcon atl="mark completed icon" />
               </Button>
-              <Typography variant="button">Mark as Completed</Typography>
+              <Typography variant="button" style={{ fontSize: "1.2rem" }}>
+                Mark as Completed
+              </Typography>
             </CardActions>
           )}
         </Grid>
 
         <Grid item>
           <CardActions>
-            <Button size="small" className={classes.editButton}>
+            <Button
+              size="small"
+              className={classes.editButton}
+              component={Link}
+              to="/form"
+            >
               <EditIcon atl="edit icon" />
             </Button>
-            <Typography variant="button">Edit</Typography>
+            <Typography variant="button" style={{ fontSize: "1.2rem" }}>
+              Edit
+            </Typography>
           </CardActions>
         </Grid>
-        <Typography className={classes.cardCategory}>{note.listId}</Typography>
+        <Typography className={classes.cardCategory}>{props.note.listId}</Typography>
       </Grid>
     </Card>
   );

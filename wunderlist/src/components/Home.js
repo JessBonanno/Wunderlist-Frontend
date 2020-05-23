@@ -1,11 +1,17 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+Tom-Bauer
 import theme from "./ui/Theme";
-// local components
+
+
+
+
+
+master
 const useStyles = makeStyles({
   homeHeader: {
     marginTop: "10em",
@@ -15,13 +21,16 @@ const useStyles = makeStyles({
     borderRadius: 0,
     fontSize: "1.5rem",
     margin: "4em 1em",
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+
   },
 });
 export default function Home() {
   const classes = useStyles();
+Tom-Bauer
   const theme = useTheme();
+
+
+ master
   return (
     <>
       <Grid
@@ -42,7 +51,10 @@ export default function Home() {
               variant="outlined"
               color="primary"
               component={Link}
-              to="/form"
+
+
+              to="/login"
+
               className={classes.homeButtons}
             >
               Login
@@ -54,6 +66,7 @@ export default function Home() {
               color="primary"
               component={Link}
               to="/register"
+
               className={classes.homeButtons}
             >
               Register
