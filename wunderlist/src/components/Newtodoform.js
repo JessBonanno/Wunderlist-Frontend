@@ -36,26 +36,38 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function NewTodoForm(props) {
-
-
-
-
   const classes = useStyles();
   const [currentList, updatedList] = useState();
+  const [todo, setTodo] = useState({
+    newitem: "",
+    newList: "",
+    existingList: "",
+    timeInterval: "",
+  });
+
+  
   const [age, setAge] = React.useState('');
   const [state, setState] = React.useState({
     checkedB: false,
-
   });
+
+
+
 
   const handleSelectChange = (event) => {
     setAge(event.target.value);
   };
 
 
+
+
+
   const handleCheckboxChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
+
+
 
 
 
@@ -65,30 +77,34 @@ export default function NewTodoForm(props) {
       <Grid item>
         <Typography variant='h2'>Add new list</Typography>
       </Grid>
-      <Grid item container justify ='space-evenly' className={classes.formContainer}>
+      
+      <Grid item container justify='space-evenly' className={classes.formContainer}>
         <Grid item>
-        <Paper elevation={10}>
-        <TextField id="outlined-basic" label="Add Item" variant="outlined" />
-        </Paper>
+          <Paper elevation={10}>
+            <TextField value={todo.newitem} name="newitem" id="outlined-basic" label="Add Item" variant="outlined" />
+          </Paper>
         </Grid>
         <Button variant='outlined'>save</Button>
+
         <Grid item>
-        <Paper elevation={10}>
-        <TextField id="outlined-basic" label="New List" variant="outlined" />
-        </Paper>
+          <Paper elevation={10}>
+            <TextField value={todo.newList} name="newList" id="outlined-basic" label="New List" variant="outlined" />
+          </Paper>
         </Grid>
         <Button variant='outlined'>save</Button>
+
           <Grid item><FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Choose Existing List</InputLabel>
         <Select
+        
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
+          value={todo.existingList}
           onChange={handleSelectChange}
-        >
+          name="existingList">         
           {props.noteData.map((note) => {
             return (
-              <MenuItem value={20}>{note.name}</MenuItem>
+              <MenuItem value={todo.existingList}>{note.name}</MenuItem>
             )
           })}
         </Select>
@@ -99,13 +115,13 @@ export default function NewTodoForm(props) {
         <Select
           label Id="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
+          value={todo.timeInterval}
           onChange={handleSelectChange}
-        >
-            <MenuItem value={20}>Day</MenuItem>
-            <MenuItem value={20}>Week</MenuItem>
-            <MenuItem value={20}>Month</MenuItem>
-            <MenuItem value={20}>General</MenuItem>
+          name="timeInterval">
+            <MenuItem value={todo.timeInterval}>Day</MenuItem>
+            <MenuItem value={todo.timeInterval}>Week</MenuItem>
+            <MenuItem value={todo.timeInterval}>Month</MenuItem>
+            <MenuItem value={todo.timeInterval}>General</MenuItem>
           })}
         </Select>
       </FormControl>

@@ -52,10 +52,13 @@ export default function Home() {
             <Button
               variant="outlined"
               color="primary"
+              component={Link}
+              to="/register"
               className={classes.homeButtons}
             >
               Register
             </Button>
+
           </Grid>
         </Grid>
       </Grid>
