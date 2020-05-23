@@ -35,17 +35,25 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function NewTodoForm(props) {
+  const classes = useStyles();
+  const [user, setUser] = useState([{
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  }]);
+
+ 
 
   const handleChange = (e) => {
-    const value = []
-    setUser({ ...user, [e.target.firstname]: value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
 
 
   const formSubmit = (e) => {
     e.preventDefault(); 
-    console.log("ORDER ACCEPTED & VALIDATED");
+    console.log(user) ;
     // axios
     //   .post("https://reqres.in/api/users", formState)
     //   .then((res) => {
@@ -63,52 +71,27 @@ export default function NewTodoForm(props) {
 
 
 
-  const classes = useStyles();
-  const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-  });
+ 
+
+ 
 
 
-
-
-
-  const [age, setAge] = React.useState('');
-  const [state, setState] = React.useState({
-    checkedB: false,
-  });
-
-
-
-  const handleSelectChange = (event) => {
-    setAge(event.target.value);
-  };
-
-
-
-
-  const handleCheckboxChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-
+ 
 
   return (
     // form container
-    <form>
+    <form  >
       <Grid container className={classes.formPageContainer} direction='column' alignItems='center' ><h2>New User</h2>
-        <Paper elevation={3}>
-          <TextField value={user.firstname} id="outlined-basic" label="First Name" variant="outlined" name="firstName" onChange={handleChange} /></Paper>
-        <Paper elevation={3}>
-          <TextField value={user.lastname} type="email" id="outlined-basic" label="Last Name" variant="outlined" name="lastName" onChange={handleChange} /></Paper>
-        <Paper elevation={3}>
-          <TextField value={user.email} type="email" id="outlined-basic" label="Email Address" variant="outlined" name="email" onChange={handleChange} /></Paper>
-        <Paper elevation={3}>
-          <TextField value={user.password} type="password" id="outlined-basic" label="Password" variant="outlined" name="password" onChange={handleChange} /></Paper>
+        <Paper elevation={3}  value={user.firstname}>
+          <TextField type="text" id="outlined-basic" label="First Name" variant="outlined" name="firstName" onChange={handleChange} /></Paper>
+        <Paper elevation={3} value={user.lastname}>
+          <TextField  type="text" id="outlined-basic" label="Last Name" variant="outlined" name="lastName" onChange={handleChange} /></Paper>
+        <Paper elevation={3} value={user.email}>
+          <TextField  type="email" id="outlined-basic" label="Email Address" variant="outlined" name="email" onChange={handleChange} /></Paper>
+        <Paper elevation={3} value={user.password}>
+          <TextField  type="password" id="outlined-basic" label="Password" variant="outlined" name="password" onChange={handleChange} /></Paper>
         <Grid>
-          <Button variant='outlined' onClick={formSubmit}>save</Button>
+          <Button onClick={formSubmit} variant='outlined'>save</Button>
         </Grid>
       </Grid>
     </form>
