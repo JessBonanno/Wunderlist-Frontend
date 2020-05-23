@@ -1,3 +1,4 @@
+
 import React from "react";
 import { makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -25,112 +26,154 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+
+
+
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
-  const [state, setState] = React.useState({
-    checkedB: false,
+  const [todo, setTodo] = useState({
+
   });
 
-  const handleCheckboxChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+
+  const [form, setForm] = useState({
+    newitem: "",
+    newlist: "",
+    existinglist: "",
+    timeinterval: "",
+    recurring: false,
+  });
+
+
+
+  
+  const handleChange = (e) => {
+    e.persist();
+    let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm({ ...form, [e.target.name] : value });
   };
 
-  const handleSelectChange = (event) => {
-    setAge(event.target.value);
-  };
+
+  const formSubmit = (e) => {
+    e.preventDefault(); 
+    console.log(form) ;
+    setTodo(form);
+    setForm({
+    newitem: "",
+    newlist: "",
+    existinglist: "",
+    timeinterval: "",
+    recurring: false,
+    })};
+
+
+
+const timeintervalarray = [
+  "Day",
+  "Week",
+  "Month",
+  "General",
+]
+
+
+
+  console.log(todo);
+
+
+
+
+
+
+
+
+ 
 
   return (
     // form container
-    <Grid
-      container
-      className={classes.formPageContainer}
-      direction="column"
-      alignItems="center"
-    >
+    <form >
+    <Grid container className={classes.formPageContainer} direction='column' alignItems='center'>
       <Grid item>
-        <Typography variant="h2">Add new list</Typography>
+        <Typography variant='h2'>Add new list</Typography>
       </Grid>
-      <Grid
-        item
-        container
-        justify="space-evenly"
-        className={classes.formContainer}
-      >
+      
+      <Grid item container justify='space-evenly' className={classes.formContainer}>
         <Grid item>
-          <Paper elevation={5}>
-            <TextField
-              id="outlined-basic"
-              label="Add Item"
-              variant="outlined"
-            />
+          <Paper elevation={10}>
+            <TextField value={form.newitem} type="text" name="newitem" id="outlined-basic" label="Add Item" variant="outlined" onChange={handleChange}/>
           </Paper>
         </Grid>
-        <Button variant="outlined">Add Item</Button>
+        <Button variant='outlined' onClick={handleChange}>save</Button>
+
         <Grid item>
-          <Paper elevation={5}>
-            <TextField
-              id="outlined-basic"
-              label="New List"
-              variant="outlined"
-            />
+          <Paper elevation={10}>
+            <TextField value={form.newlist} type="text" name="newlist" id="outlined-basic" label="New List" variant="outlined" onChange={handleChange}/>
           </Paper>
         </Grid>
-        <Button variant="outlined">Submit List</Button>
+        <Button variant='outlined'>save</Button>
+
+          <Grid item>
+           <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Choose Existing List</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="existinglist"
+                value={form.existinglist}
+                onChange={handleChange}
+                name="existinglist">
+                <MenuItem value="">None</MenuItem>
+                {props.noteData.map((note) => {
+                  return (
+                    
+                      <MenuItem value={note.name}>{note.name}</MenuItem>
+                    
+                  )})}
+              </Select>
+            </FormControl>
+         </Grid>
+         <Grid item>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Choose Time Interval</InputLabel>
+              <Select
+                label Id="demo-simple-select-label"
+                id="timeinterval"
+                value={form.timeinterval}
+                onChange={handleChange}
+                name="timeinterval">
+                  {timeintervalarray.map((time) => {
+                    return (
+                    <MenuItem value={time}>{time}</MenuItem>
+                      )
+                  }
+
+                  )}
+
+          })}
+        </Select>
+            </FormControl>
+          </Grid>
+
+
+
+
         <Grid item>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">
-              Choose Existing List
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={age}
-              onChange={handleSelectChange}
-            >
-              {props.noteData.map((note) => {
-                return <MenuItem value={20}>{note.name}</MenuItem>;
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">
-              Choose Category
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={age}
-              onChange={handleSelectChange}
-            >
-              <MenuItem value={20}>Day</MenuItem>
-              <MenuItem value={20}>Week</MenuItem>
-              <MenuItem value={20}>Month</MenuItem>
-              <MenuItem value={20}>General</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={state.checkedB}
-                onChange={handleCheckboxChange}
-                name="checkedB"
-                color="primary"
-              />
-            }
-            label="Reoccurring"
+        <FormControlLabel
+        control={
+          <Checkbox
+            type="checkbox"
+            id="recurring"
+            checked={form.recurring}
+            onChange={handleChange}
+            name="recurring"
+            color="primary"
           />
+        }
+      />
         </Grid>
       </Grid>
     </Grid>
+    <Button onClick={formSubmit} variant='outlined'>save</Button>
+    </form>
+
   );
 }
