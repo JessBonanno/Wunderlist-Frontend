@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -26,17 +26,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-
+}));
 
 
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
-  const [todo, setTodo] = useState({
-
-  });
-
-
+  const [todo, setTodo] = useState({});
   const [form, setForm] = useState({
     newitem: "",
     newlist: "",
@@ -44,16 +40,13 @@ export default function NewTodoForm(props) {
     timeinterval: "",
     recurring: false,
   });
+  const timeintervalarray = ['day', 'week', 'month', 'general']
 
-
-
-  
   const handleChange = (e) => {
     e.persist();
     let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setForm({ ...form, [e.target.name] : value });
   };
-
 
   const formSubmit = (e) => {
     e.preventDefault(); 
@@ -67,27 +60,6 @@ export default function NewTodoForm(props) {
     recurring: false,
     })};
 
-
-
-const timeintervalarray = [
-  "Day",
-  "Week",
-  "Month",
-  "General",
-]
-
-
-
-  console.log(todo);
-
-
-
-
-
-
-
-
- 
 
   return (
     // form container
@@ -144,17 +116,12 @@ const timeintervalarray = [
                     return (
                     <MenuItem value={time}>{time}</MenuItem>
                       )
-                  }
+                  })}
 
-                  )}
-
-          })}
+                 
         </Select>
             </FormControl>
           </Grid>
-
-
-
 
         <Grid item>
         <FormControlLabel
@@ -177,3 +144,4 @@ const timeintervalarray = [
 
   );
 }
+    

@@ -2,21 +2,17 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-
 // local imports
 
 import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
- Tom-Bauer
-import NewTodoForm from'./components/NewTodoForm';
-import NewUser from './components/NewUser.js'
-
+import NewTodoForm from "./components/NewTodoForm";
+import NewUser from "./components/NewUser.js";
 
 import Login from "./components/Login";
 import UserThemes from "./components/UserThemes";
-master
 
 const sampleNoteData = [
   // sample note data for development
@@ -79,7 +75,6 @@ const sampleNoteData = [
 ];
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
- Tom-Bauer
 
   const [userTheme, setUserTheme] = useState({});
 
@@ -88,7 +83,6 @@ function App() {
     setUserTheme(image);
   };
 
- master
   return (
     <div className="App">
       {/* wrapping app with ThemeProvider to pass created styles to components */}
@@ -98,13 +92,20 @@ function App() {
           <Route
             path="/dashboard"
             render={(props) => (
-              <Dashboard {...props} noteData={noteData} setNoteData={setNoteData} userTheme={userTheme} />
+              <Dashboard
+                {...props}
+                noteData={noteData}
+                setNoteData={setNoteData}
+                userTheme={userTheme}
+              />
             )}
           />
           <Route exact path="/" render={(props) => <Home {...props} />} />
-Tom-Bauer
-          <Route exact path="/register" render={(props) => <NewUser {...props} />} />
-         
+          <Route
+            exact
+            path="/register"
+            render={(props) => <NewUser {...props} />}
+          />
 
           <Route
             path="/form"
@@ -121,7 +122,6 @@ Tom-Bauer
               />
             )}
           />
- master
         </Router>
       </ThemeProvider>
     </div>
