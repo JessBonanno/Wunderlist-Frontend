@@ -1,31 +1,42 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, useTheme} from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 import theme from "./ui/Theme";
-
-
-
-
 
 const useStyles = makeStyles({
   homeHeader: {
     marginTop: "10em",
+    padding: '1em',
+    [theme.breakpoints.down("md")]: {
+      marginTop: "7rem",
+    },
   },
   homeButtons: {
     width: 200,
     borderRadius: 0,
     fontSize: "1.5rem",
     margin: "4em 1em",
-
+    [theme.breakpoints.down("md")]: {
+      width: 150,
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 150,
+      fontSize: "1rem",
+    },
   },
 });
 export default function Home() {
   const classes = useStyles();
   const theme = useTheme();
-
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   return (
     <>
@@ -37,7 +48,10 @@ export default function Home() {
         className={classes.homeHeader}
       >
         <Grid item>
-          <Typography variant="h1" style={{ textAlign: "center" }}>
+          <Typography
+            variant="h1"
+            style={{ textAlign: "center", fontSize: matchesSM && "3rem" }}
+          >
             Welcome To Wunderlist
           </Typography>
         </Grid>
@@ -47,10 +61,7 @@ export default function Home() {
               variant="outlined"
               color="primary"
               component={Link}
-
-
               to="/login"
-
               className={classes.homeButtons}
             >
               Login
@@ -62,12 +73,10 @@ export default function Home() {
               color="primary"
               component={Link}
               to="/register"
-
               className={classes.homeButtons}
             >
               Register
             </Button>
-
           </Grid>
         </Grid>
       </Grid>
