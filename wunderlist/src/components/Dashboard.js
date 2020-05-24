@@ -180,7 +180,7 @@ export default function Dashboard(props) {
                 </ListItemIcon>
               </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
-                Add New
+                Add / Edit
               </ListItemText>
             </ListItem>
             <ListItem disableGutters component={Link} to="/themes">
