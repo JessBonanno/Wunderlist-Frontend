@@ -142,38 +142,20 @@ export default function Login() {
               alignItems="center"
               className={classes.inputContainer}
             >
-              <Grid
-                item
-                container
-                direction="column"
-                style={{ maxWidth: "50%" }}
-              >
-                <Grid item>
-                  <TextField
-                    color="secondary"
-                    className={classes.loginField}
-                    required
-                    id="standard-required"
-                    label="UserName"
-                    name="username"
-                    value={formValues.username}
-                    onChange={handleLoginChanges}
-                  />
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.errorMessage}
-                    align="right"
-                    style={{
-                      display: errors.username.length > 0 ? undefined : "none",
-                    }}
-                  >
-                    {errors.username}
-                  </Typography>
-                </Grid>
+              <Grid item>
+                <TextField
+                  error={errors.username.length > 0}
+                  helperText={errors.username}
+                  color="secondary"
+                  className={classes.loginField}
+                  required
+                  id="standard-required"
+                  label="UserName"
+                  name="username"
+                  value={formValues.username}
+                  onChange={handleLoginChanges}
+                />
               </Grid>
-
               <Grid
                 item
                 container
@@ -182,6 +164,8 @@ export default function Login() {
               >
                 <Grid item>
                   <TextField
+                    error={errors.password.length > 0}
+                    helperText={errors.password}
                     color="secondary"
                     className={classes.loginField}
                     required
@@ -193,18 +177,6 @@ export default function Login() {
                     value={formValues.password}
                     onChange={handleLoginChanges}
                   />
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.errorMessage}
-                    align="right"
-                    style={{
-                      display: errors.password.length > 0 ? undefined : "none",
-                    }}
-                  >
-                    {errors.password}
-                  </Typography>{" "}
                 </Grid>
               </Grid>
             </Grid>
