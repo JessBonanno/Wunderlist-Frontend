@@ -94,14 +94,18 @@ export default function Login() {
   };
   useEffect(() => {
     validationSchema.isValid(formValues).then((valid) => {
-      setCanSubmit(!valid);
+      setCanSubmit(valid);
     });
   }, [formValues]);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    setCredentials(formValues);
-    setFormValues({ username: "", password: "" });
+    if (canSubmit) {
+      setCredentials(formValues);
+      setFormValues({ username: "", password: "" });
+    } else {
+      alert('You must enter a username and password');
+    }
   };
 
   return (

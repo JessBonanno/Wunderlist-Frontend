@@ -14,12 +14,10 @@ import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
 
 // local imports
 import ListCard from "./ListCard";
-import theme from "./ui/Theme";
 
 const drawerWidth = 250;
 
@@ -110,7 +108,6 @@ export default function Dashboard(props) {
   const classes = useStyles();
   const history = useHistory().location.pathname;
   const [filteredNotes, setFilteredNotes] = useState([]);
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   useEffect(() => {
