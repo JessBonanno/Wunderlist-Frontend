@@ -12,40 +12,50 @@ import Grid from "@material-ui/core/Grid";
 
 //  local imports
 import backgrounds from "../backgrounds";
+import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 340,
     margin: "1em",
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: 150,
+    },
   },
   media: {
     height: 140,
   },
-  cardContainer: {
+  themesContainer: {
     marginTop: "5em",
+    textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "4em",
+    },
+  },
+  cardContainer: {
+    marginTop: '4em',
   },
 });
 
-export default function UserThemes({handleThemeSelection}) {
+export default function UserThemes({ handleThemeSelection }) {
   const classes = useStyles();
-
 
   return (
     <Grid
       container
       direction="column"
-      className={classes.cardContainer}
+      className={classes.themesContainer}
       alignItems="center"
     >
       <Grid item>
-        <Typography variant="h3" style={{ margin: "2em" }}>
+        <Typography variant="h3">
           Choose your theme
         </Typography>
       </Grid>
-      <Grid item container justify="space-evenly">
+      <Grid item container justify="space-evenly" className={classes.cardContainer}>
         {backgrounds.map((image) => {
-            console.log(image);
-            
+          console.log(image);
+
           return (
             <Grid item>
               <Card className={classes.root}>

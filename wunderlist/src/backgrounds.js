@@ -33,6 +33,9 @@ import squiggleLarge from "./assets/images/squiggle-large.jpg";
 
 export default [
   {
+    name: 'No Theme'
+  },
+  {
     name: "Sunflowers",
     small: sunflowers,
     large: sunflowersLarge,
@@ -128,7 +131,5 @@ export default [
     small: bubbly,
     large: bubblyLarge,
   },
-  {
-    name: 'No Theme'
-  }
+  
 ];
