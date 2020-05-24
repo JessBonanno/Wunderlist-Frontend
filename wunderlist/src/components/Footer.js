@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     width: "5em",
     verticalAlign: "bottom",
     padding: ".5em",
-    [theme.breakpoints.down('xs')]: {
-        padding: 0,
-        width: '3em',
-    }
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      width: "3em",
+    },
   },
   socialContainer: {
     width: "auto",
@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2rem",
     margin: ".3em",
     color: theme.palette.common.white,
-
   },
   footerlinksContainer: {
     width: "auto",
@@ -44,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.common.white,
     padding: "1em",
-    
   },
 }));
 
@@ -55,7 +53,7 @@ export default function Footer() {
     <footer className={classes.footer}>
       <Grid
         container
-        justify={matchesXS ? 'space-evenly' : "space-between"}
+        justify={matchesXS ? "space-evenly" : "space-between"}
         alignItems="center"
         className={classes.footerContainer}
       >
@@ -76,13 +74,19 @@ export default function Footer() {
         </Grid>
         <Grid item container className={classes.socialContainer}>
           <Grid item>
-            <FacebookIcon className={classes.socialIcon} />
+            <Link underline="none" href=''>
+              <FacebookIcon className={classes.socialIcon} />
+            </Link>
           </Grid>
           <Grid item>
-            <InstagramIcon className={classes.socialIcon} />
+          <Link underline="none" href=''>
+              <InstagramIcon className={classes.socialIcon} />
+            </Link>
           </Grid>
           <Grid item>
-            <TwitterIcon className={classes.socialIcon} />
+          <Link underline="none" href=''>
+              <TwitterIcon className={classes.socialIcon} />
+            </Link>
           </Grid>
         </Grid>
       </Grid>
