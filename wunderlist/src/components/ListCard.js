@@ -17,7 +17,7 @@ import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
-    marginTop: "5em",
+    margin: "3em 1em 0",
     padding: "1em",
     [theme.breakpoints.down("sm")]: {
       width: 270,

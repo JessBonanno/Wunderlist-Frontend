@@ -18,7 +18,7 @@ const validationSchema = yup.object().shape({
 
 const useStyles = makeStyles({
   loginContainer: {
-    margin: "10em auto 0",
+    margin: "10em auto",
     [theme.breakpoints.down("md")]: {
       margin: "8em auto 0",
     },
@@ -30,6 +30,7 @@ const useStyles = makeStyles({
   loginPaper: {
     height: "100%",
     padding: "5em",
+    marginBottom: '5em',
     [theme.breakpoints.down("md")]: {
       padding: "3em",
     },
