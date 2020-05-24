@@ -47,6 +47,12 @@ const useStyles = makeStyles({
       margin: "1em",
     },
   },
+  errorMessage: {
+    fontSize: "1.1rem",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1em",
+    },
+  },
 });
 
 export default function Login() {
@@ -104,7 +110,7 @@ export default function Login() {
       setCredentials(formValues);
       setFormValues({ username: "", password: "" });
     } else {
-      alert('You must enter a username and password');
+      alert("You must enter a username and password");
     }
   };
 
@@ -136,32 +142,70 @@ export default function Login() {
               alignItems="center"
               className={classes.inputContainer}
             >
-              <Grid item>
-                <TextField
-                  color="secondary"
-                  className={classes.loginField}
-                  required
-                  id="standard-required"
-                  label="UserName"
-                  name="username"
-                  value={formValues.username}
-                  onChange={handleLoginChanges}
-                />
+              <Grid
+                item
+                container
+                direction="column"
+                style={{ maxWidth: "50%" }}
+              >
+                <Grid item>
+                  <TextField
+                    color="secondary"
+                    className={classes.loginField}
+                    required
+                    id="standard-required"
+                    label="UserName"
+                    name="username"
+                    value={formValues.username}
+                    onChange={handleLoginChanges}
+                  />
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.errorMessage}
+                    align="right"
+                    style={{
+                      display: errors.username.length > 0 ? undefined : "none",
+                    }}
+                  >
+                    {errors.username}
+                  </Typography>
+                </Grid>
               </Grid>
 
-              <Grid item>
-                <TextField
-                  color="secondary"
-                  className={classes.loginField}
-                  required
-                  id="standard-password-input"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  autoComplete="current-password"
-                  value={formValues.password}
-                  onChange={handleLoginChanges}
-                />
+              <Grid
+                item
+                container
+                direction="column"
+                style={{ maxWidth: "50%" }}
+              >
+                <Grid item>
+                  <TextField
+                    color="secondary"
+                    className={classes.loginField}
+                    required
+                    id="standard-password-input"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    autoComplete="current-password"
+                    value={formValues.password}
+                    onChange={handleLoginChanges}
+                  />
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.errorMessage}
+                    align="right"
+                    style={{
+                      display: errors.password.length > 0 ? undefined : "none",
+                    }}
+                  >
+                    {errors.password}
+                  </Typography>{" "}
+                </Grid>
               </Grid>
             </Grid>
             <Grid item align={matchesSM ? "center" : "right"}>
