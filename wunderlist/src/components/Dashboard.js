@@ -14,12 +14,10 @@ import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
 
 // local imports
 import ListCard from "./ListCard";
-import theme from "./ui/Theme";
 
 const drawerWidth = 250;
 
@@ -76,10 +74,11 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     marginLeft: 250,
+    marginBottom: '5em',
     width: "90%",
     height: "100vh",
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
+    backgroundAttachment: "absolute",
     backgroundSize: "cover",
     [theme.breakpoints.down("sm")]: {
       marginLeft: 190,
@@ -110,7 +109,6 @@ export default function Dashboard(props) {
   const classes = useStyles();
   const history = useHistory().location.pathname;
   const [filteredNotes, setFilteredNotes] = useState([]);
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   useEffect(() => {
@@ -183,7 +181,7 @@ export default function Dashboard(props) {
                 </ListItemIcon>
               </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
-                Add New
+                Add / Edit
               </ListItemText>
             </ListItem>
             <ListItem disableGutters component={Link} to="/themes">

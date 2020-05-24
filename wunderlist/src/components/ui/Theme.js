@@ -22,6 +22,9 @@ export default createMuiTheme({
     },
   }),
   typography: {
+    h1: {
+      color: wunderBlack,
+    },
     tab: {
       fontSize: "1.6rem",
       color: wunderWhite,

@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import AssignmentTurnedInTwoToneIcon from "@material-ui/icons/AssignmentTurnedInTwoTone";
+import DeleteSweepTwoToneIcon from '@material-ui/icons/DeleteSweepTwoTone';
 
 // local imports
 import CheckList from "./Checklist";
@@ -16,7 +17,7 @@ import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
-    marginTop: "5em",
+    margin: "3em 1em 0",
     padding: "1em",
     [theme.breakpoints.down("sm")]: {
       width: 270,
@@ -72,6 +73,8 @@ export default function ListCard(props) {
   // need to make this functional
   const handleCompleted = (name) => {};
 
+  const handleDelete = (name) => {};
+
   return (
     <Card className={classes.root}>
       <CardContent className={classes.cardContent}>
@@ -113,19 +116,17 @@ export default function ListCard(props) {
             <Button
               size="small"
               className={classes.cardButton}
+              onClick={() => handleDelete(props.note.name)}
               component={Link}
               to="/form"
             >
-              <EditIcon atl="edit icon" />
+              <DeleteSweepTwoToneIcon alt='delete icon'/>
             </Button>
             <Typography variant="button" className={classes.buttonText}>
-              Edit
+              Delete List
             </Typography>
           </CardActions>
         </Grid>
-        <Typography className={classes.cardCategory}>
-          {props.note.category}
-        </Typography>
       </Grid>
     </Card>
   );

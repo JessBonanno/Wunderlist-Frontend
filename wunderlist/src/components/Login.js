@@ -18,7 +18,7 @@ const validationSchema = yup.object().shape({
 
 const useStyles = makeStyles({
   loginContainer: {
-    margin: "10em auto 0",
+    margin: "10em auto ",
     [theme.breakpoints.down("md")]: {
       margin: "8em auto 0",
     },
@@ -45,6 +45,12 @@ const useStyles = makeStyles({
     margin: "3em 2em 1em",
     [theme.breakpoints.down("sm")]: {
       margin: "1em",
+    },
+  },
+  errorMessage: {
+    fontSize: "1.1rem",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1em",
     },
   },
 });
@@ -94,14 +100,18 @@ export default function Login() {
   };
   useEffect(() => {
     validationSchema.isValid(formValues).then((valid) => {
-      setCanSubmit(!valid);
+      setCanSubmit(valid);
     });
   }, [formValues]);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    setCredentials(formValues);
-    setFormValues({ username: "", password: "" });
+    if (canSubmit) {
+      setCredentials(formValues);
+      setFormValues({ username: "", password: "" });
+    } else {
+      alert("You must enter a username and password");
+    }
   };
 
   return (
@@ -134,6 +144,8 @@ export default function Login() {
             >
               <Grid item>
                 <TextField
+                  error={errors.username.length > 0}
+                  helperText={errors.username}
                   color="secondary"
                   className={classes.loginField}
                   required
@@ -144,20 +156,28 @@ export default function Login() {
                   onChange={handleLoginChanges}
                 />
               </Grid>
-
-              <Grid item>
-                <TextField
-                  color="secondary"
-                  className={classes.loginField}
-                  required
-                  id="standard-password-input"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  autoComplete="current-password"
-                  value={formValues.password}
-                  onChange={handleLoginChanges}
-                />
+              <Grid
+                item
+                container
+                direction="column"
+                style={{ maxWidth: "50%" }}
+              >
+                <Grid item>
+                  <TextField
+                    error={errors.password.length > 0}
+                    helperText={errors.password}
+                    color="secondary"
+                    className={classes.loginField}
+                    required
+                    id="standard-password-input"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    autoComplete="current-password"
+                    value={formValues.password}
+                    onChange={handleLoginChanges}
+                  />
+                </Grid>
               </Grid>
             </Grid>
             <Grid item align={matchesSM ? "center" : "right"}>

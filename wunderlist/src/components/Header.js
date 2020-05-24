@@ -8,10 +8,14 @@ import Divider from "@material-ui/core/Divider";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+// local imports
+
+import postIt from "../assets/images/postit.png";
 
 //  this will allow the header bar to float above the scrolled page
 function ElevationScroll(props) {
   const { children } = props;
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -35,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tabContainer: {
     marginLeft: "auto",
-    marginRight: '2em'
+    marginRight: "2em",
   },
   tab: {
     ...theme.typography.tab,
@@ -46,19 +50,24 @@ const useStyles = makeStyles((theme) => ({
     margin: ".5em",
     backgroundColor: theme.palette.common.white,
   },
+  headerImg: {
+    height: '3em',
+    paddingLeft: '.5em'
+  }
 }));
 
 export default function Header(props) {
+  const history = useHistory().location.pathname;
   const classes = useStyles();
   const theme = useTheme();
-
-  
 
   return (
     <>
       <ElevationScroll>
         <AppBar className={classes.appbar}>
           <Toolbar disableGutters>
+            <img alt="sticky note" src={postIt} className={classes.headerImg} />
+
             <Tabs
               className={classes.tabContainer}
               textColor={theme.palette.common.white}

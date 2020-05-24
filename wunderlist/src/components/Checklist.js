@@ -38,7 +38,6 @@ export default function CheckList({ noteItems }) {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     setChecked(newChecked);
   };
 
