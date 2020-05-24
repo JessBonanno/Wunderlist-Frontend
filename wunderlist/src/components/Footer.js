@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1302,
     position: "absolute",
     bottom: 0,
+    [theme.breakpoints.down('sm')]: {
+        position: 'fixed',
+    }
   },
   footerImg: {
     width: "5em",
