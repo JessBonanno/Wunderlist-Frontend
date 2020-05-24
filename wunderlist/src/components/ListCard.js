@@ -16,24 +16,43 @@ import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
     marginTop: "5em",
     padding: "1em",
+    [theme.breakpoints.down("sm")]: {
+      width: 270,
+      padding: ".2em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: 250,
+      padding: ".2em",
+    },
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+  cardContent: {
+    padding: ".5em",
   },
+  
   title: {
-    fontSize: 1,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.4rem",
+      fontWeight: "bold",
+    },
   },
-  pos: {
-    marginBottom: 12,
+  reoccurring: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem",
+    },
   },
-  editButton: {
+  cardButton: {
     ...theme.typography.cardIcon,
     marginLeft: "auto",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem",
+    },
+  },
+  buttonText: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: ".9rem",
+    },
   },
   cardCategory: {
     textTransform: "uppercase",
@@ -41,28 +60,29 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "1em",
     marginBottom: ".5em",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: ".9rem",
+    },
   },
 });
 
 export default function ListCard(props) {
   const classes = useStyles();
-  
-// need to make this functional
-  const handleCompleted = (name) => {
 
-  };
+  // need to make this functional
+  const handleCompleted = (name) => {};
 
   return (
     <Card className={classes.root}>
-      <CardContent>
-        <Typography variant="h4" component="h2">
+      <CardContent className={classes.cardContent}>
+        <Typography variant="h4" component="h2" className={classes.title}>
           {props.note.name}
         </Typography>
         {props.note.reoccurring && (
           <Typography
             style={{ color: "red" }}
-            className={classes.pos}
             color="textSecondary"
+            className={classes.reoccurring}
           >
             Reoccurring
           </Typography>
@@ -73,15 +93,15 @@ export default function ListCard(props) {
       <Grid container direction="column" alignItems="flex-start">
         <Grid item>
           {!props.note.reoccurring && (
-            <CardActions>
+            <CardActions style={{padding: 0}}>
               <Button
                 size="small"
-                className={classes.editButton}
+                className={classes.cardButton}
                 onClick={() => handleCompleted(props.note.name)}
               >
                 <AssignmentTurnedInTwoToneIcon atl="mark completed icon" />
               </Button>
-              <Typography variant="button" style={{ fontSize: "1.2rem" }}>
+              <Typography variant="button" className={classes.buttonText}>
                 Mark as Completed
               </Typography>
             </CardActions>
@@ -89,21 +109,23 @@ export default function ListCard(props) {
         </Grid>
 
         <Grid item>
-          <CardActions>
+          <CardActions style={{padding: 0}}>
             <Button
               size="small"
-              className={classes.editButton}
+              className={classes.cardButton}
               component={Link}
               to="/form"
             >
               <EditIcon atl="edit icon" />
             </Button>
-            <Typography variant="button" style={{ fontSize: "1.2rem" }}>
+            <Typography variant="button" className={classes.buttonText}>
               Edit
             </Typography>
           </CardActions>
         </Grid>
-        <Typography className={classes.cardCategory}>{props.note.listId}</Typography>
+        <Typography className={classes.cardCategory}>
+          {props.note.category}
+        </Typography>
       </Grid>
     </Card>
   );

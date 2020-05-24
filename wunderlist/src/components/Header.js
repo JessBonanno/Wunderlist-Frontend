@@ -51,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const history = useHistory().location.pathname;
 
+  
 
   return (
     <>

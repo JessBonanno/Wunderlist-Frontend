@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // local imports
 import theme from "./ui/Theme";
-import UserThemes from "./UserThemes";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -19,22 +18,42 @@ const validationSchema = yup.object().shape({
 
 const useStyles = makeStyles({
   loginContainer: {
-    margin: "15em auto",
+    margin: "10em auto 0",
+    [theme.breakpoints.down("md")]: {
+      margin: "8em auto 0",
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: "6em auto 0",
+      maxWidth: "95%",
+    },
   },
   loginPaper: {
     height: "100%",
     padding: "5em",
+    [theme.breakpoints.down("md")]: {
+      padding: "3em",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "2em",
+    },
   },
+  inputContainer: {
+    marginTop: "2rem",
+  },
+
   loginField: {
-    margin: "3em",
+    margin: "3em 2em 1em",
+    [theme.breakpoints.down("sm")]: {
+      margin: "1em",
+    },
   },
 });
 
 export default function Login() {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [canSubmit, setCanSubmit] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
@@ -95,7 +114,7 @@ export default function Login() {
       <Paper variant="elevation" elevation="10" className={classes.loginPaper}>
         <Grid item container direction="column">
           <Grid item>
-            <Typography variant="h5">
+            <Typography variant="h5" style={{ textAlign: "center" }}>
               Enter your credentials and lets get{" "}
               <span style={{ fontStyle: "italic" }}>productive!</span>
             </Typography>
@@ -106,73 +125,51 @@ export default function Login() {
             noValidate
             autoComplete="off"
           >
-            <Grid item>
-              <TextField
-                color="secondary"
-                className={classes.loginField}
-                required
-                id="standard-required"
-                label="UserName"
-                name="username"
-                value={formValues.username}
-                onChange={handleLoginChanges}
-              />
+            <Grid
+              item
+              container
+              direction={matchesSM && "column"}
+              alignItems="center"
+              className={classes.inputContainer}
+            >
+              <Grid item>
+                <TextField
+                  color="secondary"
+                  className={classes.loginField}
+                  required
+                  id="standard-required"
+                  label="UserName"
+                  name="username"
+                  value={formValues.username}
+                  onChange={handleLoginChanges}
+                />
+              </Grid>
 
-              <TextField
-                color="secondary"
-                className={classes.loginField}
-                required
-                id="standard-password-input"
-                label="Password"
-                type="password"
-                name="password"
-                autoComplete="current-password"
-                value={formValues.password}
-                onChange={handleLoginChanges}
-              />
+              <Grid item>
+                <TextField
+                  color="secondary"
+                  className={classes.loginField}
+                  required
+                  id="standard-password-input"
+                  label="Password"
+                  type="password"
+                  name="password"
+                  autoComplete="current-password"
+                  value={formValues.password}
+                  onChange={handleLoginChanges}
+                />
+              </Grid>
             </Grid>
-            <Grid item align="right">
+            <Grid item align={matchesSM ? "center" : "right"}>
               <Button
                 variant="outlined"
                 type="submit"
                 form="loginForm"
                 onClick={handleLoginSubmit}
+                style={{ marginTop: "3em" }}
               >
                 Login
               </Button>
-              <Grid item style={{ height: "2em" }}>
-                {canSubmit && (
-                  <Typography
-                    variant="subtitle1"
-                    className="can-submit"
-                    style={{ marginTop: "2em" }}
-                  >
-                    Please fill all required fields to submit
-                  </Typography>
-                )}
-              </Grid>
-            </Grid>
-            <Grid item style={{ height: "2em" }}>
-              <Typography
-                variant="subtitle1"
-                className="error"
-                align="right"
-                style={{
-                  display: errors.username.length > 0 ? undefined : "none",
-                }}
-              >
-                {errors.username}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                className="error"
-                align="right"
-                style={{
-                  display: errors.username.length > 0 ? undefined : "none",
-                }}
-              >
-                {errors.password}
-              </Typography>
             </Grid>
           </form>
         </Grid>
