@@ -9,9 +9,9 @@ No matter how much is on your plate, Wunderlist 2.0 makes it super easy to remem
 
 **Web:**
 
-1. An on-boarding process for a new general `user`
+1. An on-boarding process for a new general `user` 
 
-3. Ability to easily create / setup a to do list `item`
+3. Ability to easily create / setup a to do list `item` 
 
 4. Ability to easily edit / update / mark `items` as `complete`
 
