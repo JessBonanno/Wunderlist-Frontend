@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     marginLeft: 250,
+    marginBottom: '5em',
     width: "90%",
     height: "100vh",
     backgroundRepeat: "no-repeat",

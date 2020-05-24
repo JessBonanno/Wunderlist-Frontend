@@ -27,6 +27,7 @@ const useStyles = makeStyles({
   },
   themesContainer: {
     marginTop: "5em",
+    marginBottom: '5em',
     textAlign: "center",
     [theme.breakpoints.down("xs")]: {
       marginTop: "4em",

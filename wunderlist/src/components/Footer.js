@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -9,6 +9,7 @@ import Link from "@material-ui/core/Link";
 
 //  local imports
 import postIt from "../assets/images/postit.png";
+import theme from "./ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     width: "5em",
     verticalAlign: "bottom",
     padding: ".5em",
+    [theme.breakpoints.down('xs')]: {
+        padding: 0,
+        width: '3em',
+    }
   },
   socialContainer: {
     width: "auto",
@@ -31,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2rem",
     margin: ".3em",
     color: theme.palette.common.white,
+
   },
   footerlinksContainer: {
     width: "auto",
@@ -38,35 +44,32 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.common.white,
     padding: "1em",
+    
   },
 }));
 
 export default function Footer() {
   const classes = useStyles();
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <footer className={classes.footer}>
       <Grid
         container
-        justify="space-between"
+        justify={matchesXS ? 'space-evenly' : "space-between"}
         alignItems="center"
         className={classes.footerContainer}
       >
         <Grid item>
           <img alt="sticky note" src={postIt} className={classes.footerImg} />
         </Grid>
-        <Grid
-          item
-          container
-          justify="space-evenly"
-          className={classes.footerlinksContainer}
-        >
+        <Grid item container className={classes.footerlinksContainer}>
           <Grid item>
-            <Link underline='none' className={classes.link} href="">
+            <Link underline="none" className={classes.link} href="">
               About Us
             </Link>
           </Grid>
           <Grid item>
-            <Link underline='none' className={classes.link} href="">
+            <Link underline="none" className={classes.link} href="">
               Contact Us
             </Link>
           </Grid>
