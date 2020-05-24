@@ -29,6 +29,10 @@ const useStyles = makeStyles({
       width: 150,
       fontSize: "1rem",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: 130,
+      fontSize: "1rem",
+    },
   },
 });
 export default function Home() {

@@ -170,17 +170,6 @@ export default function Login() {
               >
                 Login
               </Button>
-              <Grid item style={{ height: "2em" }}>
-                {canSubmit && (
-                  <Typography
-                    variant="subtitle1"
-                    className="can-submit"
-                    style={{ marginTop: "2em" }}
-                  >
-                    All fields are required
-                  </Typography>
-                )}
-              </Grid>
             </Grid>
           </form>
         </Grid>

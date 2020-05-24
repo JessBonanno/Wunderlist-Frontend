@@ -25,6 +25,7 @@ export default createMuiTheme({
     tab: {
       fontSize: "1.6rem",
       color: wunderWhite,
+      
     },
     listIcon: {
       color: wunderBlue,

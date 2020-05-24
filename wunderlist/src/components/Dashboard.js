@@ -14,20 +14,29 @@ import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Hidden from "@material-ui/core/Hidden";
 
 // local imports
 import ListCard from "./ListCard";
+import theme from "./ui/Theme";
 
-const drawerWidth = 300;
+const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
   },
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: theme.palette.common.grey,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 190,
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: 100,
+    },
   },
   content: {
     flexGrow: 1,
@@ -45,6 +54,16 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItem: {
     ...theme.typography.tab,
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.6rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      textAlign: 'center',
+      fontSize: "1rem",
+    },
   },
   drawerDivider: {
     margin: "1em",
@@ -52,14 +71,22 @@ const useStyles = makeStyles((theme) => ({
   },
 
   listIcon: {
+    marginLeft: ".5em",
     ...theme.typography.listIcon,
   },
   cardContainer: {
-    marginLeft: 300,
+    marginLeft: 250,
     width: "90%",
     height: "100vh",
     backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
     backgroundSize: "cover",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 190,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 100,
+    },
   },
   addNote: {
     color: theme.palette.common.grey,
@@ -80,10 +107,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-  
   const classes = useStyles();
   const history = useHistory().location.pathname;
   const [filteredNotes, setFilteredNotes] = useState([]);
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   useEffect(() => {
@@ -108,62 +135,65 @@ export default function Dashboard(props) {
           anchor="left"
         >
           <List disablePadding className={classes.drawerList}>
-            <ListItem component={Link} to="/dashboard/today">
-              <ListItemIcon className={classes.listIcon}>
-                <TodayTwoToneIcon fontSize="large" />
-              </ListItemIcon>
-
+            <ListItem disableGutters component={Link} to="/dashboard/today">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <TodayTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
                 Today's Lists
               </ListItemText>
             </ListItem>
-            <ListItem component={Link} to="/dashboard/week">
-              <ListItemIcon className={classes.listIcon}>
-                <DateRangeTwoToneIcon fontSize="large" />
-              </ListItemIcon>
+            <ListItem disableGutters component={Link} to="/dashboard/week">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <DateRangeTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
                 Week Lists
               </ListItemText>
             </ListItem>
-            <ListItem component={Link} to="/dashboard/month">
-              <ListItemIcon className={classes.listIcon}>
-                <CalendarTodayTwoToneIcon fontSize="large" />
-              </ListItemIcon>
-
+            <ListItem disableGutters component={Link} to="/dashboard/month">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <CalendarTodayTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
                 Month Lists
               </ListItemText>
             </ListItem>
-            <ListItem component={Link} to="/dashboard/general">
-              <ListItemIcon className={classes.listIcon}>
-                <PlaylistAddCheckTwoToneIcon fontSize="large" />
-              </ListItemIcon>
-
+            <ListItem disableGutters component={Link} to="/dashboard/general">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
                 General
               </ListItemText>
             </ListItem>
             <Divider variant="middle" className={classes.drawerDivider} />
-            <ListItem component={Link} to="/form">
-              <ListItemIcon className={classes.listIcon}>
-                <AddCircleTwoToneIcon
-                  className={classes.listIcon}
-                  style={{ fontSize: "2.5rem" }}
-                />
-              </ListItemIcon>
-
+            <ListItem disableGutters component={Link} to="/form">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <AddCircleTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
-                Add New List
+                Add New
               </ListItemText>
             </ListItem>
-            <ListItem component={Link} to="/themes">
-              <ListItemIcon className={classes.listIcon}>
-                <PhotoSizeSelectActualTwoToneIcon
-                  className={classes.listIcon}
-                  style={{ fontSize: "2.5rem" }}
-                />
-              </ListItemIcon>
-
+            <ListItem disableGutters component={Link} to="/themes">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <PhotoSizeSelectActualTwoToneIcon
+                    className={classes.listIcon}
+                  />
+                </ListItemIcon>
+              </Hidden>
               <ListItemText className={classes.drawerItem} disableTypography>
                 Themes
               </ListItemText>
@@ -187,7 +217,11 @@ export default function Dashboard(props) {
             ))
           : [].map((note, index) => (
               <Grid item className={classes.card} key={index}>
-                <ListCard note={note} setNoteData={props.setNoteData} noteData={props.noteData}/>
+                <ListCard
+                  note={note}
+                  setNoteData={props.setNoteData}
+                  noteData={props.noteData}
+                />
               </Grid>
             ))}
       </Grid>

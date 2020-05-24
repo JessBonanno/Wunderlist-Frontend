@@ -5,6 +5,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+// local imports
+import theme from "./ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,14 +17,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   listItem: {
-    fontSize: '1.3rem'
-  }
-
+    fontSize: "1.3rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem",
+    },
+  },
 }));
 
 export default function CheckList({ noteItems }) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -48,9 +55,10 @@ export default function CheckList({ noteItems }) {
             button
             onClick={handleToggle(value)}
           >
-            <ListItemIcon >
+            <ListItemIcon>
               <Checkbox
                 edge="start"
+                size={matchesSM && "small"}
                 checked={checked.indexOf(value) !== -1}
                 tabIndex={-1}
                 disableRipple
@@ -60,7 +68,7 @@ export default function CheckList({ noteItems }) {
             <ListItemText
               id={labelId}
               primary={`${value}`}
-              classes={{primary:classes.listItem}}
+              classes={{ primary: classes.listItem }}
             />
           </ListItem>
         );
