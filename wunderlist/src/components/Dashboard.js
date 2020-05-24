@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     height: "100vh",
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
+    backgroundAttachment: "absolute",
     backgroundSize: "cover",
     [theme.breakpoints.down("sm")]: {
       marginLeft: 190,
