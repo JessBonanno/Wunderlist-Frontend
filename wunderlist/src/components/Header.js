@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -51,15 +51,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
   },
   headerImg: {
-    height: '3em',
-    paddingLeft: '.5em'
-  }
+    height: "3em",
+    paddingLeft: ".5em",
+  },
 }));
+
+
 
 export default function Header(props) {
   const history = useHistory().location.pathname;
   const classes = useStyles();
   const theme = useTheme();
+  const [value, setValue] = useState(0);
+
+  const handleTabChange = (e, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <>
@@ -69,10 +76,13 @@ export default function Header(props) {
             <img alt="sticky note" src={postIt} className={classes.headerImg} />
 
             <Tabs
+              value={value}
               className={classes.tabContainer}
               textColor={theme.palette.common.white}
+              onChange={handleTabChange}
             >
               <Tab
+                index={0}
                 className={classes.tab}
                 label="Home"
                 component={Link}
@@ -84,6 +94,7 @@ export default function Header(props) {
                 className={classes.tabDivider}
               />
               <Tab
+                index={1}
                 className={classes.tab}
                 label="Dashboard"
                 component={Link}
