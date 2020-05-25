@@ -10,6 +10,21 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import Hidden from "@material-ui/core/Hidden";
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
+import List from '@material-ui/core/List';
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuIcon from "@material-ui/icons/Menu";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
+import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
+import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
+import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
+import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
+import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
+
+
+
 // local imports
 
 import postIt from "../assets/images/postit.png";
@@ -71,6 +86,30 @@ export default function Header(props) {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = useState(0);
 
+    // state and functions for drawer
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [openMenu, setOpenMenu] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false);
+  
+  
+    const handleMenuClick = (e) => {
+      setAnchorEl(e.currentTarget);
+      setOpenMenu(true);
+    };
+  
+    const handleMenuClose = (e) => {
+      setAnchorEl(null);
+      setOpenMenu(false);
+    };
+  
+    const handleMenuItemClick = (e, i) => {
+      setAnchorEl(null);
+      setOpenMenu(false);
+    };
+  
+  
+  
+
   const handleTabChange = (e, newValue) => {
     setValue(newValue);
   };
@@ -98,86 +137,91 @@ export default function Header(props) {
     </Tabs>
   );
 
-  // ! refactor this to work here instead of dashboard
-  const drawer = {
-    /* <>
-           
-            <Grid item>
-            <Drawer
-              className={classes.drawer}
-              variant="permanent"
-              classes={{ paper: classes.drawerPaper }}
-              anchor="left"
-            >
-              <List disablePadding className={classes.drawerList}>
-                <ListItem disableGutters component={Link} to="/dashboard/today">
-                  <Hidden xsDown>
-                    <ListItemIcon className={classes.listIcon}>
-                      <TodayTwoToneIcon className={classes.listIcon} />
-                    </ListItemIcon>
-                  </Hidden>
-                  <ListItemText className={classes.drawerItem} disableTypography>
-                    Today's Lists
-                  </ListItemText>
-                </ListItem>
-                <ListItem disableGutters component={Link} to="/dashboard/week">
-                  <Hidden xsDown>
-                    <ListItemIcon className={classes.listIcon}>
-                      <DateRangeTwoToneIcon className={classes.listIcon} />
-                    </ListItemIcon>
-                  </Hidden>
-                  <ListItemText className={classes.drawerItem} disableTypography>
-                    Week Lists
-                  </ListItemText>
-                </ListItem>
-                <ListItem disableGutters component={Link} to="/dashboard/month">
-                  <Hidden xsDown>
-                    <ListItemIcon className={classes.listIcon}>
-                      <CalendarTodayTwoToneIcon className={classes.listIcon} />
-                    </ListItemIcon>
-                  </Hidden>
-                  <ListItemText className={classes.drawerItem} disableTypography>
-                    Month Lists
-                  </ListItemText>
-                </ListItem>
-                <ListItem disableGutters component={Link} to="/dashboard/general">
-                  <Hidden xsDown>
-                    <ListItemIcon className={classes.listIcon}>
-                      <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
-                    </ListItemIcon>
-                  </Hidden>
-                  <ListItemText className={classes.drawerItem} disableTypography>
-                    General
-                  </ListItemText>
-                </ListItem>
-                <Divider variant="middle" className={classes.drawerDivider} />
-                <ListItem disableGutters component={Link} to="/form">
-                  <Hidden xsDown>
-                    <ListItemIcon className={classes.listIcon}>
-                      <AddCircleTwoToneIcon className={classes.listIcon} />
-                    </ListItemIcon>
-                  </Hidden>
-                  <ListItemText className={classes.drawerItem} disableTypography>
-                    Add / Edit
-                  </ListItemText>
-                </ListItem>
-                <ListItem disableGutters component={Link} to="/themes">
-                  <Hidden xsDown>
-                    <ListItemIcon className={classes.listIcon}>
-                      <PhotoSizeSelectActualTwoToneIcon
-                        className={classes.listIcon}
-                      />
-                    </ListItemIcon>
-                  </Hidden>
-                  <ListItemText className={classes.drawerItem} disableTypography>
-                    Themes
-                  </ListItemText>
-                </ListItem>
-              </List>
-            </Drawer>
-          </Grid>
-</> */
-  };
+  const drawer = (
+    <>
+      <SwipeableDrawer
+        classes={{ paper: classes.drawer }}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+      >
+        <div className={classes.toolbarMargin} />
+        <List disablePadding className={classes.drawerList}>
+            <ListItem disableGutters component={Link} to="/dashboard/today">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <TodayTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Today's Lists
+              </ListItemText>
+            </ListItem>
+            <ListItem disableGutters component={Link} to="/dashboard/week">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <DateRangeTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Week Lists
+              </ListItemText>
+            </ListItem>
+            <ListItem disableGutters component={Link} to="/dashboard/month">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <CalendarTodayTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Month Lists
+              </ListItemText>
+            </ListItem>
+            <ListItem disableGutters component={Link} to="/dashboard/general">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                General
+              </ListItemText>
+            </ListItem>
+            <Divider variant="middle" className={classes.drawerDivider} />
+            <ListItem disableGutters component={Link} to="/form">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <AddCircleTwoToneIcon className={classes.listIcon} />
+                </ListItemIcon>
+              </Hidden>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Add / Edit
+              </ListItemText>
+            </ListItem>
+            <ListItem disableGutters component={Link} to="/themes">
+              <Hidden xsDown>
+                <ListItemIcon className={classes.listIcon}>
+                  <PhotoSizeSelectActualTwoToneIcon
+                    className={classes.listIcon}
+                  />
+                </ListItemIcon>
+              </Hidden>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Themes
+              </ListItemText>
+            </ListItem>
+          </List>
+      </SwipeableDrawer>
+      <IconButton
+        className={classes.drawerIconContainer}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+      >
+        <MenuIcon className={classes.drawerIcon} />
+      </IconButton>
+    </>
+  );
+
 
   return (
     <>
@@ -185,7 +229,7 @@ export default function Header(props) {
         <AppBar className={classes.appbar}>
           <Toolbar disableGutters>
             <img alt="sticky note" src={postIt} className={classes.headerImg} />
-            {/* refactor commented out code below to work with drawer */}
+            {/* refactor commented out code */}
             {/* {matchesSM && (
               <IconButton
                 edge="start"

@@ -76,7 +76,6 @@ const sampleNoteData = [
 ];
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
-
   const [userTheme, setUserTheme] = useState({});
 
   const handleThemeSelection = (image) => {
