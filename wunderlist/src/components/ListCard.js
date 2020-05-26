@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import EditIcon from "@material-ui/icons/Edit";
 import AssignmentTurnedInTwoToneIcon from "@material-ui/icons/AssignmentTurnedInTwoTone";
 import DeleteSweepTwoToneIcon from "@material-ui/icons/DeleteSweepTwoTone";
 import IconButton from "@material-ui/core/IconButton";
@@ -101,10 +102,7 @@ export default function ListCard(props) {
         )}
         {/* expand section  */}
         <Hidden smUp>
-          <CardActions
-            disableSpacing
-            style={{  padding: 0 }}
-          >
+          <CardActions disableSpacing style={{ padding: 0 }}>
             <IconButton
               style={{ padding: 0 }}
               className={clsx(classes.expand, {
@@ -117,12 +115,12 @@ export default function ListCard(props) {
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <Collapse  in={expanded} timeout="auto" unmountOnExit>
             <CardContent style={{ padding: 0 }}>
               <CheckList noteItems={props.note.noteItems} />
               <Grid item>
                 {!props.note.reoccurring && (
-                  <CardActions style={{ padding: 0, marginLeft: '5em' }}>
+                  <CardActions style={{ padding: 0, marginLeft: "5em" }}>
                     <Typography variant="button" className={classes.buttonText}>
                       Completed
                     </Typography>
@@ -137,12 +135,12 @@ export default function ListCard(props) {
                 )}
               </Grid>
               <Grid item>
-                <CardActions style={{ padding: 0, marginLeft: '5em'  }}>
+                <CardActions style={{ padding: 0, marginLeft: "5em" }}>
                   <Typography variant="button" className={classes.buttonText}>
                     Delete
                   </Typography>
                   <Button
-                  style={{marginLeft: '2.8em'}}
+                    style={{ marginLeft: "2.8em" }}
                     size="small"
                     className={classes.cardButton}
                     onClick={() => handleDelete(props.note.name)}

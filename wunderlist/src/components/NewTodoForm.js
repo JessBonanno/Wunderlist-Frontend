@@ -11,6 +11,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+// local imports
+import theme from "./ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   formPageContainer: {
@@ -19,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   formContainer: {
     margin: "5em 0 10em",
     width: "40%",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
@@ -31,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState({});
   const [form, setForm] = useState({
@@ -154,7 +162,9 @@ export default function NewTodoForm(props) {
             className={classes.addItemContainer}
           >
             <Grid item style={{ margin: "0 1em" }}>
-              <Paper elevation={10}>
+              <Paper
+                elevation={10}
+              >
                 <TextField
                   value={newItem.item}
                   type="text"

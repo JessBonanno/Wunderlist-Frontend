@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Hidden from '@material-ui/core/Hidden'
+import Hidden from "@material-ui/core/Hidden";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // local imports
 import ListCard from "./ListCard";
+import theme from "./ui/Theme";
 
 const drawerWidth = 250;
 
@@ -90,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
   const classes = useStyles();
   const history = useHistory().location.pathname;
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
@@ -120,8 +123,10 @@ export default function Dashboard(props) {
       <Grid
         item
         container
+        direction={matchesXS ? "column" : "row"}
         className={classes.cardContainer}
-        justify="space-evenly"
+        justify={matchesXS ? undefined : "space-evenly"}
+        alignItems={matchesXS && 'center'}
         style={{
           backgroundImage: `url(${props.userTheme.large})`,
         }}
