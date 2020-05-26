@@ -73,19 +73,12 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.listIcon,
   },
   cardContainer: {
-    marginLeft: 250,
     marginBottom: "5em",
-    width: "90%",
-    height: "100vh",
+    width: "100%",
+    minHeight: "1000px",
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "absolute",
-    backgroundSize: "cover",
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 190,
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: 100,
-    },
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",   
   },
   addNote: {
     color: theme.palette.common.grey,
@@ -132,7 +125,9 @@ export default function Dashboard(props) {
         container
         className={classes.cardContainer}
         justify="space-evenly"
-        style={{ backgroundImage: `url(${props.userTheme.large})` }}
+        style={{
+          backgroundImage: `url(${props.userTheme.large})`,
+        }}
       >
         {history !== "/dashboard"
           ? filteredNotes.map((note, index) => (

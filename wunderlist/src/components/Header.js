@@ -14,7 +14,6 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import MenuIcon from "@material-ui/icons/Menu";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
 import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
@@ -22,6 +21,7 @@ import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoT
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
 import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
+import HomeIcon from '@material-ui/icons/Home';
 
 // local imports
 
@@ -116,6 +116,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: ".5em",
     ...theme.typography.listIcon,
   },
+  drawerIconContainer: {
+    marginLeft: "auto",
+  },
+  drawerIcon: {
+    fontSize: "2rem",
+    color: theme.palette.common.white,
+  },
 }));
 
 export default function Header(props) {
@@ -168,6 +175,7 @@ export default function Header(props) {
         label="Dashboard"
         component={Link}
         to="/dashboard"
+        onClick={() => setOpenDrawer(true)}
       ></Tab>
     </Tabs>
   );
@@ -182,6 +190,22 @@ export default function Header(props) {
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding className={classes.drawerList}>
+        <Hidden mdUp>
+          <ListItem
+              onClick={() => setOpenDrawer(false)}
+              disableGutters
+              component={Link}
+              to="/"
+            >
+              <ListItemIcon className={classes.listIcon}>
+                <HomeIcon className={classes.listIcon} />
+              </ListItemIcon>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                Home
+              </ListItemText>
+            </ListItem>
+          <Divider variant="middle" className={classes.drawerDivider} />
+        </Hidden>
           <ListItem
             onClick={() => setOpenDrawer(false)}
             disableGutters
@@ -263,13 +287,15 @@ export default function Header(props) {
           </ListItem>
         </List>
       </SwipeableDrawer>
-      <IconButton
-        className={classes.drawerIconContainer}
-        onClick={() => setOpenDrawer(!openDrawer)}
-        disableRipple
-      >
-        <MenuIcon className={classes.drawerIcon} />
-      </IconButton>
+      <Hidden mdUp>
+        <IconButton
+          className={classes.drawerIconContainer}
+          onClick={() => setOpenDrawer(!openDrawer)}
+          disableRipple
+        >
+          <MenuOpenIcon className={classes.drawerIcon} />
+        </IconButton>
+      </Hidden>
     </>
   );
 
@@ -280,18 +306,7 @@ export default function Header(props) {
           <Toolbar disableGutters>
             <img alt="sticky note" src={postIt} className={classes.headerImg} />
             {/* refactor commented out code */}
-            {/* {matchesSM && (
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="menu"
-              >
-                <MenuOpenIcon style={{ fontSize: "1.6em" }} />
-              </IconButton>
-            )}
-            <Hidden smDown>{tabs}</Hidden> */}
-            {tabs}
+            <Hidden smDown>{tabs}</Hidden>
             {drawer}
           </Toolbar>
         </AppBar>
