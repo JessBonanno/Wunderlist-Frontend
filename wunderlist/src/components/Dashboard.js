@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -98,8 +98,6 @@ export default function Dashboard(props) {
     );
   }, [history, props.noteData]);
 
-
-
   return (
     <Grid
       container
@@ -108,10 +106,13 @@ export default function Dashboard(props) {
       justify="space-evenly"
     >
       <Grid item>
-          <Typography variant="h2" style={{ marginTop: '1em', textAlign: 'center'}}>
-            Welcome To Your Dashboard
-          </Typography>
-        </Grid>
+        <Typography
+          variant="h2"
+          style={{ marginTop: "1em", textAlign: "center" }}
+        >
+          Welcome To Your Dashboard
+        </Typography>
+      </Grid>
       {/* card block */}
       <Grid
         item
@@ -122,7 +123,6 @@ export default function Dashboard(props) {
           backgroundImage: `url(${props.userTheme.large})`,
         }}
       >
-        
         {history !== "/dashboard"
           ? filteredNotes.map((note, index) => (
               <Grid item className={classes.card} key={index}>

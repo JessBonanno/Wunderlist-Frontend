@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Divider from "@material-ui/core/Divider";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import Hidden from "@material-ui/core/Hidden";
@@ -21,12 +21,11 @@ import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoT
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
 import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
-import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from "@material-ui/icons/Home";
 
 // local imports
 
 import postIt from "../assets/images/postit.png";
-import { useMediaQuery } from "@material-ui/core";
 
 //  this will allow the header bar to float above the scrolled page
 function ElevationScroll(props) {
@@ -126,33 +125,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header(props) {
-  const history = useHistory().location.pathname;
   const classes = useStyles();
-  const theme = useTheme();
-  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = useState(0);
-  console.log(history);
-  
 
   // state and functions for drawer
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [openMenu, setOpenMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-
-  const handleMenuClick = (e) => {
-    setAnchorEl(e.currentTarget);
-    setOpenMenu(true);
-  };
-
-  const handleMenuClose = (e) => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-  };
-
-  const handleMenuItemClick = (e, i) => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-  };
 
   const handleTabChange = (e, newValue) => {
     setValue(newValue);
@@ -172,20 +149,12 @@ export default function Header(props) {
       ></Tab>
       <Divider orientation="vertical" flexItem className={classes.tabDivider} />
 
-      {/* <Tab
-        index={1}
-        className={classes.tab}
-        label={"Dashboard"}
-        component={Link}
-        to="/dashboard"
-        // onClick={() => setOpenDrawer(true)}
-      ></Tab> */}
       <IconButton
-          className={classes.drawerIconContainer}
-          onClick={() => setOpenDrawer(!openDrawer)}
-        >
-          <MenuOpenIcon className={classes.drawerIcon} />
-        </IconButton>
+        className={classes.drawerIconContainer}
+        onClick={() => setOpenDrawer(!openDrawer)}
+      >
+        <MenuOpenIcon className={classes.drawerIcon} />
+      </IconButton>
     </Tabs>
   );
 
@@ -199,8 +168,8 @@ export default function Header(props) {
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding className={classes.drawerList}>
-        <Hidden mdUp>
-          <ListItem
+          <Hidden mdUp>
+            <ListItem
               onClick={() => setOpenDrawer(false)}
               disableGutters
               component={Link}
@@ -213,8 +182,8 @@ export default function Header(props) {
                 Home
               </ListItemText>
             </ListItem>
-          <Divider variant="middle" className={classes.drawerDivider} />
-        </Hidden>
+            <Divider variant="middle" className={classes.drawerDivider} />
+          </Hidden>
           <ListItem
             onClick={() => setOpenDrawer(false)}
             disableGutters
