@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1.2rem",
     },
     [theme.breakpoints.down("xs")]: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: "1rem",
     },
   },
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     marginLeft: 250,
-    marginBottom: '5em',
+    marginBottom: "5em",
     width: "90%",
     height: "100vh",
     backgroundRepeat: "no-repeat",
@@ -125,80 +125,7 @@ export default function Dashboard(props) {
       justify="space-evenly"
     >
       {/* menu block */}
-      <Grid item>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{ paper: classes.drawerPaper }}
-          anchor="left"
-        >
-          <List disablePadding className={classes.drawerList}>
-            <ListItem disableGutters component={Link} to="/dashboard/today">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <TodayTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Today's Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/week">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <DateRangeTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Week Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/month">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <CalendarTodayTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Month Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/general">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                General
-              </ListItemText>
-            </ListItem>
-            <Divider variant="middle" className={classes.drawerDivider} />
-            <ListItem disableGutters component={Link} to="/form">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <AddCircleTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Add / Edit
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/themes">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <PhotoSizeSelectActualTwoToneIcon
-                    className={classes.listIcon}
-                  />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Themes
-              </ListItemText>
-            </ListItem>
-          </List>
-        </Drawer>
-      </Grid>
+      <Grid item></Grid>
       {/* card block */}
       <Grid
         item

@@ -10,8 +10,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import Hidden from "@material-ui/core/Hidden";
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
-import List from '@material-ui/core/List';
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -22,8 +22,6 @@ import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoT
 import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
 import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
-
-
 
 // local imports
 
@@ -44,11 +42,14 @@ function ElevationScroll(props) {
   });
 }
 
+const drawerWidth = 250;
+
 const useStyles = makeStyles((theme) => ({
   appbar: {
     zIndex: theme.zIndex.modal + 1,
     backgroundColor: theme.palette.common.grey,
   },
+
   toolbar: {
     ...theme.mixins.toolbar,
   },
@@ -77,6 +78,44 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "2em",
   },
+  drawer: {
+    width: drawerWidth,
+    backgroundColor: theme.palette.common.grey,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 190,
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: 100,
+    },
+  },
+  drawerList: {
+    marginTop: "5em",
+  },
+  drawerItem: {
+    ...theme.typography.tab,
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.6rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
+  },
+  drawerDivider: {
+    margin: "1em",
+    backgroundColor: theme.palette.common.white,
+  },
+
+  listIcon: {
+    marginLeft: ".5em",
+    ...theme.typography.listIcon,
+  },
 }));
 
 export default function Header(props) {
@@ -86,29 +125,25 @@ export default function Header(props) {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = useState(0);
 
-    // state and functions for drawer
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [openMenu, setOpenMenu] = useState(false);
-    const [openDrawer, setOpenDrawer] = useState(false);
-  
-  
-    const handleMenuClick = (e) => {
-      setAnchorEl(e.currentTarget);
-      setOpenMenu(true);
-    };
-  
-    const handleMenuClose = (e) => {
-      setAnchorEl(null);
-      setOpenMenu(false);
-    };
-  
-    const handleMenuItemClick = (e, i) => {
-      setAnchorEl(null);
-      setOpenMenu(false);
-    };
-  
-  
-  
+  // state and functions for drawer
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const handleMenuClick = (e) => {
+    setAnchorEl(e.currentTarget);
+    setOpenMenu(true);
+  };
+
+  const handleMenuClose = (e) => {
+    setAnchorEl(null);
+    setOpenMenu(false);
+  };
+
+  const handleMenuItemClick = (e, i) => {
+    setAnchorEl(null);
+    setOpenMenu(false);
+  };
 
   const handleTabChange = (e, newValue) => {
     setValue(newValue);
@@ -147,70 +182,86 @@ export default function Header(props) {
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding className={classes.drawerList}>
-            <ListItem disableGutters component={Link} to="/dashboard/today">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <TodayTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Today's Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/week">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <DateRangeTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Week Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/month">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <CalendarTodayTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Month Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/general">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                General
-              </ListItemText>
-            </ListItem>
-            <Divider variant="middle" className={classes.drawerDivider} />
-            <ListItem disableGutters component={Link} to="/form">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <AddCircleTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Add / Edit
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/themes">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <PhotoSizeSelectActualTwoToneIcon
-                    className={classes.listIcon}
-                  />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Themes
-              </ListItemText>
-            </ListItem>
-          </List>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            disableGutters
+            component={Link}
+            to="/dashboard/today"
+          >
+            <ListItemIcon className={classes.listIcon}>
+              <TodayTwoToneIcon className={classes.listIcon} />
+            </ListItemIcon>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Today's Lists
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            disableGutters
+            component={Link}
+            to="/dashboard/week"
+          >
+            <ListItemIcon className={classes.listIcon}>
+              <DateRangeTwoToneIcon className={classes.listIcon} />
+            </ListItemIcon>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Week Lists
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            disableGutters
+            component={Link}
+            to="/dashboard/month"
+          >
+            <ListItemIcon className={classes.listIcon}>
+              <CalendarTodayTwoToneIcon className={classes.listIcon} />
+            </ListItemIcon>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Month Lists
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            disableGutters
+            component={Link}
+            to="/dashboard/general"
+          >
+            <ListItemIcon className={classes.listIcon}>
+              <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
+            </ListItemIcon>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              General
+            </ListItemText>
+          </ListItem>
+          <Divider variant="middle" className={classes.drawerDivider} />
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            disableGutters
+            component={Link}
+            to="/form"
+          >
+            <ListItemIcon className={classes.listIcon}>
+              <AddCircleTwoToneIcon className={classes.listIcon} />
+            </ListItemIcon>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Add / Edit
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            disableGutters
+            component={Link}
+            to="/themes"
+          >
+            <ListItemIcon className={classes.listIcon}>
+              <PhotoSizeSelectActualTwoToneIcon className={classes.listIcon} />
+            </ListItemIcon>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Themes
+            </ListItemText>
+          </ListItem>
+        </List>
       </SwipeableDrawer>
       <IconButton
         className={classes.drawerIconContainer}
@@ -221,7 +272,6 @@ export default function Header(props) {
       </IconButton>
     </>
   );
-
 
   return (
     <>
@@ -242,6 +292,7 @@ export default function Header(props) {
             )}
             <Hidden smDown>{tabs}</Hidden> */}
             {tabs}
+            {drawer}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
