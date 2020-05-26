@@ -57,7 +57,7 @@ export default function CheckList({ noteItems }) {
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                size={matchesSM && "small"}
+                size={matchesSM && "small"} // changes size of checkbox responsively
                 checked={checked.indexOf(value) !== -1}
                 tabIndex={-1}
                 disableRipple

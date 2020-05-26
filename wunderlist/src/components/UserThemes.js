@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -50,7 +49,7 @@ export default function UserThemes({ handleThemeSelection }) {
     >
       <Grid item>
         <Typography variant="h3">
-          Choose your theme
+          Choose Your Theme
         </Typography>
       </Grid>
       <Grid item container justify="space-evenly" className={classes.cardContainer}>

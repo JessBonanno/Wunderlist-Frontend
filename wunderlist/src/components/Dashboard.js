@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
-import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
-import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
-import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
-import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
-import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
+import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // local imports
 import ListCard from "./ListCard";
+import theme from "./ui/Theme";
 
-const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
-    width: drawerWidth,
+    width: 250,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: 250,
     backgroundColor: theme.palette.common.grey,
 
     [theme.breakpoints.down("sm")]: {
@@ -59,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1.2rem",
     },
     [theme.breakpoints.down("xs")]: {
-      textAlign: 'center',
+      textAlign: "center",
       fontSize: "1rem",
     },
   },
@@ -73,19 +63,12 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.listIcon,
   },
   cardContainer: {
-    marginLeft: 250,
-    marginBottom: '5em',
-    width: "90%",
-    height: "100vh",
+    marginBottom: "5em",
+    width: "100%",
+    minHeight: "1000px",
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "absolute",
+    backgroundAttachment: "fixed",
     backgroundSize: "cover",
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 190,
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: 100,
-    },
   },
   addNote: {
     color: theme.palette.common.grey,
@@ -108,9 +91,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
   const classes = useStyles();
   const history = useHistory().location.pathname;
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
+  // this will conditionally show the lists accordingly 
   useEffect(() => {
     setFilteredNotes(
       props.noteData.filter((note) => history.includes(note.category))
@@ -120,92 +105,31 @@ export default function Dashboard(props) {
   return (
     <Grid
       container
-      direction="row"
+      direction="column"
       style={{ marginTop: "2em" }}
       justify="space-evenly"
     >
-      {/* menu block */}
       <Grid item>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{ paper: classes.drawerPaper }}
-          anchor="left"
-        >
-          <List disablePadding className={classes.drawerList}>
-            <ListItem disableGutters component={Link} to="/dashboard/today">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <TodayTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Today's Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/week">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <DateRangeTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Week Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/month">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <CalendarTodayTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Month Lists
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/dashboard/general">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <PlaylistAddCheckTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                General
-              </ListItemText>
-            </ListItem>
-            <Divider variant="middle" className={classes.drawerDivider} />
-            <ListItem disableGutters component={Link} to="/form">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <AddCircleTwoToneIcon className={classes.listIcon} />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Add / Edit
-              </ListItemText>
-            </ListItem>
-            <ListItem disableGutters component={Link} to="/themes">
-              <Hidden xsDown>
-                <ListItemIcon className={classes.listIcon}>
-                  <PhotoSizeSelectActualTwoToneIcon
-                    className={classes.listIcon}
-                  />
-                </ListItemIcon>
-              </Hidden>
-              <ListItemText className={classes.drawerItem} disableTypography>
-                Themes
-              </ListItemText>
-            </ListItem>
-          </List>
-        </Drawer>
+        <Hidden smDown>
+          <Typography
+            variant="h2"
+            style={{ marginTop: "1em", textAlign: "center" }}
+          >
+            Welcome To Your Dashboard
+          </Typography>
+        </Hidden>
       </Grid>
       {/* card block */}
       <Grid
         item
         container
+        direction={matchesXS ? "column" : "row"}
         className={classes.cardContainer}
-        justify="space-evenly"
-        style={{ backgroundImage: `url(${props.userTheme.large})` }}
+        justify={matchesXS ? undefined : "space-evenly"}
+        alignItems={matchesXS && 'center'}
+        style={{
+          backgroundImage: `url(${props.userTheme.large})`, // setting background to chosen user theme
+        }}
       >
         {history !== "/dashboard"
           ? filteredNotes.map((note, index) => (
@@ -223,20 +147,6 @@ export default function Dashboard(props) {
               </Grid>
             ))}
       </Grid>
-      {/* create task refactored into drawer menu */}
-      {/* <Grid item>
-        <Typography variant="h5" className={classes.buttonText}>
-          Add a note
-        </Typography>
-        <IconButton
-          className={classes.addNote}
-          aria-label="add note"
-          component={Link}
-          to="/form"
-        >
-          <AddCircleTwoToneIcon style={{ fontSize: "4rem" }} />
-        </IconButton>
-      </Grid> */}
     </Grid>
   );
 }

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 // local imports
-
 import Header from "./components/Header";
 import theme from "./components/ui/Theme";
 import Dashboard from "./components/Dashboard";
@@ -15,8 +14,9 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import UserThemes from "./components/UserThemes";
 
+// sample note data for development
 const sampleNoteData = [
-  // sample note data for development
+
   {
     name: "Groceries",
     noteItems: ["milk", "eggs", "bread"],
@@ -73,10 +73,10 @@ const sampleNoteData = [
     completed: false,
     category: "general",
   },
+  
 ];
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
-
   const [userTheme, setUserTheme] = useState({});
 
   const handleThemeSelection = (image) => {

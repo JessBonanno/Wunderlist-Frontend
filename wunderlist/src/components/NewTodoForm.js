@@ -1,6 +1,5 @@
-
-import React, {useState} from "react";
-import { makeStyles} from "@material-ui/core/styles";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -12,136 +11,225 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+// local imports
+import theme from "./ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
   formPageContainer: {
-    marginTop: "10em",
+    marginTop: "7em",
   },
   formContainer: {
-    marginTop: "10em",
-    width: "60%",
+    margin: "5em 0 10em",
+    width: "40%",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  addItemContainer: {
+    margin: "2em 0",
+  },
 }));
-
-
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState({});
   const [form, setForm] = useState({
-    newitem: "",
-    newlist: "",
-    existinglist: "",
-    timeinterval: "",
+    listItems: [],
+    title: "",
+    frequency: "",
     recurring: false,
   });
-  const timeintervalarray = ['day', 'week', 'month', 'general']
+
+  const [newItem, setNewItem] = useState({
+    item: "",
+  });
+
+  const [listItems, setListItems] = useState([]);
+  const frequency = ["day", "week", "month", "general"];
 
   const handleChange = (e) => {
     e.persist();
-    let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setForm({ ...form, [e.target.name] : value });
+    let value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm({ ...form, [e.target.name]: value });
+  };
+
+  const handleItemChange = (e) => {
+    setNewItem({ ...newItem, item: e.target.value });
+  };
+
+  const handleItemSubmit = (e) => {
+    e.preventDefault();
+    setListItems([...listItems, newItem]);
+    setNewItem({
+      item: "",
+    });
   };
 
   const formSubmit = (e) => {
-    e.preventDefault(); 
-    console.log(form) ;
-    setTodo(form);
+    e.preventDefault();
+    setTodo({ ...form, listItems: listItems });
     setForm({
-    newitem: "",
-    newlist: "",
-    existinglist: "",
-    timeinterval: "",
-    recurring: false,
-    })};
+      listItems: [],
+      title: "",
+      frequency: "",
+      recurring: false,
+    });
+  };
 
+  console.log(todo);
+
+  const newName = (
+    <Grid item>
+      <Paper elevation={10}>
+        <TextField
+          style={{ width: 300 }}
+          value={form.title}
+          type="text"
+          name="title"
+          id="outlined-basic"
+          label="Title"
+          variant="outlined"
+          onChange={handleChange}
+        />
+      </Paper>
+    </Grid>
+  );
+
+  const existing = (
+    <Grid item>
+      <FormControl className={classes.formControl} style={{ width: 300 }}>
+        <InputLabel id="demo-simple-select-label">
+          Choose Existing List
+        </InputLabel>
+        <Select
+          id="title"
+          value={form.title}
+          onChange={handleChange}
+          name="title"
+        >
+          <MenuItem value="">None</MenuItem>
+          {props.noteData.map((note) => {
+            return <MenuItem value={note.name}>{note.name}</MenuItem>;
+          })}
+        </Select>
+      </FormControl>
+    </Grid>
+  );
 
   return (
     // form container
-    <form >
-    <Grid container className={classes.formPageContainer} direction='column' alignItems='center'>
-      <Grid item>
-        <Typography variant='h2'>Add new list</Typography>
-      </Grid>
-      
-      <Grid item container justify='space-evenly' className={classes.formContainer}>
+    <form>
+      <Grid
+        container
+        className={classes.formPageContainer}
+        direction="column"
+        alignItems="center"
+      >
         <Grid item>
-          <Paper elevation={10}>
-            <TextField value={form.newitem} type="text" name="newitem" id="outlined-basic" label="Add Item" variant="outlined" onChange={handleChange}/>
-          </Paper>
+          <Typography variant="h2">Add New List</Typography>
         </Grid>
-        <Button variant='outlined' onClick={handleChange}>save</Button>
-
         <Grid item>
-          <Paper elevation={10}>
-            <TextField value={form.newlist} type="text" name="newlist" id="outlined-basic" label="New List" variant="outlined" onChange={handleChange}/>
-          </Paper>
+          <Button
+            variant="outlined"
+            onClick={() => setEdit(!edit)}
+            style={{ margin: "2em" }}
+          >
+            {!edit ? "Edit Existing" : "New List"}
+          </Button>
         </Grid>
-        <Button variant='outlined'>save</Button>
 
-          <Grid item>
-           <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">Choose Existing List</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="existinglist"
-                value={form.existinglist}
-                onChange={handleChange}
-                name="existinglist">
-                <MenuItem value="">None</MenuItem>
-                {props.noteData.map((note) => {
-                  return (
-                    
-                      <MenuItem value={note.name}>{note.name}</MenuItem>
-                    
-                  )})}
-              </Select>
-            </FormControl>
-         </Grid>
-         <Grid item>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">Choose Time Interval</InputLabel>
-              <Select
-                label Id="demo-simple-select-label"
-                id="timeinterval"
-                value={form.timeinterval}
-                onChange={handleChange}
-                name="timeinterval">
-                  {timeintervalarray.map((time) => {
-                    return (
-                    <MenuItem value={time}>{time}</MenuItem>
-                      )
-                  })}
-
-                 
-        </Select>
-            </FormControl>
+        <Grid
+          item
+          container
+          direction="column"
+          alignItems="center"
+          className={classes.formContainer}
+        >
+          {edit ? existing : newName}
+          <Grid
+            item
+            container
+            justify="center"
+            className={classes.addItemContainer}
+          >
+            <Grid item style={{ margin: "0 1em" }}>
+              <Paper
+                elevation={10}
+              >
+                <TextField
+                  value={newItem.item}
+                  type="text"
+                  name="item"
+                  id="outlined-basic"
+                  label="Add Item"
+                  variant="outlined"
+                  onChange={handleItemChange}
+                />
+              </Paper>
+            </Grid>
+            <Grid item style={{ margin: "0 1em" }}>
+              <Button variant="outlined" onClick={handleItemSubmit}>
+                Add
+              </Button>
+            </Grid>
           </Grid>
+          <Grid
+            item
+            container
+            justify="center"
+            alignItems="flex-end"
+            style={{ marginBottom: "2em" }}
+          >
+            <Grid item style={{ margin: "0 2em" }}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">When?</InputLabel>
+                <Select
+                  label
+                  Id="demo-simple-select-label"
+                  id="frequency"
+                  value={form.frequency}
+                  onChange={handleChange}
+                  name="frequency"
+                >
+                  {frequency.map((time) => {
+                    return <MenuItem value={time}>{time}</MenuItem>;
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
 
-        <Grid item>
-        <FormControlLabel
-        control={
-          <Checkbox
-            type="checkbox"
-            id="recurring"
-            checked={form.recurring}
-            onChange={handleChange}
-            name="recurring"
-            color="primary"
-          />
-        }
-      />
+            <Grid item>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    type="checkbox"
+                    id="recurring"
+                    checked={form.recurring}
+                    onChange={handleChange}
+                    name="recurring"
+                    color="primary"
+                  />
+                }
+                label="Recurring?"
+              />
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Button onClick={formSubmit} variant="outlined">
+              Save
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
-    <Button onClick={formSubmit} variant='outlined'>save</Button>
     </form>
-
   );
 }
-    

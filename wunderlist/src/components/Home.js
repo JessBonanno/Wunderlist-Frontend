@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+// local imports
 import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
