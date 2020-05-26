@@ -2,19 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
-import TodayTwoToneIcon from "@material-ui/icons/TodayTwoTone";
-import CalendarTodayTwoToneIcon from "@material-ui/icons/CalendarTodayTwoTone";
-import PlaylistAddCheckTwoToneIcon from "@material-ui/icons/PlaylistAddCheckTwoTone";
-import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
-import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
-import Hidden from "@material-ui/core/Hidden";
+import Typography from "@material-ui/core/Typography";
 
 // local imports
 import ListCard from "./ListCard";
@@ -78,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "1000px",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    backgroundSize: "cover",   
+    backgroundSize: "cover",
   },
   addNote: {
     color: theme.palette.common.grey,
@@ -110,15 +98,20 @@ export default function Dashboard(props) {
     );
   }, [history, props.noteData]);
 
+
+
   return (
     <Grid
       container
-      direction="row"
+      direction="column"
       style={{ marginTop: "2em" }}
       justify="space-evenly"
     >
-      {/* menu block */}
-      <Grid item></Grid>
+      <Grid item>
+          <Typography variant="h2" style={{ marginTop: '1em', textAlign: 'center'}}>
+            Welcome To Your Dashboard
+          </Typography>
+        </Grid>
       {/* card block */}
       <Grid
         item
@@ -129,6 +122,7 @@ export default function Dashboard(props) {
           backgroundImage: `url(${props.userTheme.large})`,
         }}
       >
+        
         {history !== "/dashboard"
           ? filteredNotes.map((note, index) => (
               <Grid item className={classes.card} key={index}>

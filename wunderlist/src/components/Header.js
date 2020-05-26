@@ -131,6 +131,8 @@ export default function Header(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = useState(0);
+  console.log(history);
+  
 
   // state and functions for drawer
   const [anchorEl, setAnchorEl] = useState(null);
@@ -169,14 +171,21 @@ export default function Header(props) {
         to="/"
       ></Tab>
       <Divider orientation="vertical" flexItem className={classes.tabDivider} />
-      <Tab
+
+      {/* <Tab
         index={1}
         className={classes.tab}
-        label="Dashboard"
+        label={"Dashboard"}
         component={Link}
         to="/dashboard"
-        onClick={() => setOpenDrawer(true)}
-      ></Tab>
+        // onClick={() => setOpenDrawer(true)}
+      ></Tab> */}
+      <IconButton
+          className={classes.drawerIconContainer}
+          onClick={() => setOpenDrawer(!openDrawer)}
+        >
+          <MenuOpenIcon className={classes.drawerIcon} />
+        </IconButton>
     </Tabs>
   );
 
