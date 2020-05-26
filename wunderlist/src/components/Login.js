@@ -60,6 +60,7 @@ export default function Login() {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [canSubmit, setCanSubmit] = useState(false);
+  const [credential, setCredentials] = useState({});
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
@@ -68,7 +69,6 @@ export default function Login() {
     username: "",
     password: "",
   });
-  const [credential, setCredentials] = useState({});
 
   const validation = (e) => {
     let value =

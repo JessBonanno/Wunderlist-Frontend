@@ -16,8 +16,8 @@ import sunflowers from "./assets/images/sunflowers.jpg";
 import timeLapse from "./assets/images/timelapse-stars.jpg";
 import bubblyLarge from "./assets/images/bubbly-large.jpg";
 import sunflowersLarge from "./assets/images/sunflowers-large.jpg";
-import timeLapseLarge from './assets/images/timelapse-stars-large.jpg';
-import waterRipplesLarge from './assets/images/water-ripples-large.jpg';
+import timeLapseLarge from "./assets/images/timelapse-stars-large.jpg";
+import waterRipplesLarge from "./assets/images/water-ripples-large.jpg";
 import cactusLarge from "./assets/images/cactus-large.jpg";
 import cavesLarge from "./assets/images/caves-large.jpg";
 import circlesLarge from "./assets/images/circles-large.jpg";
@@ -31,9 +31,10 @@ import neonCoilsLarge from "./assets/images/neon-coils-large.jpg";
 import rippleLarge from "./assets/images/ripple-large.jpg";
 import squiggleLarge from "./assets/images/squiggle-large.jpg";
 
+// each theme image object has a small image for quick loading on choose theme page and large image for displaying as background image if selected
 export default [
   {
-    name: 'No Theme'
+    name: "No Theme",
   },
   {
     name: "Sunflowers",
@@ -41,7 +42,7 @@ export default [
     large: sunflowersLarge,
   },
   {
-    name: "timeLapse",
+    name: "Time Lapse",
     small: timeLapse,
     large: timeLapseLarge,
   },
@@ -50,86 +51,72 @@ export default [
     name: "Water Ripples",
     small: waterRipples,
     large: waterRipplesLarge,
-
   },
 
   {
     name: "Squiggle",
     small: squiggle,
     large: squiggleLarge,
-
   },
 
   {
     name: "Ripple",
     small: ripple,
     large: rippleLarge,
-
   },
   {
     name: "Neon Coils",
     small: neonCoils,
     large: neonCoilsLarge,
-
   },
   {
     name: "Lemons",
     small: lemons,
     large: lemonsLarge,
-
   },
   {
     name: "Leaves",
     small: leaves,
     large: leavesLarge,
-
   },
   {
     name: "Island",
     small: island,
     large: islandLarge,
-
   },
   {
     name: "Grapes",
     small: grapes,
     large: grapesLarge,
-
   },
   {
     name: "Dark Grays",
     small: darkGrays,
     large: darkGraysLarge,
-
   },
   {
     name: "Corn",
     small: corn,
     large: cornLarge,
-
   },
   {
     name: "Circles",
     small: circles,
     large: circlesLarge,
-
   },
   {
     name: "Caves",
     small: caves,
     large: cavesLarge,
-
   },
   {
     name: "Cactus",
     small: cactus,
     large: cactusLarge,
-
   },
   {
     name: "Bubbly",
     small: bubbly,
     large: bubblyLarge,
   },
-  
 ];

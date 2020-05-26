@@ -76,13 +76,13 @@ export default function ListCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
+  // expand card body for mobile 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  // need to make this functional
+  // need to make these functional
   const handleCompleted = (name) => {};
-
   const handleDelete = (name) => {};
 
   return (
@@ -155,6 +155,7 @@ export default function ListCard(props) {
           </Collapse>
         </Hidden>
       </CardContent>
+        {/* large screens card body */}
       <Grid container direction="column" alignItems="flex-start">
         <Hidden xsDown>
           <CheckList noteItems={props.note.noteItems} />

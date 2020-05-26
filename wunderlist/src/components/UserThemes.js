@@ -49,7 +49,7 @@ export default function UserThemes({ handleThemeSelection }) {
     >
       <Grid item>
         <Typography variant="h3">
-          Choose your theme
+          Choose Your Theme
         </Typography>
       </Grid>
       <Grid item container justify="space-evenly" className={classes.cardContainer}>

@@ -10,14 +10,13 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ListCard from "./ListCard";
 import theme from "./ui/Theme";
 
-const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
-    width: drawerWidth,
+    width: 250,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: 250,
     backgroundColor: theme.palette.common.grey,
 
     [theme.breakpoints.down("sm")]: {
@@ -96,6 +95,7 @@ export default function Dashboard(props) {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
+  // this will conditionally show the lists accordingly 
   useEffect(() => {
     setFilteredNotes(
       props.noteData.filter((note) => history.includes(note.category))
@@ -128,7 +128,7 @@ export default function Dashboard(props) {
         justify={matchesXS ? undefined : "space-evenly"}
         alignItems={matchesXS && 'center'}
         style={{
-          backgroundImage: `url(${props.userTheme.large})`,
+          backgroundImage: `url(${props.userTheme.large})`, // setting background to chosen user theme
         }}
       >
         {history !== "/dashboard"
@@ -147,20 +147,6 @@ export default function Dashboard(props) {
               </Grid>
             ))}
       </Grid>
-      {/* create task refactored into drawer menu */}
-      {/* <Grid item>
-        <Typography variant="h5" className={classes.buttonText}>
-          Add a note
-        </Typography>
-        <IconButton
-          className={classes.addNote}
-          aria-label="add note"
-          component={Link}
-          to="/form"
-        >
-          <AddCircleTwoToneIcon style={{ fontSize: "4rem" }} />
-        </IconButton>
-      </Grid> */}
     </Grid>
   );
 }

@@ -24,7 +24,6 @@ import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
 import HomeIcon from "@material-ui/icons/Home";
 
 // local imports
-
 import postIt from "../assets/images/postit.png";
 
 //  this will allow the header bar to float above the scrolled page
@@ -41,7 +40,6 @@ function ElevationScroll(props) {
   });
 }
 
-const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -78,11 +76,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "2em",
   },
   drawer: {
-    width: drawerWidth,
+    width: 250,
     backgroundColor: theme.palette.common.grey,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: 250,
 
     [theme.breakpoints.down("sm")]: {
       width: 190,
@@ -127,13 +125,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-
-  // state and functions for drawer
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleTabChange = (e, newValue) => {
     setValue(newValue);
   };
+  // links for header
   const tabs = (
     <Tabs
       value={value}
@@ -158,6 +155,7 @@ export default function Header(props) {
     </Tabs>
   );
 
+  // the pop out drawer
   const drawer = (
     <>
       <SwipeableDrawer
@@ -283,8 +281,8 @@ export default function Header(props) {
         <AppBar className={classes.appbar}>
           <Toolbar disableGutters>
             <img alt="sticky note" src={postIt} className={classes.headerImg} />
-            {/* refactor commented out code */}
-            <Hidden smDown>{tabs}</Hidden>
+            {/* conditionally rendering home link on larger screens */}
+            <Hidden smDown>{tabs}</Hidden> 
             {drawer}
           </Toolbar>
         </AppBar>
