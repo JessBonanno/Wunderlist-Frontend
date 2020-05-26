@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Hidden from '@material-ui/core/Hidden'
 
 // local imports
 import ListCard from "./ListCard";
@@ -106,12 +107,14 @@ export default function Dashboard(props) {
       justify="space-evenly"
     >
       <Grid item>
-        <Typography
-          variant="h2"
-          style={{ marginTop: "1em", textAlign: "center" }}
-        >
-          Welcome To Your Dashboard
-        </Typography>
+        <Hidden smDown>
+          <Typography
+            variant="h2"
+            style={{ marginTop: "1em", textAlign: "center" }}
+          >
+            Welcome To Your Dashboard
+          </Typography>
+        </Hidden>
       </Grid>
       {/* card block */}
       <Grid
