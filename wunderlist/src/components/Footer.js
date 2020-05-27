@@ -8,7 +8,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import Link from "@material-ui/core/Link";
 
 //  local imports
-import postIt from "../assets/images/postit.png";
+import wunderLogo from "../assets/images/wunder-logo.ico";
 import theme from "./ui/Theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,16 +16,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     width: "100%",
     zIndex: 1302,
-    position: "absolute",
+    position: "fixed",
     bottom: 0,
-    [theme.breakpoints.down('sm')]: {
-        position: 'fixed',
-    }
+    [theme.breakpoints.down("sm")]: {
+      position: "fixed",
+    },
   },
   footerImg: {
     width: "5em",
     verticalAlign: "bottom",
-    padding: ".5em",
     [theme.breakpoints.down("xs")]: {
       padding: 0,
       width: "3em",
@@ -61,7 +60,7 @@ export default function Footer() {
         className={classes.footerContainer}
       >
         <Grid item>
-          <img alt="sticky note" src={postIt} className={classes.footerImg} />
+          <img alt="logo" src={wunderLogo} className={classes.headerImg} />
         </Grid>
         <Grid item container className={classes.footerlinksContainer}>
           <Grid item>
@@ -77,17 +76,17 @@ export default function Footer() {
         </Grid>
         <Grid item container className={classes.socialContainer}>
           <Grid item>
-            <Link underline="none" href=''>
+            <Link underline="none" href="">
               <FacebookIcon className={classes.socialIcon} />
             </Link>
           </Grid>
           <Grid item>
-          <Link underline="none" href=''>
+            <Link underline="none" href="">
               <InstagramIcon className={classes.socialIcon} />
             </Link>
           </Grid>
           <Grid item>
-          <Link underline="none" href=''>
+            <Link underline="none" href="">
               <TwitterIcon className={classes.socialIcon} />
             </Link>
           </Grid>

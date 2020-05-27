@@ -8,20 +8,27 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // local imports
 import theme from "./ui/Theme";
+import homeBackground from '../assets/images/home-background.jpg'
+
 
 const useStyles = makeStyles({
   homeHeader: {
-    marginTop: "10em",
     padding: '1em',
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${homeBackground})`,
+    width: "100%",
+    height: '100vh',
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
     [theme.breakpoints.down("md")]: {
-      marginTop: "7rem",
+      // marginTop: "7rem",
     },
   },
   homeButtons: {
     width: 200,
     borderRadius: 0,
     fontSize: "1.5rem",
-    margin: "4em 1em",
+    margin: "0 1em",
     [theme.breakpoints.down("md")]: {
       width: 150,
       fontSize: "1.2rem",
@@ -46,11 +53,9 @@ export default function Home() {
       <Grid
         container
         direction="column"
-        justify="center"
-        alignItems="center"
         className={classes.homeHeader}
       >
-        <Grid item>
+        <Grid item style={{marginTop: '8em'}}>
           <Typography
             variant="h1"
             style={{ textAlign: "center", fontSize: matchesSM && "3rem" }}
@@ -61,8 +66,8 @@ export default function Home() {
         <Grid item container justify="center">
           <Grid item>
             <Button
-              variant="outlined"
-              color="primary"
+              variant="contained"
+              color={theme.palette.common.white}
               component={Link}
               to="/login"
               className={classes.homeButtons}
@@ -72,8 +77,8 @@ export default function Home() {
           </Grid>
           <Grid item>
             <Button
-              variant="outlined"
-              color="primary"
+              variant="contained"
+              color={theme.palette.common.white}
               component={Link}
               to="/register"
               className={classes.homeButtons}

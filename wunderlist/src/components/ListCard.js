@@ -22,7 +22,7 @@ import theme from "./ui/Theme";
 
 const useStyles = makeStyles({
   root: {
-    margin: "3.5em 1em 0",
+    margin: "5em 1em 0",
     padding: "1em",
     [theme.breakpoints.down("sm")]: {
       width: 270,

@@ -121,7 +121,7 @@ export default function Login() {
       alignItems="center"
       className={classes.loginContainer}
     >
-      <Paper variant="elevation" elevation="10" className={classes.loginPaper}>
+      <Paper variant="elevation" elevation={10} className={classes.loginPaper}>
         <Grid item container direction="column">
           <Grid item>
             <Typography variant="h5" style={{ textAlign: "center" }}>

@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ArrowForwardIosTwoToneIcon from '@material-ui/icons/ArrowForwardIosTwoTone';
 
 // local imports
 import ListCard from "./ListCard";
@@ -12,20 +13,6 @@ import theme from "./ui/Theme";
 
 
 const useStyles = makeStyles((theme) => ({
-  drawer: {
-    width: 250,
-  },
-  drawerPaper: {
-    width: 250,
-    backgroundColor: theme.palette.common.grey,
-
-    [theme.breakpoints.down("sm")]: {
-      width: 190,
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: 100,
-    },
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -36,31 +23,6 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
     color: theme.palette.common.white,
-  },
-  drawerList: {
-    marginTop: "5em",
-  },
-  drawerItem: {
-    ...theme.typography.tab,
-    [theme.breakpoints.down("md")]: {
-      fontSize: "1.6rem",
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1.2rem",
-    },
-    [theme.breakpoints.down("xs")]: {
-      textAlign: "center",
-      fontSize: "1rem",
-    },
-  },
-  drawerDivider: {
-    margin: "1em",
-    backgroundColor: theme.palette.common.white,
-  },
-
-  listIcon: {
-    marginLeft: ".5em",
-    ...theme.typography.listIcon,
   },
   cardContainer: {
     marginBottom: "5em",
@@ -109,16 +71,6 @@ export default function Dashboard(props) {
       style={{ marginTop: "2em" }}
       justify="space-evenly"
     >
-      <Grid item>
-        <Hidden smDown>
-          <Typography
-            variant="h2"
-            style={{ marginTop: "1em", textAlign: "center" }}
-          >
-            Welcome To Your Dashboard
-          </Typography>
-        </Hidden>
-      </Grid>
       {/* card block */}
       <Grid
         item
