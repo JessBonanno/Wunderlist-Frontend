@@ -31,6 +31,22 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+
+  topForm: {
+    borderRadius:"15px",
+    justifyContent:"center",
+    margin: "auto ",
+    width: "45%",
+    height: "5",
+    [theme.breakpoints.down("md")]: {
+      margin: "8em auto 0",
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: "6em auto 0",
+      maxWidth: "95%",
+    },
+  },
+
   addItemContainer: {
     margin: "2em 0",
   },
@@ -128,12 +144,14 @@ export default function NewTodoForm(props) {
   return (
     // form container
     <form>
+      <Paper variant="elevation" elevation={16} className={classes.topForm}>
       <Grid
         container
         className={classes.formPageContainer}
         direction="column"
         alignItems="center"
       >
+        
         <Grid item>
           <Typography variant="h2">Add New List</Typography>
         </Grid>
@@ -229,7 +247,9 @@ export default function NewTodoForm(props) {
             </Button>
           </Grid>
         </Grid>
+        
       </Grid>
+      </Paper>
     </form>
   );
 }
