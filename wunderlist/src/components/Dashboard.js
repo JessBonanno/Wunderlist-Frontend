@@ -5,12 +5,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import ArrowForwardIosTwoToneIcon from '@material-ui/icons/ArrowForwardIosTwoTone';
+import ArrowForwardIosTwoToneIcon from "@material-ui/icons/ArrowForwardIosTwoTone";
 
 // local imports
 import ListCard from "./ListCard";
 import theme from "./ui/Theme";
-
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -57,7 +56,7 @@ export default function Dashboard(props) {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
-  // this will conditionally show the lists accordingly 
+  // this will conditionally show the lists accordingly
   useEffect(() => {
     setFilteredNotes(
       props.noteData.filter((note) => history.includes(note.category))
@@ -78,7 +77,7 @@ export default function Dashboard(props) {
         direction={matchesXS ? "column" : "row"}
         className={classes.cardContainer}
         justify={matchesXS ? undefined : "space-evenly"}
-        alignItems={matchesXS && 'center'}
+        alignItems={matchesXS && "center"}
         style={{
           backgroundImage: `url(${props.userTheme.large})`, // setting background to chosen user theme
         }}

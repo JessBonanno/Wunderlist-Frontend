@@ -26,14 +26,14 @@ const useStyles = makeStyles({
   },
   themesContainer: {
     marginTop: "5em",
-    marginBottom: '5em',
+    marginBottom: "5em",
     textAlign: "center",
     [theme.breakpoints.down("xs")]: {
       marginTop: "4em",
     },
   },
   cardContainer: {
-    marginTop: '4em',
+    marginTop: "4em",
   },
 });
 
@@ -48,11 +48,14 @@ export default function UserThemes({ handleThemeSelection }) {
       alignItems="center"
     >
       <Grid item>
-        <Typography variant="h3">
-          Choose Your Theme
-        </Typography>
+        <Typography variant="h3">Choose Your Theme</Typography>
       </Grid>
-      <Grid item container justify="space-evenly" className={classes.cardContainer}>
+      <Grid
+        item
+        container
+        justify="space-evenly"
+        className={classes.cardContainer}
+      >
         {backgrounds.map((image) => {
           console.log(image);
 
