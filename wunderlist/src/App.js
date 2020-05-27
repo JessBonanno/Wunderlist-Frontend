@@ -14,9 +14,11 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import UserThemes from "./components/UserThemes";
 
+// local imports
+import homeBackground from "./assets/images/home-background.jpg";
+
 // sample note data for development
 const sampleNoteData = [
-
   {
     name: "Groceries",
     noteItems: ["milk", "eggs", "bread"],
@@ -73,11 +75,12 @@ const sampleNoteData = [
     completed: false,
     category: "general",
   },
-  
 ];
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
-  const [userTheme, setUserTheme] = useState({});
+  const [userTheme, setUserTheme] = useState({
+    large: homeBackground,
+  });
 
   const handleThemeSelection = (image) => {
     console.log(image);

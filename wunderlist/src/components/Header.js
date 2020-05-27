@@ -22,9 +22,12 @@ import AddCircleTwoToneIcon from "@material-ui/icons/AddCircleTwoTone";
 import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelectActualTwoTone";
 import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
 import HomeIcon from "@material-ui/icons/Home";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ArrowForwardIosTwoToneIcon from "@material-ui/icons/ArrowForwardIosTwoTone";
 
 // local imports
-import postIt from "../assets/images/postit.png";
+import wunderLogo from "../assets/images/wunder-logo.ico";
+import theme from "./ui/Theme";
 
 //  this will allow the header bar to float above the scrolled page
 function ElevationScroll(props) {
@@ -40,7 +43,6 @@ function ElevationScroll(props) {
   });
 }
 
-
 const useStyles = makeStyles((theme) => ({
   appbar: {
     zIndex: theme.zIndex.modal + 1,
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   tabContainer: {
-    marginLeft: "auto",
+    marginRight: "auto",
     marginRight: "2em",
   },
   tab: {
@@ -70,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
   headerImg: {
     height: "3em",
     paddingLeft: ".5em",
+    marginLeft: "auto",
   },
   menuButton: {
     marginLeft: "auto",
@@ -114,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.listIcon,
   },
   drawerIconContainer: {
-    marginLeft: "auto",
+    marginLeft: "1em",
   },
   drawerIcon: {
     fontSize: "2rem",
@@ -126,16 +129,13 @@ export default function Header(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleTabChange = (e, newValue) => {
-    setValue(newValue);
-  };
   // links for header
   const tabs = (
     <Tabs
       value={value}
       className={classes.tabContainer}
-      onChange={handleTabChange}
     >
       <Tab
         index={0}
@@ -144,14 +144,6 @@ export default function Header(props) {
         component={Link}
         to="/"
       ></Tab>
-      <Divider orientation="vertical" flexItem className={classes.tabDivider} />
-
-      <IconButton
-        className={classes.drawerIconContainer}
-        onClick={() => setOpenDrawer(!openDrawer)}
-      >
-        <MenuOpenIcon className={classes.drawerIcon} />
-      </IconButton>
     </Tabs>
   );
 
@@ -280,10 +272,24 @@ export default function Header(props) {
       <ElevationScroll>
         <AppBar className={classes.appbar}>
           <Toolbar disableGutters>
-            <img alt="sticky note" src={postIt} className={classes.headerImg} />
             {/* conditionally rendering home link on larger screens */}
-            <Hidden smDown>{tabs}</Hidden> 
             {drawer}
+
+            <Hidden smDown>
+              <IconButton
+                className={classes.drawerIconContainer}
+                onClick={() => setOpenDrawer(!openDrawer)}
+              >
+                <MenuOpenIcon className={classes.drawerIcon} />
+              </IconButton>
+              <Divider
+                orientation="vertical"
+                flexItem
+                className={classes.tabDivider}
+              />
+              {tabs}
+            </Hidden>
+            <img alt="logo" src={wunderLogo} className={classes.headerImg} />
           </Toolbar>
         </AppBar>
       </ElevationScroll>

@@ -9,7 +9,6 @@ const wunderGrey = "#71777d";
 const wunderBlue = "#47dbd5";
 const wunderWhite = "#f7f6f0";
 
-
 export default createMuiTheme({
   palette: createPalette({
     common: {
@@ -26,12 +25,11 @@ export default createMuiTheme({
   }),
   typography: {
     h1: {
-      color: wunderBlack,
+      color: wunderWhite,
     },
     tab: {
       fontSize: "1.6rem",
       color: wunderWhite,
-      
     },
     listIcon: {
       color: wunderBlue,
@@ -46,7 +44,7 @@ export default createMuiTheme({
       color: wunderBlue,
     },
     subtitle1: {
-      color: 'red',
+      color: "red",
       fontSize: "1.2rem",
     },
   },

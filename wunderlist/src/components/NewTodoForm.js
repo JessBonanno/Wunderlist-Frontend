@@ -83,6 +83,7 @@ export default function NewTodoForm(props) {
       frequency: "",
       recurring: false,
     });
+    setListItems([]);
   };
 
   console.log(todo);
@@ -162,9 +163,7 @@ export default function NewTodoForm(props) {
             className={classes.addItemContainer}
           >
             <Grid item style={{ margin: "0 1em" }}>
-              <Paper
-                elevation={10}
-              >
+              <Paper elevation={10}>
                 <TextField
                   value={newItem.item}
                   type="text"
