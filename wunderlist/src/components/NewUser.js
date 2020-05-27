@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   
   lastbtn: {
     marginTop: "1em",
+    marginBottom:"1em",
   },
   
   formItemslast: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius:"15px",
     justifyContent:"center",
     margin: "auto ",
-    width: "15%",
+    width: "25%",
     height: "5",
     [theme.breakpoints.down("md")]: {
       margin: "8em auto 0",
@@ -103,9 +104,9 @@ export default function NewTodoForm(props) {
           alignItems="center"
         >
           <h2>New User</h2>
-          <Grid item><Paper elevation={3} value={form.firstname}>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.firstname}>
             <TextField
-              className={classes.formItems}
+              
               type="text"
               id="outlined-basic"
               label="First Name"
@@ -114,9 +115,8 @@ export default function NewTodoForm(props) {
               onChange={handleChange}
             />
           </Paper></Grid>
-          <Grid item><Paper elevation={3} value={form.lastname}>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.lastname}>
             <TextField
-              className={classes.formItems}
               type="text"
               id="outlined-basic"
               label="Last Name"
@@ -125,9 +125,8 @@ export default function NewTodoForm(props) {
               onChange={handleChange}
             />
           </Paper></Grid>
-          <Grid item><Paper elevation={3} value={form.email}>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.email}>
             <TextField
-              className={classes.formItems}
               type="email"
               id="outlined-basic"
               label="Email Address"
@@ -136,9 +135,8 @@ export default function NewTodoForm(props) {
               onChange={handleChange}
             />
           </Paper></Grid>
-          <Grid item><Paper elevation={3} value={form.password}>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.password}>
             <TextField
-              className={classes.formItemslast}
               type="password"
               id="outlined-basic"
               label="Password"
