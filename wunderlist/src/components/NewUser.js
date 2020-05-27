@@ -9,12 +9,43 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   formPageContainer: {
-    marginTop: "10em",
+    marginTop: "15em",
   },
   formContainer: {
     marginTop: "10em",
     width: "60%",
   },
+
+  
+  lastbtn: {
+    marginTop: "1em",
+    marginBottom:"1em",
+  },
+  
+  formItemslast: {
+    marginBottom: "0em",
+  },
+  
+  formItems: {
+    marginBottom: "1em",
+  },
+
+  topForm: {
+    borderRadius:"15px",
+    justifyContent:"center",
+    margin: "auto ",
+    width: "25%",
+    height: "5",
+    [theme.breakpoints.down("md")]: {
+      margin: "8em auto 0",
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: "6em auto 0",
+      maxWidth: "95%",
+    },
+  },
+
+
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -64,59 +95,64 @@ export default function NewTodoForm(props) {
   return (
     // form container
     <form>
-      <Grid
-        container
-        className={classes.formPageContainer}
-        direction="column"
-        alignItems="center"
-      >
-        <h2>New User</h2>
-        <Paper elevation={3} value={form.firstname}>
-          <TextField
-            type="text"
-            id="outlined-basic"
-            label="First Name"
-            variant="outlined"
-            name="firstname"
-            onChange={handleChange}
-          />
-        </Paper>
-        <Paper elevation={3} value={form.lastname}>
-          <TextField
-            type="text"
-            id="outlined-basic"
-            label="Last Name"
-            variant="outlined"
-            name="lastname"
-            onChange={handleChange}
-          />
-        </Paper>
-        <Paper elevation={3} value={form.email}>
-          <TextField
-            type="email"
-            id="outlined-basic"
-            label="Email Address"
-            variant="outlined"
-            name="email"
-            onChange={handleChange}
-          />
-        </Paper>
-        <Paper elevation={3} value={form.password}>
-          <TextField
-            type="password"
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            name="password"
-            onChange={handleChange}
-          />
-        </Paper>
-        <Grid>
-          <Button onClick={formSubmit} variant="outlined">
-            save
+      <Paper variant="elevation" elevation={16} className={classes.topForm}>
+
+        <Grid
+          container
+          className={classes.formPageContainer}
+          direction="column"
+          alignItems="center"
+        >
+          <h2>New User</h2>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.firstname}>
+            <TextField
+              
+              type="text"
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+              name="firstname"
+              onChange={handleChange}
+            />
+          </Paper></Grid>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.lastname}>
+            <TextField
+              type="text"
+              id="outlined-basic"
+              label="Last Name"
+              variant="outlined"
+              name="lastname"
+              onChange={handleChange}
+            />
+          </Paper></Grid>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.email}>
+            <TextField
+              type="email"
+              id="outlined-basic"
+              label="Email Address"
+              variant="outlined"
+              name="email"
+              onChange={handleChange}
+            />
+          </Paper></Grid>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.password}>
+            <TextField
+              type="password"
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              name="password"
+              onChange={handleChange}
+            />
+          </Paper></Grid>
+          <Grid
+            className={classes.lastbtn}>
+            <Button onClick={formSubmit} variant="outlined">
+              save
           </Button>
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
     </form>
   );
 }
