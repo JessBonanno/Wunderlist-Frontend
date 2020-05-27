@@ -79,7 +79,7 @@ export default function Dashboard(props) {
         justify={matchesXS ? undefined : "space-evenly"}
         alignItems={matchesXS && "center"}
         style={{
-          backgroundImage: `url(${props.userTheme.large})`, // setting background to chosen user theme
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${props.userTheme.large})`, // setting background to chosen user theme
         }}
       >
         {history !== "/dashboard"
