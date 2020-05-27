@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     width: 200,
     borderRadius: 0,
     fontSize: "1.5rem",
-    margin: "0 1em",
+    margin: "3em 1em",
     [theme.breakpoints.down("md")]: {
       width: 150,
       fontSize: "1.2rem",

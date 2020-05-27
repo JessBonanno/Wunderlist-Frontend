@@ -131,15 +131,11 @@ export default function Header(props) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleTabChange = (e, newValue) => {
-    setValue(1);
-  };
   // links for header
   const tabs = (
     <Tabs
       value={value}
       className={classes.tabContainer}
-      onChange={handleTabChange}
     >
       <Tab
         index={0}
