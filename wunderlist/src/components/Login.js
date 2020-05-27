@@ -11,6 +11,9 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 // local imports
 import theme from "./ui/Theme";
 
+//axiosWithAuth
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 const validationSchema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
   password: yup.string().required("Please enter your password"),
@@ -55,7 +58,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Login() {
+export default function Login(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -112,6 +115,15 @@ export default function Login() {
     } else {
       alert("You must enter a username and password");
     }
+
+    axiosWithAuth()
+      .post("/auth/login", formValues)
+      .then((res) => {
+        localStorage.setItem("token", res.data.payload);
+
+        props.history.push("/dashboard");
+      })
+      .catch((err) => console.log("login post err", err));
   };
 
   return (
