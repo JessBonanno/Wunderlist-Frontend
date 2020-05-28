@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // local components
 import Paper from "@material-ui/core/Paper";
@@ -16,23 +17,22 @@ const useStyles = makeStyles((theme) => ({
     width: "60%",
   },
 
-  
   lastbtn: {
     marginTop: "1em",
-    marginBottom:"1em",
+    marginBottom: "1em",
   },
-  
+
   formItemslast: {
     marginBottom: "0em",
   },
-  
+
   formItems: {
     marginBottom: "1em",
   },
 
   topForm: {
-    borderRadius:"15px",
-    justifyContent:"center",
+    borderRadius: "15px",
+    justifyContent: "center",
     margin: "auto ",
     width: "25%",
     height: "5",
@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "95%",
     },
   },
-
 
   formControl: {
     margin: theme.spacing(1),
@@ -88,6 +87,8 @@ export default function NewTodoForm(props) {
     //     setUsers([...users, res.data]);
     //   })
     //   .catch((err) => console.log(err));
+
+   
   };
 
   console.log(user);
@@ -96,7 +97,6 @@ export default function NewTodoForm(props) {
     // form container
     <form>
       <Paper variant="elevation" elevation={16} className={classes.topForm}>
-
         <Grid
           container
           className={classes.formPageContainer}
@@ -104,52 +104,74 @@ export default function NewTodoForm(props) {
           alignItems="center"
         >
           <h2>New User</h2>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.firstname}>
-            <TextField
-              
-              type="text"
-              id="outlined-basic"
-              label="First Name"
-              variant="outlined"
-              name="firstname"
-              onChange={handleChange}
-            />
-          </Paper></Grid>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.lastname}>
-            <TextField
-              type="text"
-              id="outlined-basic"
-              label="Last Name"
-              variant="outlined"
-              name="lastname"
-              onChange={handleChange}
-            />
-          </Paper></Grid>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.email}>
-            <TextField
-              type="email"
-              id="outlined-basic"
-              label="Email Address"
-              variant="outlined"
-              name="email"
-              onChange={handleChange}
-            />
-          </Paper></Grid>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.password}>
-            <TextField
-              type="password"
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              name="password"
-              onChange={handleChange}
-            />
-          </Paper></Grid>
-          <Grid
-            className={classes.lastbtn}>
+          <Grid item>
+            <Paper
+              className={classes.formItems}
+              elevation={3}
+              value={form.firstname}
+            >
+              <TextField
+                type="text"
+                id="outlined-basic"
+                label="First Name"
+                variant="outlined"
+                name="firstname"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper
+              className={classes.formItems}
+              elevation={3}
+              value={form.lastname}
+            >
+              <TextField
+                type="text"
+                id="outlined-basic"
+                label="Last Name"
+                variant="outlined"
+                name="lastname"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper
+              className={classes.formItems}
+              elevation={3}
+              value={form.email}
+            >
+              <TextField
+                type="email"
+                id="outlined-basic"
+                label="Email Address"
+                variant="outlined"
+                name="email"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper
+              className={classes.formItems}
+              elevation={3}
+              value={form.password}
+            >
+              <TextField
+                type="password"
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                name="password"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid className={classes.lastbtn}>
             <Button onClick={formSubmit} variant="outlined">
               save
-          </Button>
+            </Button>
           </Grid>
         </Grid>
       </Paper>
