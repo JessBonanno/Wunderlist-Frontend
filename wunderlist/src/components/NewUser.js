@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       margin: "6em auto 0",
-      maxWidth: "95%",
+      width: "95%",
     },
   },
 
@@ -59,9 +59,7 @@ export default function NewTodoForm(props) {
   const classes = useStyles();
 
   const [form, setForm] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -76,9 +74,7 @@ export default function NewTodoForm(props) {
     console.log(form);
     setUser(form);
     setForm({
-      firstname: "",
-      lastname: "",
-      email: "",
+      username: "",
       password: "",
     });
 
@@ -104,18 +100,18 @@ export default function NewTodoForm(props) {
           alignItems="center"
         >
           <h2>New User</h2>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.firstname}>
+          <Grid item><Paper className={classes.formItems} elevation={3} value={form.username}>
             <TextField
               
               type="text"
               id="outlined-basic"
-              label="First Name"
+              label="Username"
               variant="outlined"
-              name="firstname"
+              name="username"
               onChange={handleChange}
             />
           </Paper></Grid>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.lastname}>
+          {/* <Grid item><Paper className={classes.formItems} elevation={3} value={form.lastname}>
             <TextField
               type="text"
               id="outlined-basic"
@@ -124,8 +120,8 @@ export default function NewTodoForm(props) {
               name="lastname"
               onChange={handleChange}
             />
-          </Paper></Grid>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.email}>
+          </Paper></Grid> */}
+          {/* <Grid item><Paper className={classes.formItems} elevation={3} value={form.email}>
             <TextField
               type="email"
               id="outlined-basic"
@@ -134,7 +130,7 @@ export default function NewTodoForm(props) {
               name="email"
               onChange={handleChange}
             />
-          </Paper></Grid>
+          </Paper></Grid> */}
           <Grid item><Paper className={classes.formItems} elevation={3} value={form.password}>
             <TextField
               type="password"

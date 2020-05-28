@@ -40,10 +40,11 @@ const useStyles = makeStyles((theme) => ({
     height: "5",
     [theme.breakpoints.down("md")]: {
       margin: "8em auto 0",
+      width: '80%',
     },
     [theme.breakpoints.down("sm")]: {
       margin: "6em auto 0",
-      maxWidth: "95%",
+      width: "95%",
     },
   },
 
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NewTodoForm(props) {
   const classes = useStyles();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState({});
   const [form, setForm] = useState({
@@ -193,7 +195,7 @@ export default function NewTodoForm(props) {
                 />
               </Paper>
             </Grid>
-            <Grid item style={{ margin: "0 1em" }}>
+            <Grid item style={{ margin:matchesMD ? '1em' :  "0 1em" }}>
               <Button variant="outlined" onClick={handleItemSubmit}>
                 Add
               </Button>
