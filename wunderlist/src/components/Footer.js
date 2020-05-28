@@ -50,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.common.white,
     padding: "1em",
+    fontFamily: "Poppins, sans-serif",
+
   },
 }));
 
@@ -66,7 +68,7 @@ export default function Footer() {
       >
         <Grid item container className={classes.footerlinksContainer}>
         <Grid item>
-            <Link underline="none" className={classes.link} href="">
+            <Link underline="none" className={classes.link} href="https://naughty-albattani-bf5571.netlify.app/features.html">
               Features
             </Link>
           </Grid>

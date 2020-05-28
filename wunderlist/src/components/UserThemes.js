@@ -48,7 +48,9 @@ export default function UserThemes({ handleThemeSelection }) {
       alignItems="center"
     >
       <Grid item>
-        <Typography variant="h3">Choose Your Theme</Typography>
+        <Typography variant="h3" style={{ fontFamily: "Poppins, sans-serif", marginTop: '1em'}}>
+          Choose Your Theme
+        </Typography>
       </Grid>
       <Grid
         item
@@ -65,10 +67,15 @@ export default function UserThemes({ handleThemeSelection }) {
                 <CardMedia
                   className={classes.media}
                   image={image.small}
-                  title="Contemplative Reptile"
+                  title="theme image"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
                     {image.name}
                   </Typography>
                 </CardContent>

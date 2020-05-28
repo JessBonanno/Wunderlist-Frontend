@@ -41,6 +41,7 @@ const useStyles = makeStyles({
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.4rem",
       fontWeight: "bold",
+      fontFamily: "Poppins, sans-serif",
     },
   },
   reoccurring: {
@@ -76,7 +77,7 @@ export default function ListCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  // expand card body for mobile 
+  // expand card body for mobile
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -115,7 +116,7 @@ export default function ListCard(props) {
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
-          <Collapse  in={expanded} timeout="auto" unmountOnExit>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent style={{ padding: 0 }}>
               <CheckList noteItems={props.note.noteItems} />
               <Grid item>
@@ -155,7 +156,7 @@ export default function ListCard(props) {
           </Collapse>
         </Hidden>
       </CardContent>
-        {/* large screens card body */}
+      {/* large screens card body */}
       <Grid container direction="column" alignItems="flex-start">
         <Hidden xsDown>
           <CheckList noteItems={props.note.noteItems} />

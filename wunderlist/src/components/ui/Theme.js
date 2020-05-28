@@ -26,10 +26,13 @@ export default createMuiTheme({
   typography: {
     h1: {
       color: wunderWhite,
+      fontFamily: 'Poppins, sans-serif'
+
     },
     tab: {
       fontSize: "1.3rem",
       color: wunderWhite,
+      fontFamily: 'Poppins, sans-serif'
     },
     listIcon: {
       color: wunderBlue,
@@ -39,6 +42,8 @@ export default createMuiTheme({
     },
     reoccurring: {
       color: "red",
+      fontFamily: 'Poppins, sans-serif'
+
     },
     loginField: {
       color: wunderBlue,
@@ -46,6 +51,8 @@ export default createMuiTheme({
     subtitle1: {
       color: "red",
       fontSize: "1.2rem",
+      fontFamily: 'Poppins, sans-serif'
+
     },
   },
 });

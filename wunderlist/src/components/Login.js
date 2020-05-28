@@ -30,8 +30,7 @@ const useStyles = makeStyles({
     backgroundSize: "cover",
 
     margin: "0 auto ",
-    [theme.breakpoints.down("md")]: {
-    },
+    [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {
       width: "100%",
     },
@@ -144,7 +143,10 @@ export default function Login(props) {
       <Paper variant="elevation" elevation={10} className={classes.loginPaper}>
         <Grid item container direction="column">
           <Grid item>
-            <Typography variant="h5" style={{ textAlign: "center" }}>
+            <Typography
+              variant="h5"
+              style={{ textAlign: "center", fontFamily: "Poppins, sans-serif" }}
+            >
               Enter your credentials and lets get{" "}
               <span style={{ fontStyle: "italic" }}>productive!</span>
             </Typography>
