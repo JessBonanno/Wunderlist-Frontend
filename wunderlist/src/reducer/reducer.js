@@ -60,13 +60,15 @@ const reducer = (state = initState, action) => {
     case "TOGGLE_TODO":
       return {
         ...state,
-        newTodo: state.newTodo.map((item) => {
+        newTodo: state.newTodo.map((item) => 
           item.id === action.payload
             ? { ...item, completed: !item.completed }
-            : item;
-        }),
+            : item
+        ),
       };
     default:
       return state;
   }
 };
+
+export default reducer;

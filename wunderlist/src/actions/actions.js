@@ -1,4 +1,4 @@
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const START_FETCHING = "START_FETCHING";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
@@ -7,7 +7,7 @@ export const FETCH_FAIL = "FETCH_FAIL";
 export const getTodo = () => (dispatch) => {
   dispatch({ type: START_FETCHING });
 
-  axios
+  axiosWithAuth()
     .get("")
     .then((res) => {
       console.log(res);
