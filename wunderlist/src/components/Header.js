@@ -23,7 +23,7 @@ import PhotoSizeSelectActualTwoToneIcon from "@material-ui/icons/PhotoSizeSelect
 import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
 import HomeIcon from "@material-ui/icons/Home";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import ArrowForwardIosTwoToneIcon from "@material-ui/icons/ArrowForwardIosTwoTone";
+import Grid from "@material-ui/core/Grid";
 
 // local imports
 import wunderLogo from "../assets/images/wunder-logo.ico";
@@ -73,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
     height: "3em",
     paddingLeft: ".5em",
     marginLeft: "auto",
+    marginRight: "2em",
   },
   menuButton: {
     marginLeft: "auto",
@@ -97,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItem: {
     ...theme.typography.tab,
+
     [theme.breakpoints.down("md")]: {
       fontSize: "1.6rem",
     },
@@ -133,10 +135,7 @@ export default function Header(props) {
 
   // links for header
   const tabs = (
-    <Tabs
-      value={value}
-      className={classes.tabContainer}
-    >
+    <Tabs value={value} className={classes.tabContainer}>
       <Tab
         index={0}
         className={classes.tab}
@@ -289,7 +288,15 @@ export default function Header(props) {
               />
               {tabs}
             </Hidden>
-            <img alt="logo" src={wunderLogo} className={classes.headerImg} />
+            <Grid item container component={Link} to="/">
+              <img
+                alt="logo"
+                src={wunderLogo}
+                className={classes.headerImg}
+                component={Link}
+                to="/"
+              />
+            </Grid>
           </Toolbar>
         </AppBar>
       </ElevationScroll>

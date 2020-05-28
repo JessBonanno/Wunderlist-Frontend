@@ -8,24 +8,24 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // local imports
 import theme from "./ui/Theme";
-import homeBackground from '../assets/images/home-background.jpg'
-
+import homeBackground from "../assets/images/home-background.jpg";
 
 const useStyles = makeStyles({
   homeHeader: {
-    padding: '1em',
+    padding: "1em",
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${homeBackground})`,
     width: "100%",
-    height: '100vh',
+    height: "100vh",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
-
   },
   homeButtons: {
     width: 200,
     borderRadius: 0,
     fontSize: "1.5rem",
+    fontFamily: "Poppins, sans-serif",
+
     margin: "3em 1em",
     [theme.breakpoints.down("md")]: {
       width: 150,
@@ -48,12 +48,8 @@ export default function Home() {
 
   return (
     <>
-      <Grid
-        container
-        direction="column"
-        className={classes.homeHeader}
-      >
-        <Grid item style={{marginTop: '8em'}}>
+      <Grid container direction="column" className={classes.homeHeader}>
+        <Grid item style={{ marginTop: "8em" }}>
           <Typography
             variant="h1"
             style={{ textAlign: "center", fontSize: matchesSM && "3rem" }}
