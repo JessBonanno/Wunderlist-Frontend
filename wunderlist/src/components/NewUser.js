@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // local components
 import Paper from "@material-ui/core/Paper";
@@ -16,23 +17,22 @@ const useStyles = makeStyles((theme) => ({
     width: "60%",
   },
 
-  
   lastbtn: {
     marginTop: "1em",
-    marginBottom:"1em",
+    marginBottom: "1em",
   },
-  
+
   formItemslast: {
     marginBottom: "0em",
   },
-  
+
   formItems: {
     marginBottom: "1em",
   },
 
   topForm: {
-    borderRadius:"15px",
-    justifyContent:"center",
+    borderRadius: "15px",
+    justifyContent: "center",
     margin: "auto ",
     width: "25%",
     height: "5",
@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       width: "95%",
     },
   },
-
 
   formControl: {
     margin: theme.spacing(1),
@@ -84,6 +83,13 @@ export default function NewTodoForm(props) {
     //     setUsers([...users, res.data]);
     //   })
     //   .catch((err) => console.log(err));
+
+   axiosWithAuth()
+   .post("/auth/register", setForm)
+   .then(res => {
+     localStorage.setItem("token", res.data.payload)
+   })
+   .catch(err => console.log("axios regis err", err))
   };
 
   console.log(user);
@@ -92,7 +98,6 @@ export default function NewTodoForm(props) {
     // form container
     <form>
       <Paper variant="elevation" elevation={16} className={classes.topForm}>
-
         <Grid
           container
           className={classes.formPageContainer}
@@ -145,7 +150,7 @@ export default function NewTodoForm(props) {
             className={classes.lastbtn}>
             <Button onClick={formSubmit} variant="outlined">
               save
-          </Button>
+            </Button>
           </Grid>
         </Grid>
       </Paper>

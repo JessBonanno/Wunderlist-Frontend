@@ -89,6 +89,7 @@ function App() {
     setUserTheme(image);
   };
 
+  
   return (
     <div className="App">
       {/* wrapping app with ThemeProvider to pass created styles to components */}
