@@ -133,10 +133,7 @@ export default function Header(props) {
 
   // links for header
   const tabs = (
-    <Tabs
-      value={value}
-      className={classes.tabContainer}
-    >
+    <Tabs value={value} className={classes.tabContainer}>
       <Tab
         index={0}
         className={classes.tab}
@@ -288,8 +285,10 @@ export default function Header(props) {
                 className={classes.tabDivider}
               />
               {tabs}
-            </Hidden>
-            <img alt="logo" src={wunderLogo} className={classes.headerImg} />
+            </Hidden >
+            <Link to="/"  className={classes.headerImg}>
+              <img alt="logo" src={wunderLogo} />
+            </Link>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
