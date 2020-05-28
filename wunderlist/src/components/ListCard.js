@@ -20,6 +20,9 @@ import Hidden from "@material-ui/core/Hidden";
 import CheckList from "./Checklist";
 import theme from "./ui/Theme";
 
+//actions
+import { toggle } from "../actions/actions";
+
 const useStyles = makeStyles({
   root: {
     margin: "5em 1em 0",
@@ -83,7 +86,9 @@ export default function ListCard(props) {
   };
 
   // need to make these functional
-  const handleCompleted = (name) => {};
+  const handleCompleted = (name) => {
+    toggle()
+  };
   const handleDelete = (name) => {};
 
   return (

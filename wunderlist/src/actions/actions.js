@@ -8,7 +8,7 @@ export const getTodo = () => (dispatch) => {
   dispatch({ type: START_FETCHING });
 
   axiosWithAuth()
-    .get("")
+    .get("/:id/todos")
     .then((res) => {
       console.log(res);
 
@@ -23,11 +23,11 @@ export const ADD_FETCHING = "ADD_FETCHING";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAIL = "ADD_FAIL";
 
-export const addTodo = (newTodo) => (dispatch) => {
+export const addTodo = (todos) => (dispatch) => {
   dispatch({ type: ADD_FETCHING });
 
   axiosWithAuth()
-    .post("")
+    .post("/:id/todos", todos)
     .then((res) => {
       console.log(res);
 
@@ -37,3 +37,12 @@ export const addTodo = (newTodo) => (dispatch) => {
       dispatch({ type: ADD_FAIL, payload: err.response });
     });
 };
+
+export const TOGGLE_TODO = "TOGGLE_TODO"
+
+export const toggle = (id) => {
+  return {
+     type: TOGGLE_TODO,
+     id: id
+  }
+}

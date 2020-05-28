@@ -84,12 +84,14 @@ export default function NewTodoForm(props) {
     //   })
     //   .catch((err) => console.log(err));
 
-   axiosWithAuth()
-   .post("/auth/register", setForm)
-   .then(res => {
-     localStorage.setItem("token", res.data.payload)
-   })
-   .catch(err => console.log("axios regis err", err))
+    axiosWithAuth()
+      .post("/auth/register", form)
+      .then((res) => {
+        localStorage.setItem("token", res.data.payload);
+
+        props.history.push("/dashboard");
+      })
+      .catch((err) => console.log("axios regis err", err));
   };
 
   console.log(user);
@@ -105,17 +107,22 @@ export default function NewTodoForm(props) {
           alignItems="center"
         >
           <h2>New User</h2>
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.username}>
-            <TextField
-              
-              type="text"
-              id="outlined-basic"
-              label="Username"
-              variant="outlined"
-              name="username"
-              onChange={handleChange}
-            />
-          </Paper></Grid>
+          <Grid item>
+            <Paper
+              className={classes.formItems}
+              elevation={3}
+              value={form.username}
+            >
+              <TextField
+                type="text"
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                name="username"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
           {/* <Grid item><Paper className={classes.formItems} elevation={3} value={form.lastname}>
             <TextField
               type="text"
@@ -136,18 +143,23 @@ export default function NewTodoForm(props) {
               onChange={handleChange}
             />
           </Paper></Grid> */}
-          <Grid item><Paper className={classes.formItems} elevation={3} value={form.password}>
-            <TextField
-              type="password"
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              name="password"
-              onChange={handleChange}
-            />
-          </Paper></Grid>
-          <Grid
-            className={classes.lastbtn}>
+          <Grid item>
+            <Paper
+              className={classes.formItems}
+              elevation={3}
+              value={form.password}
+            >
+              <TextField
+                type="password"
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                name="password"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid className={classes.lastbtn}>
             <Button onClick={formSubmit} variant="outlined">
               save
             </Button>

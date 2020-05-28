@@ -5,20 +5,13 @@ import {
   ADD_FETCHING,
   ADD_SUCCESS,
   ADD_FAIL,
+  TOGGLE_TODO,
 } from "../actions/actions";
 
 const initState = {
   isFetching: false,
   err: "",
-  newTodo: [
-    {
-      taskName: "",
-      taskDescription: "",
-      recurring: false,
-      completed: false,
-      expired: false,
-    },
-  ],
+  todos: [],
 };
 
 const reducer = (state = initState, action) => {
@@ -35,7 +28,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         err: "",
-        newTodo: action.payload,
+        todos: action.payload,
       };
     case FETCH_FAIL:
       return {
@@ -50,22 +43,22 @@ const reducer = (state = initState, action) => {
     case ADD_SUCCESS:
       return {
         ...state,
-        newTodo: [action.payload],
+        todos: [action.payload],
       };
     case ADD_FAIL:
       return {
         ...state,
         err: action.payload,
       };
-    case "TOGGLE_TODO":
-      return {
-        ...state,
-        newTodo: state.newTodo.map((item) => 
-          item.id === action.payload
-            ? { ...item, completed: !item.completed }
-            : item
-        ),
-      };
+    case TOGGLE_TODO:
+      const toggleTodos = state.todos.map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, completed: !todo.completed };
+        } else {
+          return todo;
+        }
+      });
+      return { todos: toggleTodos };
     default:
       return state;
   }
