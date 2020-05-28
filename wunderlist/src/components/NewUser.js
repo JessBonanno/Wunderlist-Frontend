@@ -88,7 +88,12 @@ export default function NewTodoForm(props) {
     //   })
     //   .catch((err) => console.log(err));
 
-   
+   axiosWithAuth()
+   .post("/auth/register", setForm)
+   .then(res => {
+     localStorage.setItem("token", res.data.payload)
+   })
+   .catch(err => console.log("axios regis err", err))
   };
 
   console.log(user);
