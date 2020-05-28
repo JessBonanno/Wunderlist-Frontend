@@ -20,6 +20,9 @@ import Hidden from "@material-ui/core/Hidden";
 import CheckList from "./Checklist";
 import theme from "./ui/Theme";
 
+//actions
+import { toggle } from "../actions/actions";
+
 const useStyles = makeStyles({
   root: {
     margin: "5em 1em 0",
@@ -76,13 +79,15 @@ export default function ListCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  // expand card body for mobile 
+  // expand card body for mobile
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   // need to make these functional
-  const handleCompleted = (name) => {};
+  const handleCompleted = (name) => {
+    toggle()
+  };
   const handleDelete = (name) => {};
 
   return (
@@ -115,7 +120,7 @@ export default function ListCard(props) {
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
-          <Collapse  in={expanded} timeout="auto" unmountOnExit>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent style={{ padding: 0 }}>
               <CheckList noteItems={props.note.noteItems} />
               <Grid item>
@@ -155,7 +160,7 @@ export default function ListCard(props) {
           </Collapse>
         </Hidden>
       </CardContent>
-        {/* large screens card body */}
+      {/* large screens card body */}
       <Grid container direction="column" alignItems="flex-start">
         <Hidden xsDown>
           <CheckList noteItems={props.note.noteItems} />
