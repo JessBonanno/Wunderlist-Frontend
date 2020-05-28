@@ -13,6 +13,7 @@ import theme from "./ui/Theme";
 
 //axiosWithAuth
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import homeBackground from "../assets/images/home-background.jpg";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -21,18 +22,25 @@ const validationSchema = yup.object().shape({
 
 const useStyles = makeStyles({
   loginContainer: {
-    margin: "10em auto ",
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${homeBackground})`,
+    width: "100%",
+    height: "100vh",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
+
+    margin: "0 auto ",
     [theme.breakpoints.down("md")]: {
-      margin: "8em auto 0",
     },
     [theme.breakpoints.down("sm")]: {
-      margin: "6em auto 0",
-      maxWidth: "95%",
+      width: "100%",
     },
   },
   loginPaper: {
-    height: "100%",
+    maxWidth: "90%",
+
     padding: "5em",
+
     [theme.breakpoints.down("md")]: {
       padding: "3em",
     },

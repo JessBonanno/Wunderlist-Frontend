@@ -20,9 +20,7 @@ const useStyles = makeStyles({
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
-    [theme.breakpoints.down("md")]: {
-      // marginTop: "7rem",
-    },
+
   },
   homeButtons: {
     width: 200,

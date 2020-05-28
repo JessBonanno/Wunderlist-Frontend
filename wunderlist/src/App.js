@@ -78,6 +78,8 @@ const sampleNoteData = [
 ];
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
+  const [userTodos, setUserTodos] = useState([{}]);
+
   const [userTheme, setUserTheme] = useState({
     large: homeBackground,
   });

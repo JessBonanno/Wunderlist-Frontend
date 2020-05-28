@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   socialContainer: {
     width: "auto",
     marginRight: "2em",
+    marginLeft: "2em",
   },
   socialIcon: {
     fontSize: "2rem",
@@ -41,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
   footerlinksContainer: {
     width: "auto",
+    margin: "0 .3em",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "1em",
+    },
   },
   link: {
     color: theme.palette.common.white,
@@ -55,14 +60,16 @@ export default function Footer() {
     <footer className={classes.footer}>
       <Grid
         container
-        justify={matchesXS ? "space-evenly" : "space-between"}
+        justify={matchesXS ? "center" : "space-evenly"}
         alignItems="center"
         className={classes.footerContainer}
       >
-        <Grid item>
-          <img alt="logo" src={wunderLogo} className={classes.headerImg} />
-        </Grid>
         <Grid item container className={classes.footerlinksContainer}>
+        <Grid item>
+            <Link underline="none" className={classes.link} href="">
+              Features
+            </Link>
+          </Grid>
           <Grid item>
             <Link underline="none" className={classes.link} href="">
               About Us
@@ -73,6 +80,7 @@ export default function Footer() {
               Contact Us
             </Link>
           </Grid>
+          
         </Grid>
         <Grid item container className={classes.socialContainer}>
           <Grid item>
