@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: theme.palette.common.white,
-    padding: ".5em",
+    padding: "1em",
   },
 }));
 
@@ -65,6 +65,11 @@ export default function Footer() {
         className={classes.footerContainer}
       >
         <Grid item container className={classes.footerlinksContainer}>
+        <Grid item>
+            <Link underline="none" className={classes.link} href="">
+              Features
+            </Link>
+          </Grid>
           <Grid item>
             <Link underline="none" className={classes.link} href="">
               About Us
@@ -75,6 +80,7 @@ export default function Footer() {
               Contact Us
             </Link>
           </Grid>
+          
         </Grid>
         <Grid item container className={classes.socialContainer}>
           <Grid item>
