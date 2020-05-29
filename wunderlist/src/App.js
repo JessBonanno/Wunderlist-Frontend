@@ -81,6 +81,8 @@ const sampleNoteData = [
 function App() {
   const [noteData, setNoteData] = useState(sampleNoteData);
   const [userTodos, setUserTodos] = useState([{}]);
+  const [userId, setUserId] = useState();
+
 
   const [userTheme, setUserTheme] = useState({
     large: homeBackground,
@@ -91,7 +93,7 @@ function App() {
     setUserTheme(image);
   };
 
-  
+
   return (
     <div className="App">
       {/* wrapping app with ThemeProvider to pass created styles to components */}
@@ -118,9 +120,9 @@ function App() {
 
           <Route
             path="/form"
-            render={(props) => <NewTodoForm {...props} noteData={noteData} />}
+            render={(props) => <NewTodoForm {...props} noteData={noteData} userId={userId}/>}
           />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route exact path="/login" render={(props) => <Login {...props} setUserId={setUserId}/>} />
           <Route
             exact
             path="/themes"
