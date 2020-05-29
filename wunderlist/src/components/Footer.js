@@ -73,12 +73,12 @@ export default function Footer() {
             </Link>
           </Grid>
           <Grid item>
-            <Link underline="none" className={classes.link} href="">
+            <Link underline="none" className={classes.link} href="https://zealous-minsky-c28ba0.netlify.app/about.html">
               About Us
             </Link>
           </Grid>
           <Grid item>
-            <Link underline="none" className={classes.link} href="">
+            <Link underline="none" className={classes.link} href="https://zealous-minsky-c28ba0.netlify.app/contact.html">
               Contact Us
             </Link>
           </Grid>

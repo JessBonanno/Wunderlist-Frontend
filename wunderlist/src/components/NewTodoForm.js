@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // local imports
 import theme from "./ui/Theme";
@@ -58,23 +59,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewTodoForm(props) {
   const classes = useStyles();
-  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const [todoId, setTodoId] = useState();
   const [edit, setEdit] = useState(false);
   const [todo, setTodo] = useState({});
   const [form, setForm] = useState({
-    listItems: [],
-    title: "",
-    frequency: "",
-    reocurring: false,
+    name: "",
+    category: "",
+    reoccurring: false,
   });
 
   const [newItem, setNewItem] = useState({
     item: "",
+    completed: false,
   });
-
   const [listItems, setListItems] = useState([]);
-  const frequency = ["day", "week", "month", "general"];
+  const [updatedList, setUpdatedList] = useState([]);
+  const category = ["day", "week", "month", "general"];
 
   const handleChange = (e) => {
     e.persist();
@@ -90,36 +91,67 @@ export default function NewTodoForm(props) {
   const handleItemSubmit = (e) => {
     e.preventDefault();
     setListItems([...listItems, newItem]);
-
-    addTodo(newItem)
-
+    // addTodo(newItem);
     setNewItem({
       item: "",
+      completed: false,
     });
   };
 
+  // working properly to add todo to db
   const formSubmit = (e) => {
     e.preventDefault();
-    setTodo({ ...form, listItems: listItems });
+    setTodo({ ...form, completed: false });
     setForm({
-      listItems: [],
-      title: "",
-      frequency: "",
-      recurring: false,
+      name: "",
+      category: "",
+      reoccurring: false,
     });
-    setListItems([]);
   };
 
-  console.log(todo);
+  useEffect(() => {
+    handleAddTodo(todo);
+  }, [todo]);
+
+  const handleAddTodo = () => {
+    axiosWithAuth()
+      .post(`/users/${props.userId}/todos`, todo)
+      .then((res) => {
+        console.log("add res: ", res);
+        setTodoId(res.data[0].id);
+        setUpdatedList(
+          listItems.map((list) => {
+            const o = Object.assign({}, list);
+            o.todo_id = res.data[0].id;
+            return o;
+          })
+        );
+      })
+      .catch((err) => console.log("login post err", err));
+  };
+
+// the list is properly being added to the corresponding todo in the db
+  useEffect(() => {
+    handleListSubmit(updatedList);
+  }, [updatedList]);
+
+  const handleListSubmit = () => {
+    axiosWithAuth()
+      .post(`/users/todos/${todoId}/list`, updatedList)
+      .then((res) => {
+        console.log("add res: ", res);
+      })
+      .catch((err) => console.log("login post err", err));
+  };
 
   const newName = (
     <Grid item>
       <Paper elevation={10}>
         <TextField
           style={{ width: 300 }}
-          value={form.title}
+          value={form.name}
           type="text"
-          name="title"
+          name="name"
           id="outlined-basic"
           label="Title"
           variant="outlined"
@@ -135,12 +167,7 @@ export default function NewTodoForm(props) {
         <InputLabel id="demo-simple-select-label">
           Choose Existing List
         </InputLabel>
-        <Select
-          id="title"
-          value={form.title}
-          onChange={handleChange}
-          name="title"
-        >
+        <Select id="name" value={form.name} onChange={handleChange} name="name">
           <MenuItem value="">None</MenuItem>
           {props.noteData.map((note) => {
             return <MenuItem value={note.name}>{note.name}</MenuItem>;
@@ -219,12 +246,12 @@ export default function NewTodoForm(props) {
                   <Select
                     label
                     Id="demo-simple-select-label"
-                    id="frequency"
-                    value={form.frequency}
+                    id="category"
+                    value={form.category}
                     onChange={handleChange}
-                    name="frequency"
+                    name="category"
                   >
-                    {frequency.map((time) => {
+                    {category.map((time) => {
                       return <MenuItem value={time}>{time}</MenuItem>;
                     })}
                   </Select>
@@ -236,10 +263,10 @@ export default function NewTodoForm(props) {
                   control={
                     <Checkbox
                       type="checkbox"
-                      id="recurring"
-                      checked={form.recurring}
+                      id="reoccurring"
+                      checked={form.reoccurring}
                       onChange={handleChange}
-                      name="recurring"
+                      name="reoccurring"
                       color="primary"
                     />
                   }

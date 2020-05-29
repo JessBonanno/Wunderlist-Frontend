@@ -70,7 +70,10 @@ export default function Login(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [canSubmit, setCanSubmit] = useState(false);
-  const [credential, setCredentials] = useState({});
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
   const [formValues, setFormValues] = useState({
     username: "",
     password: "",
@@ -107,6 +110,10 @@ export default function Login(props) {
       ...formValues,
       [e.target.name]: e.target.value,
     });
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
   };
   useEffect(() => {
     validationSchema.isValid(formValues).then((valid) => {
@@ -122,17 +129,23 @@ export default function Login(props) {
     } else {
       alert("You must enter a username and password");
     }
+    return loginUser();
+  };
 
+  const loginUser = () => {
+    console.log("creds: ", credentials);
     axiosWithAuth()
-      .post("/auth/login", formValues)
+      .post("/auth/login", credentials)
       .then((res) => {
-        localStorage.setItem("token", res.data.payload);
+        console.log("login res: ", res.data);
+        localStorage.setItem("token", res.data.token);
+        props.setUserId(res.data.body.id);
 
-        props.history.push("/dashboard");
+        props.history.push("/dashboard/today");
       })
       .catch((err) => console.log("login post err", err));
   };
-
+  
   return (
     <Grid
       container
