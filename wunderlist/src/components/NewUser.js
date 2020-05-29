@@ -87,6 +87,8 @@ export default function NewTodoForm(props) {
     axiosWithAuth()
       .post("/auth/register", form)
       .then((res) => {
+        console.log('register res: ', res);
+        
         localStorage.setItem("token", res.data.payload);
 
         props.history.push("/dashboard");

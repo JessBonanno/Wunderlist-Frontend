@@ -72,9 +72,15 @@ export default function NewTodoForm(props) {
   const [newItem, setNewItem] = useState({
     item: "",
   });
-
+  const [listItem, setListItem] = useState('');
   const [listItems, setListItems] = useState([]);
   const frequency = ["day", "week", "month", "general"];
+
+
+  // setting list items to array of strings then joining for backend
+  const [list, setList] = useState([]);
+  const [listItemsString, setListItemsString] = useState('');
+
 
   const handleChange = (e) => {
     e.persist();
@@ -85,12 +91,14 @@ export default function NewTodoForm(props) {
 
   const handleItemChange = (e) => {
     setNewItem({ ...newItem, item: e.target.value });
+    setListItem(e.target.value);
   };
 
   const handleItemSubmit = (e) => {
     e.preventDefault();
     setListItems([...listItems, newItem]);
-
+    setList([...list, listItem])
+    setListItemsString(list.join())
     addTodo(newItem)
 
     setNewItem({
@@ -98,9 +106,13 @@ export default function NewTodoForm(props) {
     });
   };
 
+  console.log(list);
+  
+  
   const formSubmit = (e) => {
     e.preventDefault();
-    setTodo({ ...form, listItems: listItems });
+    setListItemsString(list.join())
+    setTodo({ ...form, listItems: listItemsString });
     setForm({
       listItems: [],
       title: "",
@@ -110,8 +122,11 @@ export default function NewTodoForm(props) {
     setListItems([]);
   };
 
-  console.log(todo);
 
+  
+  console.log(listItemsString);
+  console.log(todo);
+  
   const newName = (
     <Grid item>
       <Paper elevation={10}>

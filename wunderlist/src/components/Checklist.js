@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CheckList({ noteItems }) {
+  // setting the list items back to arry from string backend format
+  const listItems = noteItems.split(',')
+
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -43,7 +46,7 @@ export default function CheckList({ noteItems }) {
 
   return (
     <List className={classes.root}>
-      {noteItems.map((value) => {
+      {listItems.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
