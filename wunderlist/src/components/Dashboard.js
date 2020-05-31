@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Hidden from "@material-ui/core/Hidden";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import ArrowForwardIosTwoToneIcon from "@material-ui/icons/ArrowForwardIosTwoTone";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 // local imports
 import ListCard from "./ListCard";
@@ -54,6 +52,67 @@ export default function Dashboard(props) {
   const history = useHistory().location.pathname;
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const [filteredNotes, setFilteredNotes] = useState([]);
+  const [id, setId] = useState(props.userId)
+  console.log('id: ', id);
+  
+  const dummyNotes = [
+    {  category: "day",
+      completed: false,
+      id: 2,
+      item: "trash",
+      name: "chores",
+      reoccurring: false,
+      todo_id: 27,
+    },
+    {
+      category: "day",
+      completed: false,
+      id: 1,
+      item: "dishwasher",
+      name: "chores",
+      reoccurring: false,
+      todo_id: 27,
+    },
+    {
+      category: "month",
+      completed: false,
+      id: 3,
+      item: "butter",
+      name: "groceries",
+      reoccurring: true,
+      todo_id: 28,
+    },
+    {
+      category: "month",
+      completed: false,
+      id: 2,
+      item: "eggs",
+      name: "groceries",
+      reoccurring: true,
+      todo_id: 28,
+    },
+    {
+      category: "month",
+      completed: false,
+      id: 1,
+      item: "milk",
+      name: "groceries",
+      reoccurring: true,
+      todo_id: 28,
+    },
+]
+
+
+
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/users/${id}/todos`)
+      .then((res) => {
+        console.log("login res: ", res);
+      })
+      .catch((err) => console.log("login post err", err));
+  },[id]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   // this will conditionally show the lists accordingly

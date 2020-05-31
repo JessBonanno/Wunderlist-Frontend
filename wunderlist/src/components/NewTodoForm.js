@@ -110,10 +110,14 @@ export default function NewTodoForm(props) {
   };
 
   useEffect(() => {
-    handleAddTodo(todo);
+    if (todo) {
+      handleAddTodo(todo);
+    }
   }, [todo]);
 
   const handleAddTodo = () => {
+    console.log("test");
+
     axiosWithAuth()
       .post(`/users/${props.userId}/todos`, todo)
       .then((res) => {
@@ -130,16 +134,18 @@ export default function NewTodoForm(props) {
       .catch((err) => console.log("login post err", err));
   };
 
-// the list is properly being added to the corresponding todo in the db
+  // the list is properly being added to the corresponding todo in the db
   useEffect(() => {
-    handleListSubmit(updatedList);
+    if (updatedList) {
+      handleListSubmit(updatedList);
+    }
   }, [updatedList]);
 
   const handleListSubmit = () => {
     axiosWithAuth()
       .post(`/users/todos/${todoId}/list`, updatedList)
       .then((res) => {
-        console.log("add res: ", res);
+        console.log("add list: ", res);
       })
       .catch((err) => console.log("login post err", err));
   };
