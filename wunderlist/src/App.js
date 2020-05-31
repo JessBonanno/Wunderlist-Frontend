@@ -83,6 +83,8 @@ function App() {
   const [userTodos, setUserTodos] = useState([{}]);
   const [userId, setUserId] = useState();
 
+  console.log(userId);
+  
 
   const [userTheme, setUserTheme] = useState({
     large: homeBackground,
@@ -108,6 +110,7 @@ function App() {
                 noteData={noteData}
                 setNoteData={setNoteData}
                 userTheme={userTheme}
+                userId={userId}
               />
             )}
           />
