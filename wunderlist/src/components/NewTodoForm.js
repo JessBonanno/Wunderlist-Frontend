@@ -146,6 +146,8 @@ export default function NewTodoForm(props) {
       .post(`/users/todos/${todoId}/list`, updatedList)
       .then((res) => {
         console.log("add list: ", res);
+        props.history.push("/dashboard");
+
       })
       .catch((err) => console.log("login post err", err));
   };

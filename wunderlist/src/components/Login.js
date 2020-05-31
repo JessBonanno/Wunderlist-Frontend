@@ -140,8 +140,7 @@ export default function Login(props) {
         console.log("login res: ", res.data);
         localStorage.setItem("token", res.data.token);
         props.setUserId(res.data.body.id);
-
-        props.history.push("/dashboard/today");
+        canSubmit && props.history.push("/dashboard");
       })
       .catch((err) => console.log("login post err", err));
   };

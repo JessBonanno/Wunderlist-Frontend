@@ -91,12 +91,11 @@ export default function NewTodoForm(props) {
         
         localStorage.setItem("token", res.data.payload);
 
-        props.history.push("/dashboard");
+        props.history.push("/");
       })
       .catch((err) => console.log("axios regis err", err));
   };
 
-  console.log(user);
 
   return (
     // form container

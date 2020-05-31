@@ -83,7 +83,6 @@ function App() {
   const [userTodos, setUserTodos] = useState([{}]);
   const [userId, setUserId] = useState();
 
-  console.log(userId);
   
 
   const [userTheme, setUserTheme] = useState({

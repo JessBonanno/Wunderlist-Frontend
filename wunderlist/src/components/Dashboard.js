@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   cardContainer: {
-    marginBottom: "5em",
+    // marginBottom: "5em",
     width: "100%",
-    minHeight: "1000px",
+    minHeight: "100vh",
+    paddingBottom: '10em',
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
@@ -53,57 +54,12 @@ export default function Dashboard(props) {
   const classes = useStyles();
   const history = useHistory().location.pathname;
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [filteredNotes, setFilteredNotes] = useState([]);
-  const [id, setId] = useState(props.userId);
   const [unfilteredTodos, setUnfilteredTodos] = useState([]);
 
-  const dummyNotes = [
-    {
-      category: "day",
-      completed: false,
-      id: 2,
-      item: "trash",
-      name: "chores",
-      reoccurring: false,
-      todo_id: 27,
-    },
-    {
-      category: "day",
-      completed: false,
-      id: 1,
-      item: "dishwasher",
-      name: "chores",
-      reoccurring: false,
-      todo_id: 27,
-    },
-    {
-      category: "month",
-      completed: false,
-      id: 3,
-      item: "butter",
-      name: "groceries",
-      reoccurring: true,
-      todo_id: 28,
-    },
-    {
-      category: "month",
-      completed: false,
-      id: 2,
-      item: "eggs",
-      name: "groceries",
-      reoccurring: true,
-      todo_id: 28,
-    },
-    {
-      category: "month",
-      completed: false,
-      id: 1,
-      item: "milk",
-      name: "groceries",
-      reoccurring: true,
-      todo_id: 28,
-    },
-  ];
+
 
   // this function will reduce all the items belonging to one todo into an array inside the object instead of an seperate object for each list item
   let reducedList = {};
@@ -123,13 +79,13 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/users/${id}/todos`)
+      .get(`/users/${props.userId}/todos`)
       .then((res) => {
         console.log("get res: ", res);
         setUnfilteredTodos(res.data);
       })
       .catch((err) => console.log("login post err", err));
-  }, [id]);
+  }, [props.userId]);
 
   // setting filtered notes to be a new array to match the selected category of day, week, month or general
   // this will conditionally show the lists accordingly
@@ -160,28 +116,26 @@ export default function Dashboard(props) {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${props.userTheme.large})`, // setting background to chosen user theme
         }}
       >
-        {/* <Grid item style={{marginTop: '3em', color: theme.palette.common.white, textAlign: 'center'}}>
-          <Typography variant="h4">
-            Welcome To Your Dashboard!<br></br> Use the menu to select your list
-            view.
-          </Typography>
-        </Grid> */}
-
-        {history !== "/dashboard"
-          ? filteredNotes.map((note, index) => (
-              <Grid item className={classes.card} key={index}>
-                <ListCard note={note} />
-              </Grid>
-            ))
-          : [].map((note, index) => (
-              <Grid item className={classes.card} key={index}>
-                <ListCard
-                  note={note}
-                  setNoteData={props.setNoteData}
-                  noteData={props.noteData}
-                />
-              </Grid>
-            ))}
+        {filteredNotes.length === 0 && (
+          <Grid
+            item
+            style={{
+              marginTop: "3em",
+              color: theme.palette.common.white,
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="h4">
+              Welcome To Your Dashboard!<br></br> Use the menu to select your
+              list view.
+            </Typography>
+          </Grid>
+        )}
+        {filteredNotes.map((note, index) => (
+          <Grid item className={classes.card} key={index}>
+            <ListCard note={note} />
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );
